@@ -1,0 +1,51 @@
+{
+  "common": {
+    "language": {
+      "spanish": "Español",
+      "english": "Ingles"
+    }
+  },
+  "components": {
+    "admin": {
+      "products": "Productos",
+      "actions": {
+        "create": "Crear",
+        "new": "Nuevo",
+        "update": "Actualizar",
+        "back": "Volver"
+      }
+    },
+    "navbar": {
+      "spanish": "Español",
+      "english": "Ingles"
+    },
+    "forms": {
+      "fields": {
+        "labels": {
+          "name": "Nombre",
+          "price": "Precio",
+          "description": "Descripción",
+          "size": "Talla",
+          "login": "Correo",
+          "password": "Contraseña"
+        },
+        "placeholders": {
+          "selectOption": "Seleccione una opción",
+          "name": "Digita el nombre",
+          "price": "Digita el precio",
+          "login": "Digita Correo Electronico",
+          "password": "Digita Contraseña"
+        },
+        "errors": {
+          "required": "Este campo es requerido",
+          "invalidEmail": "formato de email invalido",
+          "minCharacters": "Mínimo de 2 caracteres"
+        }
+      },
+      "actions": {
+        "login": "Ingresar",
+        "register": "Registrarme"
+      }
+    }
+  }
+}

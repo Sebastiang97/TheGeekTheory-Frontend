@@ -1,0 +1,80 @@
+.purchase{
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--main-color);
+    .info{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+        .containerImg{
+            img{
+                -webkit-box-shadow: var(--checkout-shadow);
+                -moz-box-shadow: var(--checkout-shadow);
+                box-shadow: var(--checkout-shadow);
+                width: 120px;
+                border: 2px solid var(--main-color);
+                border-radius: 6px;
+            }
+        }
+        .details{
+            header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 30px;
+                margin: 0;
+                h4{
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+            }
+            .colorSize{
+                display: flex;
+                gap: 5px;
+                .size{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: var(--main-color);
+                    width: 22px;
+                    border-radius: 6px;
+                }
+                .color{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid var(--color-white);
+                    border-radius: 100%;
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+            .content{
+                font-size: 12px;
+            }
+            
+        }
+    }
+    .actions{
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        color: var(--main-color);
+        cursor: pointer;
+        svg:hover{
+            color: var(--main-hover-color);
+        }
+    }
+}
+
+
+@media (width < 900px) {
+    .purchase{
+        display: block;
+        img{
+            width: 100%;
+        }
+        
+    }
+}

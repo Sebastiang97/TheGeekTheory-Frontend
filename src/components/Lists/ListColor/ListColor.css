@@ -1,0 +1,14 @@
+.listColors{
+    display: flex;
+    gap: 30px;
+    div{
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+
+        &.active{
+            border: 2px solid var(--main-color);
+        }
+    }
+}

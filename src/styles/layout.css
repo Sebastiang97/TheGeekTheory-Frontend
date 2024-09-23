@@ -1,0 +1,7 @@
+.container{
+    padding: 20px 100px;
+}
+  
+.bg-light{
+    background-color: var(--main-bg-light);
+}

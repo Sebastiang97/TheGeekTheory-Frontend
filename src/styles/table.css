@@ -1,0 +1,10 @@
+.table-border{
+
+    border: 2px solid var(--main-color);
+    border-radius: 6px;
+}
+table{
+    tr{
+        border-bottom: 1px solid var(--main-color);
+    }
+}

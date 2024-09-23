@@ -1,0 +1,51 @@
+{
+  "common": {
+    "language": {
+      "spanish": "Spanish",
+      "english": "English"
+    }
+  },
+  "components": {
+    "admin": {
+      "products": "Products",
+      "actions": {
+        "create": "Create",
+        "new": "New",
+        "update": "Update",
+        "back": "Back"
+      }
+    },
+    "navbar": {
+      "spanish": "Spanish",
+      "english": "English"
+    },
+    "forms": {
+      "fields": {
+        "labels":{
+          "name": "Name",
+          "price": "Price",
+          "description": "Description",
+          "size": "Size",
+          "login": "Email",
+          "password": "Password"
+        },
+        "placeholders": {
+          "selectOption": "Select an option",
+          "name": "Type name",
+          "price": "Type price",
+          "login": "Type Email",
+          "password": "Type Password"
+        },
+        "errors": {
+          "required": "This field is required",
+          "invalidEmail": "invalid email format",
+          "minCharacters": "Minimum of 2 characters"
+        }
+      },
+      "actions": {
+        "login": "Sign in",
+        "register": "Sign up"
+      }
+    }
+  }
+}

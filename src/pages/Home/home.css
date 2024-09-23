@@ -1,0 +1,168 @@
+.home{
+
+    .custom{
+        background-color: var(--main-card-color);
+        border-radius: 5px;
+        -webkit-box-shadow: var(--home-shadow);
+        -moz-box-shadow: var(--home-shadow);
+        box-shadow: var(--home-shadow);
+        margin: 5px;
+        padding: 30px 5px;
+    
+        header{
+            width: 100%;
+            padding:  20px 0;
+            h3{
+                text-align: center;
+                font-weight: 600;
+            }
+        }
+    
+        .steps{
+            padding: 20px 0;
+            display: flex;
+            padding: 20px 0;
+            .step{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+                &:nth-child(2){
+                    margin-top: 20px;
+                }
+                div{
+                    .containerImg{
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img{
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    .ownDesign{
+        margin: 40px;
+        header{
+            width: 100%;
+            margin: 30px 0;
+            h1{
+                text-align: center;
+            }
+        }
+        /* .designlist{
+            padding: 0 100px;
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            flex-wrap: wrap;
+        } */
+    }
+    
+    .contact{
+        margin: 10px 0;
+        .content{
+            text-align: center;
+        }
+        form{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0;
+            padding: 0 20px;
+            .field{
+                margin: 0;
+                width: 500px;
+            }
+            .actions{
+                button{
+                    width: 100%;
+                }
+            }
+        }
+    
+    }
+}
+
+@media (width < 900px) {
+    .home{
+
+        .main{
+            header{
+                width: 100%;
+                h1{
+                    text-align: center;
+                    font-weight: 600;
+                }
+                .actions{
+                    margin: 10px 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    
+                }
+            }
+            .containerImg{
+                width: 100%;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+        
+        .custom{
+            
+            header{
+                width: 100%;
+                h1{
+                    text-align: center;
+                    font-weight: 600;
+                }
+            }
+        
+            .steps{
+                display: block;
+                .step{
+                    margin: 20px 0;
+                    div{
+                        .containerImg{
+                            margin: 5px 0;
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+        /* .ownDesign{
+            .designlist{
+                display: block;
+                .design{
+                    display: flex;
+                    justify-content: center;
+                    margin: 10px 0;
+                }
+            }
+        } */
+        
+        
+        .contact{
+            form{
+                display: block;
+                .field{
+                    width: 100%;
+                }
+                .actions{
+                    padding: 20px 0;
+                }
+            }
+        }
+    }
+}

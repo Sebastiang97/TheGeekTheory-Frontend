@@ -1,0 +1,33 @@
+.menuItem{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* &:has(> .active){
+        border-bottom: 1px solid var(--main-color);
+    } */
+    color: var(--color-gray);
+    
+    &:hover{
+        color: var(--color-white);
+    }
+    &.active{
+        color: var(--color-white);
+        border-bottom: 1px solid var(--main-color);
+    }
+    
+    a{
+        color: var(--color-gray);
+        padding: 10px 30px;
+        width: 100%;
+        display: block;
+        &.active{
+            color: var(--color-white);
+            border-bottom: 1px solid var(--main-color);
+        }
+        &:hover{
+            color: var(--color-white);
+        }
+
+    }
+}

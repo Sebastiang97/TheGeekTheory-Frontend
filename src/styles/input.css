@@ -1,0 +1,109 @@
+form {
+    margin: 30px 0;
+
+    .field {
+        margin: 10px 0;
+        
+        label {
+            width: 100%;
+        }
+
+        label[for="fileuploader"] {
+            width: 100%;
+            height: 200px;
+            display: grid;
+            place-content: center;
+            border: 2px solid var(--main-color);
+            cursor: pointer;
+        }
+
+        input:not([type="checkbox"]),
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid var(--main-color);
+
+            &:focus-visible {
+                outline-color: var(--main-hover-color);
+            }
+        }
+
+        .containCheck{
+            display: flex;
+            align-items: center;
+            .checkbox {
+                position: relative;
+                margin-right: 30px;
+                .lCheckbox {
+                    background-color: #fff;
+                    border: 1px solid var(--main-color);
+                    border-radius: 0px;
+                    cursor: pointer;
+                    height: 25px;
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+                    width: 25px;
+                }
+        
+                .lCheckbox:after {
+                    border: 2px solid #fff;
+                    border-top: none;
+                    border-right: none;
+                    content: "";
+                    height: 6px;
+                    left: 6px;
+                    opacity: 0;
+                    position: absolute;
+                    top: 7px;
+                    transform: rotate(-45deg);
+                    width: 12px;
+                }
+        
+                input[type="checkbox"] {
+                    visibility: hidden;
+                }
+        
+                input[type="checkbox"]:checked+.lCheckbox {
+                    background-color: var(--main-color);
+                    border-color: var(--main-color);
+                }
+        
+                input[type="checkbox"]:checked+.lCheckbox:after {
+                    opacity: 1;
+                }
+            }
+        }
+
+
+        input[type="file"] {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        span {
+            color: var(--error-color);
+        }
+    }
+
+    .actions {
+        display: flex;
+
+        &.start {
+            justify-content: start;
+        }
+
+        &.center {
+            justify-content: center;
+        }
+
+        &.end {
+            justify-content: end;
+        }
+    }
+}

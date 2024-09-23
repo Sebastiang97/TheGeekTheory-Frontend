@@ -1,0 +1,53 @@
+:root {
+    --main-color: #FF5C00;
+    --main-hover-color: #FFAA46;
+    --main-black-color: #000;
+    --main-padding: 10px 14px;
+    --main-font-size: 16px;
+    --main-radius: 6px;
+    --main-bg-light: #F5F5F5;
+    --main-font-color: #000;
+    --second-font-color: #fff;
+    --main-font-color-inactive: #010208;
+
+    /* Colors */
+    --color-gray: #bfbfbf;
+    --color-white: #fff;
+    --color-black: #fff;
+
+        
+    
+    /* Home */
+    --main-card-color: #FFAA46;
+    --home-shadow: 5px 6px 0px 0px #000;
+
+    /* Design */
+
+    /* Checkout */
+    --checkout-shadow: 5px 6px 0px 0px #000;
+    
+    /* Colors */
+    --bg-light: #fff;
+
+    /* Catalog */
+    --main-border-color: 2px solid var(--main-color);
+
+    
+    /* cards */
+    --border-card: 1px solid var(--main-color);
+    --padding-card: 12px;
+
+    /* buttons */
+    --border-buttons: #000;
+
+    /* Inputs */
+    --error-color: #F11C1C;
+
+    /* Tabs */
+    --tabs-padding: 40px;
+    --tabs-border: none;
+    --tabs-border-active: 2px solid var(--main-color);
+    --tabs-color-active: var(--main-font-color-inactive);
+    --tabs-color: var(--main-font-color);
+}
+

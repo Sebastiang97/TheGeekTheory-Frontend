@@ -1,0 +1,26 @@
+.card{
+    width: 250px;
+    border-radius: var(--main-radius);
+    border: var(--border-card);
+    position: relative;
+
+    .update{
+        width: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: end;
+        padding: 10px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    img{
+        border-radius: var(--main-radius) var(--main-radius) 0 0;
+        width: 100%;
+    }
+
+    section{
+        padding: var(--padding-card);
+    }
+}

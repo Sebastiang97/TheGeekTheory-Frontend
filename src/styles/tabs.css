@@ -1,0 +1,24 @@
+.tabs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-light);
+    padding: var(--tabs-padding);
+
+    div[role="tablist"]{
+        button{
+            border: var(--tabs-border);
+            border-radius: 0px;
+            color: var(--tabs-color-active);
+            background-color: var(--bg-light);
+            &[aria-selected="true"]{
+                color: var(--tabs-color);
+                border-bottom: var(--tabs-border-active);
+            }
+
+            &:hover{
+                color: var(--main-color);
+            }
+        }
+    }
+}

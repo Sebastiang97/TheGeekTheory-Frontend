@@ -1,0 +1,45 @@
+.productTitle{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+.product{
+    display: flex;
+    justify-content: center;
+    article {
+        header{
+            margin: 50px 0;
+            h1{
+                text-align: center;
+            }
+        }
+        .containerImg{
+            display: flex;
+            justify-content: center;
+            img{
+            }
+        }
+        .content{
+            margin: 25px 0;
+            padding: 0 250px;
+            text-align: center;
+        }
+    }
+}
+
+.description{
+    .content{
+        margin: 25px 0;
+        text-align: center;
+    }
+}
+
+@media (width < 900px) {
+    .product{
+        article{
+            .content{
+                padding: 0 25px;
+            }
+        }
+    }
+}

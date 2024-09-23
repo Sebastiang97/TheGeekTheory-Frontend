@@ -1,0 +1,26 @@
+.designlist{
+    padding: 0 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    .design{
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+}
+
+
+
+@media (width < 900px) {
+    .designlist{
+        .design{
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+    }
+}
