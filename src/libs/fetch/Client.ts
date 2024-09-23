@@ -11,11 +11,12 @@ export type Client = {
 export const client: Client = (url:string, opt?: any) => {
     let get = (): Promise<Response> =>{
         return fetch(url, {
+            method: "GET",
             credentials: "include",
             headers: {
-                Accept: "application/json",
-                "content-Type": "application/json",
-                "Acces-Control-Allow-Credentials": true,
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+                // "Acces-Control-Allow-Credentials": true,
             },
             ...opt
         })
@@ -28,6 +29,10 @@ export const client: Client = (url:string, opt?: any) => {
     let postFile = (obj:FormData): Promise<Response> =>{
         return fetch(url,{
             method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: obj,
         })
     }
@@ -37,6 +42,7 @@ export const client: Client = (url:string, opt?: any) => {
             method: 'POST',
             body: JSON.stringify(obj),
             headers: {
+                Accept: 'application/json',
                 "Content-Type": "application/json",
             },
         })
