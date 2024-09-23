@@ -3,7 +3,7 @@ import { Actions, InputFields } from "@/Models/InputFields";
 export const inputLoginFields:InputFields[] =[
     {
         type: "input",
-        isNumber: false,
+        // isNumber: false,
         name: "email",
         placeholder: "components.forms.fields.placeholders.login",
         label: "components.forms.fields.labels.login",
@@ -19,7 +19,7 @@ export const inputLoginFields:InputFields[] =[
     },
     {
         type: "password",
-        isNumber: false,
+        // isNumber: false,
         name: "password",
         placeholder: "components.forms.fields.placeholders.password",
         label: "components.forms.fields.labels.password",

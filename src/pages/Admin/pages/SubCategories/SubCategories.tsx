@@ -2,7 +2,6 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { useSubCategoryStore } from "@/libs/store/zustand/useSubCategoryStore"
-import { List } from "@@/List/List"
 import { EditIcon } from "@@/icons/EditIcon"
 
 export const SubCategories = () => {

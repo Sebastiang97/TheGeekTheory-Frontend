@@ -22,7 +22,7 @@ import { ActionsSubCategories } from '@/pages/Admin/pages/SubCategories/ActionsS
 import { Payments } from '@/pages/Payment/Payments'
 import { PaymentByPayId } from '@/pages/Payment/PaymentbyPayId/PaymentByPayId'
 import { Pays } from '@/pages/Admin/pages/Pays/Pays'
-import { Test2 } from '@/pages/Test/Test2'
+// import { Test2 } from '@/pages/Test/Test2'
 
 export const AppRouter = () => {
   return (
@@ -59,7 +59,7 @@ export const AppRouter = () => {
           </PublicRoutes>
           }/>
           <Route  path='profile' element={<PrivateRoutes />} /> */}
-        <Route path='/test' element={<Test2 />} />
+        {/* <Route path='/test' element={<Test2 />} /> */}
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

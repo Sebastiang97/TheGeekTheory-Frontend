@@ -15,7 +15,13 @@ export const Login = () => {
             <TabsTrigger value="password">Password</TabsTrigger>
           </TabsList>
           <TabsContent value="account">
-            <FormDinamic inputFields={inputLoginFields} actions={actions} />
+            <FormDinamic 
+              inputFields={inputLoginFields} 
+              actions={actions} 
+              getImgs={()=>{}}
+              getOnChanges={()=>{}}
+              getValues={()=>{}}
+              />
             <div className="icons">
               <svg 
                 onClick={() => window.open(URL_AUTHENTICATE+"/google", "_self")} 
@@ -29,7 +35,13 @@ export const Login = () => {
             </div>
           </TabsContent>
           <TabsContent value="password">
-            <FormDinamic inputFields={inputLoginFields} actions={actionsRegister} />
+            <FormDinamic 
+              inputFields={inputLoginFields} 
+              actions={actionsRegister} 
+              getImgs={()=>{}}
+              getOnChanges={()=>{}}
+              getValues={()=>{}}
+              />
             <div className="icons">
               <svg 
                 onClick={() => window.open(URL_AUTHENTICATE+"/google", "_self")} 

@@ -29,7 +29,7 @@ export const CartList = () => {
                         </header>
                         <section className="listPurchases">
                             {
-                                items.map(i => (
+                                items.map((i:any) => (
                                     <CardItem<Product>
                                         key={i.item.id} 
                                         item={i} 

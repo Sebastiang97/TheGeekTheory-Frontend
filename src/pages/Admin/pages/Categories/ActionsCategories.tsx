@@ -44,6 +44,7 @@ export const ActionsCategories = () => {
           actions={actions}
           getImgs={() => {}}
           getValues={getValues}
+          getOnChanges={()=>{}}
           />
       </div>
     </>

@@ -87,6 +87,7 @@ export const ActionsSubCategories = () => {
           actions={actions}
           getImgs={getImgs}
           getValues={getValues}
+          getOnChanges={()=>{}}
           />
       </div>
     </>

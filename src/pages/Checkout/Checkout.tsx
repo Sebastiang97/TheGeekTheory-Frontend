@@ -24,7 +24,7 @@ export const Checkout = () => {
 
     const [info, setInfo] = useState<Payer>({} as Payer)
 
-    const getValues = (values: any, type: string) => {
+    const getValues = (values: any, type?: string) => {
         if (items.length) {
             console.log({ values })
             createPayer(mappingUser(values))
@@ -114,6 +114,7 @@ export const Checkout = () => {
                                 actions={actions}
                                 getImgs={getImgs}
                                 getValues={getValues}
+                                getOnChanges={()=>{}}
                             />
                         ) : (
                             <section className="info">
