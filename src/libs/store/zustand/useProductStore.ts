@@ -21,7 +21,7 @@ export const useProductStore = create<Props>(
         list: () => {
             if(!get().products.length){
                 set({loading: true})
-                baseService(URL_PRODUCTS).list<Product>()
+                baseService(URL_PRODUCTS).list<Product[]>()
                 .then(products => {
                     set({products,loading: false})
                 })

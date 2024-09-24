@@ -1,3 +1,5 @@
+import { DirectionPage } from '@/Models/DirectionPage'
+import { Pagination } from '@/Models/Pagination'
 import { Pay } from '@/Models/Pay'
 import { Product } from '@/Models/Product'
 import { baseService } from '@/Services/base.service'
@@ -8,10 +10,10 @@ interface Props {
     pays: Pay[],
     loading: boolean
     list: () => void
-    getPaysAndPayer: () => Promise<Pay[]>
+    getPaysAndPayer: (cursor:string, limit:number, direction: DirectionPage) => Promise<Pagination<Pay[]>>
     listAll: () => Promise<Pay[]>
     getPayById: (id: string) => Promise<Pay>
-    getPayByPayerId: (payerId:string)=>Promise<Pay[]>
+    getPayByPayerId: (payerId:string, cursor:string, limit:number, direction: DirectionPage)=>Promise<Pagination<Pay[]>>
     createPay: (product: FormData)=> Promise<Product>
 }
 
@@ -22,20 +24,21 @@ export const usePayStore = create<Props>(
         list: () => {
             if(!get().pays.length){
                 set({loading: true})
-                baseService(URL_PAYS).list<Pay>()
+                baseService(URL_PAYS).list<Pay[]>()
                 .then(pays => {
                     set({pays})
                 })
             }
         },
-        getPaysAndPayer: () => {
-            return baseService(URL_PAYS+"getPaysAndPayer").list<Pay>()
+        getPaysAndPayer: (cursor, limit = 5, direction) => {
+            return baseService(`${URL_PAYS}getPaysAndPayer?cursor=${cursor}&limit=${limit}&direction=${direction}`)
+                .list<Pagination<Pay[]>>()
                 .then(pays => {
                     return pays
                 })
         },
         listAll: () => {
-            return baseService(URL_PAYS).list<Pay>()
+            return baseService(URL_PAYS).list<Pay[]>()
                 .then(pays => pays)
         },
         getPayById:  (id:string) => {
@@ -45,9 +48,9 @@ export const usePayStore = create<Props>(
                     return pay
                 })
         },
-        getPayByPayerId: (payerId:string) =>{
-            return baseService(URL_PAYS+"getByPayerId/")
-                .getById<Pay[]>(payerId)
+        getPayByPayerId: (payerId:string, cursor, limit = 5, direction) =>{
+            return baseService(`${URL_PAYS}getByPayerId/${payerId}?cursor=${cursor}&limit=${limit}&direction=${direction}`)
+                .list<Pagination<Pay[]>>()
                 .then(pay=>{
                     return pay
                 })

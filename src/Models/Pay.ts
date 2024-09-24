@@ -7,7 +7,9 @@ export type Pay = {
     description:string
     amount:number
     state:string
-    payerId:string
+    payerId:string,
+    creationDate: string
+    updatedAt: string
     productsPay: ProductPay[]
     payer: Payer
 }

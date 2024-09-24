@@ -1,0 +1,22 @@
+.summary {
+    margin: 15px 0;
+
+    .item {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    hr {
+        margin: 10px 0;
+        border: 1px solid var(--main-color);
+    }
+
+    
+    .actions{
+        display: block;
+        button {
+            margin: 5px 0;
+            width: 100%;
+        }
+    }
+}

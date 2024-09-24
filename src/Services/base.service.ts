@@ -5,9 +5,9 @@ export const baseService = (url:string, opt?: any) =>{
 
     let http: Client = client
 
-    let list = <T>(): Promise<T[]> =>{
+    let list = <T>(): Promise<T> =>{
         return http(url, opt).get()
-            .then(res => res.json() as Promise<T[]>)
+            .then(res => res.json() as Promise<T>)
             .catch(error=> {
                 throw error
             })

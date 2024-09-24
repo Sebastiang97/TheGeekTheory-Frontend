@@ -6,9 +6,10 @@ import { useCartStore } from "@/libs/store/zustand/useCartStore"
 import { itemCard } from "@/Models/itemCart"
 interface Props<T>{
     item: itemCard<T>
+    isActions: boolean
 }
 
-export const CardItem = <T,>({item}: Props<T>) => {
+export const CardItem = <T,>({item,isActions}: Props<T>) => {
     const {id, urlImage, name, size, color, price} = item.item as any
     const quantity = item.quantity as any
     const deleteProduct = useCartStore(state => state.deleteProduct)
@@ -40,10 +41,16 @@ export const CardItem = <T,>({item}: Props<T>) => {
                         <span className="size">
                             {size}
                         </span>
-                        <span 
-                            className="color" 
-                            style={{backgroundColor: color}}
-                        >
+                        <span
+                            className="color active"
+                            style={{
+                                backgroundColor: color,
+                                border: color === "#fff" && color !== "#fff"
+                                    ? '1px solid #000'
+                                    : ""
+                            }}
+                            >
+
                         </span>
                     </p>
                     <p className="content">
@@ -51,19 +58,23 @@ export const CardItem = <T,>({item}: Props<T>) => {
                     </p>
                 </section>
             </section>
-            <section className="actions">
-                <EditIcon 
-                    onClick={() => editCardItem(id)}
-                    width="18"
-                    height="18"
+            {
+                isActions && (
+                    <section className="actions">
+                        <EditIcon 
+                            onClick={() => editCardItem(id)}
+                            width="18"
+                            height="18"
 
-                />
-                <DeleteIcon 
-                    onClick={() => deleteCardItem(id)}
-                    width="18"
-                    height="18"
-                />
-            </section>
+                        />
+                        <DeleteIcon 
+                            onClick={() => deleteCardItem(id)}
+                            width="18"
+                            height="18"
+                        />
+                    </section>
+                )
+            }
         </article>
     </>
   )

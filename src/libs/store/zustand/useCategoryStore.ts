@@ -18,7 +18,7 @@ export const useCategoryStore = create<Props>(
         list: async () => {
             if(!get().categories.length){
                 set({loading: true})
-                return baseService(URL_CATEGORY).list<Category>()
+                return baseService(URL_CATEGORY).list<Category[]>()
                 .then(categories => {
                     set({categories,loading: false})
                     return categories

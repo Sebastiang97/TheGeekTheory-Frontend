@@ -1,62 +1,120 @@
-import { MAPPER_FIELDS } from "@/helpers/mapperFields"
 import { usePayStore } from "@/libs/store/zustand/usePayStore"
 import { Pay } from "@/Models/Pay"
-// import { TableComponent } from "@@/TableComponent/TableComponent"
-import { TableTest } from "@@/TableComponent/TableTest"
 import { useEffect, useState } from "react"
-import { OPTIONS_PAY_ACTIONS, OptionsPayTable, TABLE_PAY_HEADERS } from "./Payment.constants"
-import { FieldTable } from "@/Models/Table"
-import { OptionsActions } from "@/Models/OptionsActions"
+import { usePayerStore } from "@/libs/store/zustand/usePayerStore"
+import { Pagination } from "@@/Pagination/Pagination"
+import { LIMIT_MY_PAYS } from "@/constants/Paginate"
+import { CardItem } from "@@/CardItem/CardItem"
+import { ProductPay } from "@/Models/ProductsPay"
+import { SummaryPay } from "@@/SummaryPay/SummaryPay"
+import "./payments.css"
+import { GET_FORMAT_DATE_PAY } from "@/helpers/GetFormatDatePay"
+import { DirectionPage } from "@/Models/DirectionPage"
 
 export const Payments = () => {
-  
-  // const [pays, setPays] = useState<Pay[]>([])
+  const [pays, setPays] = useState<Pay[]>([])
+  const [previousCursor, setPreviousCursor] = useState("")
+  const [nextCursor, setNextCursor] = useState("")
+  const payer = usePayerStore(state => state.payer)
 
-  const [filterData, setFilterData] = useState<FieldTable<Pay, OptionsPayTable>[]>([])
-  const payer = usePayStore(state=> state.pays)
 
   const getPayByPayerId = usePayStore(state => state.getPayByPayerId)
 
-  const optionActions = ({detail, type}: OptionsActions<Pay, OptionsPayTable>)=>{
-    console.log({detail,type})
-    if(type == 'add'){
+  const handlePaginate = (direction:DirectionPage) => {
+    if (payer.length && payer[0].id) {
+      getPayByPayerId(payer[0].id,direction === "next" ? nextCursor : previousCursor , LIMIT_MY_PAYS, direction)
+        .then(pays => {
+          setPays(pays.content)
+        })
     }
 
   }
 
-  useEffect(()=>{
-    console.log(payer)
-    // if(payer.length){
-      getPayByPayerId("0f687bca-f8eb-417c-b672-49c5e26e3857")
-        .then(pays=>{
-          setFilterData(MAPPER_FIELDS<Pay, OptionsPayTable>(pays, OPTIONS_PAY_ACTIONS))
-          // setPays(pays)
+  useEffect(() => {
+    if (payer.length && payer[0].id) {
+      getPayByPayerId(payer[0].id, "", LIMIT_MY_PAYS, "next")
+        .then(pays => {
+          setPays(pays.content)
         })
-    // }
-  },[])
+    }
+  }, [])
+
   return (
-    <>
-      {filterData?.length && 
-        <TableTest<Pay, OptionsPayTable>  
-          data={filterData} 
-          headers={TABLE_PAY_HEADERS}
-          editActions={()=>{}}
-          optionsActions={optionActions}
-        />
-      }
-      {/* <TableComponent/> */}
-      {/* {pays?.length && (
-        pays.map(pay=>(
-          <div key={pay.id}>
-            id:  {pay.id}
-            paymentId: {pay.paymentId}
-            description: {pay.description}
-            amount: {pay.amount}
-            state: {pay.state}
-            payerId: {pay.payerId}
-          </div>
-        ))
-      )} */}
-    </>
+    <section className="container">
+      <h2 className="datePay">Tus compras </h2>
+      <section className="myPayments">
+        {pays?.length ? (
+          pays.map(pay => {
+            return (
+              <div key={pay.id}>
+                <h4 className="datePay">{GET_FORMAT_DATE_PAY(pay.creationDate)}</h4>
+                {
+                  pay.productsPay.map(productPay => {
+                    return (
+                      <CardItem<ProductPay>
+                        key={productPay.id}
+                        item={{
+                          item: productPay,
+                          quantity: productPay.quantity
+                        }}
+                        isActions={false}
+                      />
+                    )
+                  })
+                }
+                <section className="summary">
+                  <SummaryPay
+                    discount={0}
+                    sendTo={0}
+                    subTotal={pay.amount}
+                    taxes={0}
+                    total={pay.amount}
+                  />
+                </section>
+              </div>
+            )
+          }
+          )
+        ) : (
+          <div>Sin pagos </div>
+        )}
+      </section>
+      <Pagination handlePagination={handlePaginate} />
+    </section>
   )
 }
+
+
+/*
+
+ <section className="container">
+      {pays?.length ? (
+        pays.map(pay => {
+          if(pay.productsPay.length){
+            let subtotal = 0
+            pay.productsPay.map(i => subtotal += i.price * i.quantity)
+            pay.productsPay.forEach(productPay=>{
+              return (
+                <CardItem<ProductPay>
+                  key={productPay.id} 
+                  item={{
+                    item: productPay,
+                    quantity: productPay.quantity
+                  }} 
+                />
+                )
+            })
+          }else{
+            return (
+              <div>sin productos</div>
+            )
+          }
+          
+        })
+      ):(
+        <div>Sin pagos </div>
+      )}
+      <Pagination handlePagination={handlePaginate} />
+
+    </section>
+*/

@@ -21,7 +21,7 @@ export const useSubCategoryStore = create<Props>(
         list: () => {
             if(!get().subCategories.length){
                 set({loading: true})
-                baseService(URL_SUBCATEGORIES).list<SubCategory>()
+                baseService(URL_SUBCATEGORIES).list<SubCategory[]>()
                 .then(subCategories => {
                     set({subCategories,loading: false})
                 })

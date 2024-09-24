@@ -33,6 +33,7 @@ export const CartList = () => {
                                     <CardItem<Product>
                                         key={i.item.id} 
                                         item={i} 
+                                        isActions={true}
                                     />
                                 ))
                             }

@@ -19,7 +19,7 @@ export const usePayerStore = create<Props>()(persist(
             const payer = get().payer
             if(!payer.length){
                 baseService(URL_PAYER)
-                    .list<Payer>()
+                    .list<Payer[]>()
                     .then(payer=>{
                         set({payer})
                     })
@@ -54,6 +54,6 @@ export const usePayerStore = create<Props>()(persist(
     }),
     {
         name: "payer",
-        storage: createJSONStorage(() => sessionStorage),
+        storage: createJSONStorage(() => localStorage),
     }
 ))

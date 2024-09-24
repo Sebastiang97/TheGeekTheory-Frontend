@@ -14,6 +14,7 @@ import { Payer } from "@/Models/Payer"
 import "./checkout.css"
 import { usePayerStore } from "@/libs/store/zustand/usePayerStore"
 import { PayerList } from "@@/Lists/PayerList/PayerList"
+import { URL_PAYS } from "@/constants/service.constant"
 
 export const Checkout = () => {
     const items = useCartStore(state => state.items)
@@ -68,7 +69,7 @@ export const Checkout = () => {
         info.id && formData.append("payerId", info.id)
 
 
-        baseService("http://localhost:3000/api/pay")
+        baseService(URL_PAYS)
             .createFile(formData)
             .then(res => {
                 console.log({ res })
@@ -81,6 +82,7 @@ export const Checkout = () => {
     }
 
     const addPayer = () => {
+        console.log(add)
         setAdd(true)
     }
 
@@ -108,7 +110,7 @@ export const Checkout = () => {
                     </header>
 
                     {
-                        (add && !info?.id) ? (
+                        (add ) ? (
                             <FormDinamic
                                 inputFields={inputCheckoutFields}
                                 actions={actions}

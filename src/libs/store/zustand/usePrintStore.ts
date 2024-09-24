@@ -18,7 +18,7 @@ export const usePrintStore = create<PropsUseProduct>(
         list: () => {
             if(!get().prints.length){
                 set({loading: true})
-                baseService(URL_PRINTS).list<Print>()
+                baseService(URL_PRINTS).list<Print[]>()
                 .then(prints => {
                     set({prints,loading: false})
                 })
