@@ -1,5 +1,5 @@
-// export const URL_BASE = "https://thegeektheory-backend.onrender.com/api/"
-export const URL_BASE = "http://localhost:3000/api/"
+export const URL_BASE = "https://thegeektheory-backend.onrender.com/api/"
+// export const URL_BASE = "http://localhost:3000/api/"
 
 
 export const URL_PRODUCTS = URL_BASE + "products"
