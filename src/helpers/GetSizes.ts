@@ -9,3 +9,16 @@ export const GET_SIZES = (products: Product[]):string[] =>{
     })
     return sizes
 }
+
+export const FILTER_SIZE = (products: Product[]) =>{
+    const sizes = ["XS", "S", "M", "L", "XL"]
+    return sizes.filter(size => {
+        let isSize = true
+        products.forEach(product=>{
+            if(size === product.size) {
+                isSize = false
+            }
+        })
+        return isSize
+    })
+}

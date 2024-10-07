@@ -30,7 +30,9 @@ export const useProductStore = create<Props>(
         getById:  (id:string) => get().products.find(product=> product.id === id),
         createProduct : async (formData:FormData) => {
             set({loading: true})
-            
+            for (const [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
             const product = await baseService(URL_PRODUCTS).createFile<any>(formData)
             const products = get().products
 

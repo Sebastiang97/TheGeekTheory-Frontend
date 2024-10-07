@@ -44,6 +44,12 @@ button,
             color: var(--color-white);
         }
     }
+
+    &.tertiary{
+        background-color: var(--background-tertiary);
+        color: var(--main-color);
+        border: var(--background-tertiary);   
+    }
 }
 
 .no-button{

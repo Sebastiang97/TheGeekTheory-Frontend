@@ -10,7 +10,8 @@ interface Props {
     list: () => void
     getById: (id: string) => SubCategory | undefined
     createSubCategory: (product: FormData)=> Promise<SubCategory>
-    getSubByCategoryId: (categoryId: string) => Promise<SubCategory []>
+    getSubByCategoryId: (categoryId: string) => Promise<SubCategory[]>
+    deleteSubById: (id: string)=> Promise<void>
 }
 
 export const useSubCategoryStore = create<Props>(
@@ -29,7 +30,7 @@ export const useSubCategoryStore = create<Props>(
         },
         getById:  (id:string) => get().subCategories.find(category=> category.id === id),
         getSubByCategoryId: async (categoryId:string) => {
-            const subByCategoryId =  await baseService(URL_SUBCATEGORIES+"/categoryId/"+categoryId).get<SubCategory[]>()
+            const subByCategoryId =  await baseService(URL_SUBCATEGORIES+"categoryId/"+categoryId).get<SubCategory[]>()
             set({subByCategoryId})
             return subByCategoryId
         },
@@ -43,6 +44,9 @@ export const useSubCategoryStore = create<Props>(
             set({subCategories,loading: false})
             
             return subCategory
+        },
+        deleteSubById: (id: string)=>{
+            return baseService(URL_SUBCATEGORIES).remove(id)
         }
     })
 )

@@ -1,0 +1,10 @@
+.subCategory{
+    display: flex;
+    justify-content: space-between;
+}
+
+.actionsProducts{
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+}

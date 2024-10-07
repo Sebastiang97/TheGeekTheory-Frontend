@@ -33,7 +33,8 @@ export const FormDinamic = ({ inputFields, actions, getValues, getImgs, getOnCha
             if (type === 'input' ||
               type === 'password' ||
               type === 'email' ||
-              type === 'number') {
+              type === 'number'||
+              type === 'color') {
               return <MyTextInput
                 key={name}
                 type={(type as any)}

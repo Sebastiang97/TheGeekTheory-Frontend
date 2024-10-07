@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 interface Props {
     label: string;
     name: string;
-    type?: 'text' | 'email' | 'password' | 'color';
+    type: 'color';
     placeholder?: string;
     [x: string]: any;
 }
 
 
-export const MyTextInput = ( { label, ...props }: Props ) => {
+export const ColorPicker = ( { label, ...props }: Props ) => {
     const { t } = useTranslation(["translation"])
     const [ field, meta ] = useField(props)
 

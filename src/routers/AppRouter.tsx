@@ -22,6 +22,7 @@ import { ActionsSubCategories } from '@/pages/Admin/pages/SubCategories/ActionsS
 import { Payments } from '@/pages/Payment/Payments'
 import { PaymentByPayId } from '@/pages/Payment/PaymentbyPayId/PaymentByPayId'
 import { Pays } from '@/pages/Admin/pages/Pays/Pays'
+import { Products2 } from '@/pages/Admin/pages/Products/Products2'
 // import { Test2 } from '@/pages/Test/Test2'
 
 export const AppRouter = () => {
@@ -45,6 +46,7 @@ export const AppRouter = () => {
         <Route path='/admin' element={<Admin />} />
 
         <Route path='/admin/products/' element={<Products />} />
+        <Route path='/admin/products2/' element={<Products2 />} />
         <Route path='/admin/products/actions/:id' element={<ActionsProducts />} />
         <Route path='/admin/categories/' element={<Categories />} />
         <Route path='/admin/categories/actions/:id' element={<ActionsCategories />} />

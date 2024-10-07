@@ -32,7 +32,15 @@ export const baseService = (url:string, opt?: any) =>{
 
     let createFile = <T>(object:FormData): Promise<T> =>{
         return http(url, opt).postFile(object)
-            .then(res => res.json() as Promise<T>)
+            .then(async res => {
+                if (!res.ok) {
+                    throw new DetailedError('Failed to fetch data', {
+                        status: res.status,
+                        details: await res.json(),
+                    });
+                }
+                return res.json()
+            })
             .catch(error=> {
                 console.log({error})
                 throw error

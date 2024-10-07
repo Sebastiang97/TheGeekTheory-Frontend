@@ -1,0 +1,1 @@
+export type TypeActions = "add" | "edit" | "delete"

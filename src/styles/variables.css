@@ -39,6 +39,7 @@
 
     /* buttons */
     --border-buttons: #000;
+    --background-tertiary: none;
 
     /* Inputs */
     --error-color: #F11C1C;

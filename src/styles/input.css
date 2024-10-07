@@ -76,6 +76,10 @@ form {
             }
         }
 
+        input[type="color"]{
+            border: none;
+            padding: 0;
+        }
 
         input[type="file"] {
             width: 0.1px;

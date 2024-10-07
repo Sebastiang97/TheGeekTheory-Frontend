@@ -29,27 +29,30 @@ export const client: Client = (url:string, opt?: any) => {
     let postFile = (obj:FormData): Promise<Response> =>{
         return fetch(url,{
             method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
             body: obj,
+            ...opt
         })
     }
 
     let post = (obj:any): Promise<Response> =>{
         return fetch(url,{
             method: 'POST',
+            credentials: "include",
             body: JSON.stringify(obj),
             headers: {
                 Accept: 'application/json',
                 "Content-Type": "application/json",
             },
+            ...obj
         })
     }
 
     let remove = (): Promise<Response> =>{
-        return fetch(url, opt)
+        return fetch(url, {
+            method: 'DELETE',
+            credentials: "include",
+            ...opt
+        })
     }
 
     return {
