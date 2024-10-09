@@ -9,6 +9,7 @@ interface Props {
     list: () => Promise<Category[]>
     getById: (id: string) => Category | undefined
     createCategory: (product: any)=> Promise<Category>
+    deleteCategoryById: (id: string)=> Promise<void>
 }
 
 export const useCategoryStore = create<Props>(
@@ -37,6 +38,9 @@ export const useCategoryStore = create<Props>(
             set({categories,loading: false})
             
             return category
+        },
+        deleteCategoryById: (id: string)=>{
+            return baseService(URL_CATEGORY).remove(id)
         }
     })
 )

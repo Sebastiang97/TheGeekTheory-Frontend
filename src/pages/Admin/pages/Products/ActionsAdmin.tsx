@@ -37,18 +37,21 @@ export const ActionsAdmin = ({ inputAdminFields, actions, getProductData, mode, 
         )
       })
       setCurrentImage(img[0])
-      setImages(img)
+      setImages((prev)=> [...prev,...img])
     }
   }
 
   const getValues = (values: any) => {
     console.log(values)
+    console.log(images)
     const formData: FormData = new FormData();
-    Object.keys(values).map((key) => {
+    Object.keys(values).map(async (key) => {
       if (key === "files") {
-        values[key]?.map((value: any) => {
-          formData.append("file", value);
-        })
+        if(values[key].length){
+          values[key].map((value: any) => {
+            formData.append("file", value);
+          })
+        }
       } else {
         formData.append(key, values[key]);
       }
@@ -77,6 +80,7 @@ export const ActionsAdmin = ({ inputAdminFields, actions, getProductData, mode, 
             url: img.url
           }
         })
+        console.log(images)
         setCurrentImage(images[0])
         setImages(images)
       }

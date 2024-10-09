@@ -36,6 +36,7 @@ export const Products2 = () => {
 
   const categories = useCategoryStore(state => state.categories)
   const listCategories = useCategoryStore(state => state.list)
+  const deleteCategoryById = useCategoryStore(state => state.deleteCategoryById)
 
   const getSubByCategoryId = useSubCategoryStore(state => state.getSubByCategoryId)
 
@@ -109,6 +110,16 @@ export const Products2 = () => {
 
   const handleCategoryOptions = (type: TypeActions, id: string): void => {
     console.log(type, id)
+    if(type === ADMIN_MODE.delete){
+      deleteCategoryById(category?.id)
+        .then(res=>{
+          console.log("first")
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+      return 
+    }
     setMode(prev=> {return {...prev, category: { mode: type }}})
   }
 
@@ -184,7 +195,9 @@ export const Products2 = () => {
     }
 
     if(mode.sub.mode === "edit"){
-      
+      for (const [key, value] of subData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
     }
     setMode(prev=> {return {...prev, sub: { mode: "view" }}})
   }

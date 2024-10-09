@@ -79,6 +79,7 @@ export const FormDinamic = ({ inputFields, actions, getValues, getImgs, getOnCha
                     type="file"
                     onChange={(event) => {
                       const files = event.target.files;
+                      console.log(event.target)
                       if (files) {
 
                         let myFiles = Array.from(files);
