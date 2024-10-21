@@ -1,8 +1,9 @@
 export type Client = {
     (url:string, opt?: any):{
         get        : ()=> Promise<Response>
-        put        : ()=> Promise<Response>
-        postFile       : (obj:FormData)=> Promise<Response>
+        put        : (obj:any)=> Promise<Response>
+        putFile    : (obj:FormData)=> Promise<Response>
+        postFile   : (obj:FormData)=> Promise<Response>
         post       : (obj:any)=> Promise<Response>
         remove     : ()=> Promise<Response>
     }
@@ -22,8 +23,25 @@ export const client: Client = (url:string, opt?: any) => {
         })
     }
 
-    let put = (): Promise<Response> =>{
-        return fetch(url, opt)
+    let put = (obj:any): Promise<Response> =>{
+        return fetch(url, {
+            method: 'PUT',
+            credentials: "include",
+            body: JSON.stringify(obj),
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": "application/json",
+            },
+            ...obj
+        })
+    }
+
+    let putFile = (obj:FormData): Promise<Response> =>{
+        return fetch(url, {
+            method: 'PUT',
+            body: obj,
+            ...opt
+        })
     }
 
     let postFile = (obj:FormData): Promise<Response> =>{
@@ -60,6 +78,7 @@ export const client: Client = (url:string, opt?: any) => {
         post,
         postFile,
         put,
+        putFile,
         remove
     }
 }

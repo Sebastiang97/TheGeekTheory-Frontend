@@ -57,7 +57,7 @@ export const Checkout = () => {
 
     const pay = () => {
         const formData: FormData = new FormData();
-
+        console.log("first")
         const ids:any[] = []
 
         items.forEach((item) => {
@@ -73,7 +73,7 @@ export const Checkout = () => {
             .createFile(formData)
             .then(res => {
                 console.log({ res })
-                // window.open(res as any, "_self")
+                window.open(res as any, "_self")
             })
             .catch(err => {
                 console.log({ err })

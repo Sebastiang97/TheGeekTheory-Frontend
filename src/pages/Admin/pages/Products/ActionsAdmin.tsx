@@ -12,12 +12,12 @@ import { SelectImage } from "@/Models/SelectImages"
 interface Props {
   inputAdminFields: InputFields[]
   actions: Actions
-  getProductData: (productData: FormData, isCancel: boolean) => void
   initialValues: any
   mode: string
+  getProductData: (productData: FormData, isCancel: boolean, images: any[]) => void
 }
 
-export const ActionsAdmin = ({ inputAdminFields, actions, getProductData, mode, initialValues }: Props) => {
+export const ActionsAdmin = ({ inputAdminFields, actions, mode, initialValues, getProductData }: Props) => {
   const { t } = useTranslation(["translation"])
   const [isFirst, setIsFirst] = useState(false)
   const [inputs, setInputs] = useState<InputFields[]>(JSON.parse(JSON.stringify(inputAdminFields)))
@@ -42,8 +42,6 @@ export const ActionsAdmin = ({ inputAdminFields, actions, getProductData, mode, 
   }
 
   const getValues = (values: any) => {
-    console.log(values)
-    console.log(images)
     const formData: FormData = new FormData();
     Object.keys(values).map(async (key) => {
       if (key === "files") {
@@ -56,16 +54,29 @@ export const ActionsAdmin = ({ inputAdminFields, actions, getProductData, mode, 
         formData.append(key, values[key]);
       }
     })
+    if(mode == ADMIN_MODE.edit){
+      images.map(img=>{
+        formData.append("urlImage", img.id);
+      })
+    }
+
     // for (const [key, value] of formData.entries()) {
     //   console.log(`${key}: ${value}`);
     // }
 
-    getProductData(formData, false)
+    getProductData(formData, false, images.length ? images : [] )
 
   }
 
+  const deleteImage = (id:string) => {
+    if(id === currentImage.id && images.length > 1){
+      setCurrentImage(images[1])
+    }
+    let newImages = images.filter(img=>  img.id !== id)
+    setImages(newImages)
+  }
+
   useEffect(() => {
-    console.log(initialValues)
     if(mode == ADMIN_MODE.add){
       let intAdmin: InputFields[] = ADD_INIT_INPUT_VALUES(inputAdminFields, initialValues)
       setInputs(intAdmin)
@@ -80,7 +91,6 @@ export const ActionsAdmin = ({ inputAdminFields, actions, getProductData, mode, 
             url: img.url
           }
         })
-        console.log(images)
         setCurrentImage(images[0])
         setImages(images)
       }
@@ -93,7 +103,7 @@ export const ActionsAdmin = ({ inputAdminFields, actions, getProductData, mode, 
       <div className="actions">
         <h3>Crear Subcategoria</h3>
         <button
-          onClick={() => getProductData(new FormData(), true)}
+          onClick={() => getProductData(new FormData(), true, [])}
         >
           volver
         </button>
@@ -104,6 +114,7 @@ export const ActionsAdmin = ({ inputAdminFields, actions, getProductData, mode, 
             images={images}
             currentImage={currentImage}
             selectMainImage={(img: SelectImage) => setCurrentImage(img)}
+            deleteImage={deleteImage}
           />
           : <div>Sin fotos subidas</div>
       }

@@ -1,0 +1,10 @@
+
+.deleteIcon{
+    margin: 3px;
+    padding: 3px;
+    position: absolute;
+    color: var(--color-white);
+    cursor: pointer;
+    background-color: var(--main-color);
+    border-radius: 50%;
+}

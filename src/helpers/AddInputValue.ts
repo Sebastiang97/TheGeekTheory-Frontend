@@ -1,3 +1,4 @@
+import { SIZE } from "@/constants/Size"
 import { InputFields } from "@/Models/InputFields"
 
 export const ADD_INPUT_VALUES = (intAdmin:InputFields[], initialValues:any): InputFields[]=>{
@@ -8,7 +9,9 @@ export const ADD_INPUT_VALUES = (intAdmin:InputFields[], initialValues:any): Inp
             input.value = initialValues[key]
           }
           if(key === input.name && input.type === "select"){  
-            input.options = initialValues[key]
+            input.options = [...initialValues[key]].map((v:any)=>{return {id: v, label: v}})
+            // input.options.push({id: initialValues.currentSize, label: initialValues.currentSize})
+            input.value =  initialValues.currentSize
           }
         })
     })

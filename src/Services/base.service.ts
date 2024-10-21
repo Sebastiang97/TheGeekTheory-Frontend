@@ -7,7 +7,15 @@ export const baseService = (url:string, opt?: any) =>{
 
     let list = <T>(): Promise<T> =>{
         return http(url, opt).get()
-            .then(res => res.json() as Promise<T>)
+            .then(async res => {
+                if (!res.ok) {
+                    throw new DetailedError('Failed to fetch data', {
+                        status: res.status,
+                        details: await res.json(),
+                    });
+                }
+                return res.json()
+            })
             .catch(error=> {
                 throw error
             })
@@ -15,7 +23,15 @@ export const baseService = (url:string, opt?: any) =>{
 
     let get = <T>(): Promise<T> =>{
         return http(url, opt).get()
-            .then(res => res.json() as Promise<T>)
+            .then(async res => {
+                if (!res.ok) {
+                    throw new DetailedError('Failed to fetch data', {
+                        status: res.status,
+                        details: await res.json(),
+                    });
+                }
+                return res.json()
+            })
             .catch(error=> {
                 throw error
             })
@@ -24,7 +40,15 @@ export const baseService = (url:string, opt?: any) =>{
 
     let getById = <T>(id:string): Promise<T> =>{
         return http(url+id, opt).get()
-            .then(res => res.json() as Promise<T>)
+            .then(async res => {
+                if (!res.ok) {
+                    throw new DetailedError('Failed to fetch data', {
+                        status: res.status,
+                        details: await res.json(),
+                    });
+                }
+                return res.json()
+            })
             .catch(error=> {
                 throw error
             })
@@ -63,17 +87,50 @@ export const baseService = (url:string, opt?: any) =>{
             })
     }
 
-    let update = <T>(id:string): Promise<T> =>{
-        return http(url+id, opt).put()
-            .then(res => res.json() as Promise<T>)
+    let update = <T>(id:string, object:any): Promise<T> =>{
+        return http(url+id, opt).put(object)
+            .then(async res => {
+                if (!res.ok) {
+                    throw new DetailedError('Failed to fetch data', {
+                        status: res.status,
+                        details: await res.json(),
+                    });
+                }
+                return res.json()
+            })
             .catch(error=> {
+                
+            })
+    }
+
+    let updateFile = <T>(id:string, object:FormData): Promise<T> =>{
+        return http(url+id, opt).putFile(object)
+            .then(async res => {
+                if (!res.ok) {
+                    throw new DetailedError('Failed to fetch data', {
+                        status: res.status,
+                        details: await res.json(),
+                    });
+                }
+                return res.json()
+            })
+            .catch(error=> {
+                console.log({error})
                 throw error
             })
     }
 
     let remove = <T>(id:string): Promise<T> =>{
         return http(url+id, opt).remove()
-            .then(res => res.json() as Promise<T>)
+            .then(async res => {
+                if (!res.ok) {
+                    throw new DetailedError('Failed to fetch data', {
+                        status: res.status,
+                        details: await res.json(),
+                    });
+                }
+                return res.json()
+            })
             .catch(error=> {
                 throw error
             })
@@ -86,6 +143,7 @@ export const baseService = (url:string, opt?: any) =>{
         createFile,
         getById,
         update,
+        updateFile,
         remove,
     }
 }

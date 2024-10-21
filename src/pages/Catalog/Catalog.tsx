@@ -14,6 +14,8 @@ import { ListColor } from "@@/Lists/ListColor/ListColor"
 import { usePrintStore } from "@/libs/store/zustand/usePrintStore"
 import { ListPrint } from "@@/Lists/ListPrint/ListPrint"
 import { useCustomProduct } from "@/libs/store/zustand/useCustomProduct"
+import { useCategoryStore } from "@/libs/store/zustand/useCategoryStore"
+import { Category } from "@/Models/Category"
 
 export const Catalog = () => {
     const [file, setFile] = useState<File>()
@@ -24,21 +26,21 @@ export const Catalog = () => {
 
     const prints = usePrintStore(state => state.prints)
     const loading = usePrintStore(state => state.loading)
-    const list = usePrintStore(state => state.list)
+    const listPrint = usePrintStore(state => state.list)
+
+    const categories = useCategoryStore(state => state.categories)
+    const listCategories = useCategoryStore(state => state.list)
 
     const getSubByCategoryId = useSubCategoryStore(state => state.getSubByCategoryId)
 
     const productsSubById = useProductStore(state => state.productsSubById)
     const getProductsBySubId = useProductStore(state => state.getProductsBySubId)
 
+    const [category, setCategory] = useState<Category>({} as Category)
     const [product, setProduct] = useState<Product>({} as Product)
-
     const [sizes, setSizes] = useState<string[]>([]) 
-
     const [size, setSize] = useState<string>("")
-
     const [colors, setColors] = useState<string[]>([])
-
     const [color, setColor] = useState<string>("")
 
     const addProperties = (currentProduct:Product, products: Product[]):void =>{
@@ -65,8 +67,9 @@ export const Catalog = () => {
         }
     }
 
-    const getSubCategoryAndProduct = (categoryId: string) => {
-        getSubByCategoryId(categoryId)
+    const getSubCategoryAndProduct = (category: Category) => {
+        setCategory(category)
+        getSubByCategoryId(category.id)
             .then(subByCategoryId => {
                 getProductsBySubId(subByCategoryId[0]?.id)
                     .then(products => {
@@ -91,12 +94,24 @@ export const Catalog = () => {
     }
 
     useEffect(()=>{
-        list()
+        listCategories().then(categories => {
+                getSubCategoryAndProduct(categories[0])
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            
+        listPrint()
     },[])
 
     return (
         <>
-            <CategoryList getCurrentCategoryId={getSubCategoryAndProduct} />
+            <CategoryList 
+                currentCategory={category}
+                categories={categories}
+                getCurrentCategoryId={getSubCategoryAndProduct} 
+            />
+
             {(productsSubById.length && Object.keys(product).length) && (
                 <section className="products">
                     <article className="cardProducts">

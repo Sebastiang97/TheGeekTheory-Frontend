@@ -6,9 +6,10 @@ interface Props {
   images: SelectImage[]
   currentImage: SelectImage
   selectMainImage: (img: SelectImage)=> void
+  deleteImage: (id: string)=> void
 }
 
-export const PreviewImagesTest = ({ images, currentImage, selectMainImage }: Props) => {
+export const PreviewImagesTest = ({ images, currentImage, selectMainImage, deleteImage }: Props) => {
   const [img, setImg] = useState<SelectImage>(currentImage)
 
   const getCurrentImage = (img: SelectImage) => {
@@ -23,7 +24,8 @@ export const PreviewImagesTest = ({ images, currentImage, selectMainImage }: Pro
               <img
                 className="object-contain"
                 src={img.url}
-                alt={"asdf"} />
+                alt={"asdf"} 
+              />
             </div>
 
             <CarouselAdminTest
@@ -31,6 +33,7 @@ export const PreviewImagesTest = ({ images, currentImage, selectMainImage }: Pro
               getCurrentImage={getCurrentImage}
               currentImage={currentImage.id}
               selectMainImage={selectMainImage}
+              deleteImage={deleteImage}
             />
           </>
         )
