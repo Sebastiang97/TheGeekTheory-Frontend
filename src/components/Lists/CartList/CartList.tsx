@@ -25,7 +25,7 @@ export const CartList = () => {
                 ? (
                     <section className="purchases">
                         <header>
-                            <h3>Tus compras</h3>
+                            <h4>Carrito de compras</h4>
                         </header>
                         <section className="listPurchases">
                             {

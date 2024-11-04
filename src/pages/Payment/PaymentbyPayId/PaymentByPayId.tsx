@@ -6,6 +6,7 @@ import { useProductsPayStore } from "@/libs/store/zustand/useProductsPayStore";
 import { ProductsPayList } from "@@/Lists/ProductsPayList/ProductsPayList";
 import { PayerItem } from "@@/Payer/PayerItem";
 import { Payer } from "@/Models/Payer";
+import { Loading } from "@@/Loading/Loading";
 
 export const PaymentByPayId = () => {
   const location = useLocation();
@@ -13,6 +14,7 @@ export const PaymentByPayId = () => {
 
   const getProductsByPayId = useProductsPayStore(state => state.getProductsByPayId)
   const productsPay = useProductsPayStore(state => state.productsPay)
+  const loading = useProductsPayStore(state => state.loading)
 
   const getPayById = usePayStore(state => state.getPayById)
 
@@ -49,7 +51,11 @@ export const PaymentByPayId = () => {
           ¡Gracias por tu compra!
         </p>
       </section>
-      <ProductsPayList productPay={productsPay} />
+      <Loading isLoading={loading} />
+
+      {!loading && (
+        <ProductsPayList productPay={productsPay} />
+      )}
     </section>
   )
 }

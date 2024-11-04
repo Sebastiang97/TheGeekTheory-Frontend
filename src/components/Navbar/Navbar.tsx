@@ -1,5 +1,5 @@
 import { NAVBAR_LIST } from "@/constants/Nav.constants"
-import { Cart } from "@@/Cart/Cart"
+import { CartPopover } from "@@/CartPopover/CartPopover"
 import { Hamburger } from "@@/icons/Hamburger"
 import { Language } from "@@/icons/Language/Language"
 import { NavLink } from "react-router-dom"
@@ -42,7 +42,7 @@ export const Navbar: React.FC = () => {
         <Profile showText={false}/>
       </section>
       <div className="icon">
-        <Cart />
+        <CartPopover />
       </div>
     </nav>
   )

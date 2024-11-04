@@ -1,12 +1,17 @@
 import { NAVBAR_LIST } from '@/constants/Nav.constants'
 import './footer.css'
 import { Link } from 'react-router-dom'
+import { IMAGES } from '@/constants/images/images'
+import { Facebook } from '@@/icons/Facebook'
+import { Tiktok } from '@@/icons/Tiktok'
+import { Instagram } from '@@/icons/Instragram'
+import { WhatsApp } from '@@/icons/WhatsApp'
 
 export const Footer = () => {
   return (
     <footer>
         <section className="containerImg">
-            <img src="https://images7.alphacoders.com/130/1305464.jpg" alt="" />
+            <img src={IMAGES.footer1} alt="" />
         </section>
         <section className="navBarList">
             <div>
@@ -28,13 +33,13 @@ export const Footer = () => {
                 Contáctanos
             </p>
             <section className="icons">
-                <div className="containerImg">
-                    <img src="https://images7.alphacoders.com/130/1305464.jpg" alt="" />
-                </div>
+                {/* <div className="containerImg">
+                </div> */}
                 <div className="socials">
-                    <img src="https://images7.alphacoders.com/130/1305464.jpg" alt="" />
-                    <img src="https://images7.alphacoders.com/130/1305464.jpg" alt="" />
-                    <img src="https://images7.alphacoders.com/130/1305464.jpg" alt="" />
+                    <WhatsApp />
+                    <Instagram />
+                    <Facebook />
+                    <Tiktok />
                 </div>
             </section>
             <p className="content">

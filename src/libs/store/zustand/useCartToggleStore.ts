@@ -5,7 +5,7 @@ interface Props {
     toggle: () => void
 }
 
-export const useSideBarStore = create<Props>(
+export const useCartToggleStore = create<Props>(
     (set, get) => ({
         isOpen: false,
         toggle: ()=>{

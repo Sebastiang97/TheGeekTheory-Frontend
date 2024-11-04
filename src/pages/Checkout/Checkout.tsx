@@ -94,7 +94,9 @@ export const Checkout = () => {
     useEffect(() => {
         if (payer.length) {
             setInfo(payer[0])
+            setAdd(false)
         }
+        console.log(info)
     }, [])
 
     return (

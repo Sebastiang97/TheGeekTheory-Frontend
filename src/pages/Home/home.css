@@ -1,12 +1,30 @@
 .home{
+    
+    .main{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        top: -35px;
+        position: relative;
+        
+        header{
+            h1{
+                margin: 15px 0;
+            }
+            padding: var(--main-padding);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 
     .custom{
+        margin-top: -35px;
         background-color: var(--main-card-color);
         border-radius: 5px;
         -webkit-box-shadow: var(--home-shadow);
         -moz-box-shadow: var(--home-shadow);
         box-shadow: var(--home-shadow);
-        margin: 5px;
         padding: 30px 5px;
     
         header{
@@ -95,8 +113,10 @@
     .home{
 
         .main{
+            margin-top: 10px;
+            display: block;
+            top: 0px;
             header{
-                width: 100%;
                 h1{
                     text-align: center;
                     font-weight: 600;
@@ -111,14 +131,13 @@
             }
             .containerImg{
                 width: 100%;
-                img{
-                    width: 100%;
-                }
+                display: flex;
+                justify-content: center;
             }
         }
         
         .custom{
-            
+            margin-top: 0px;
             header{
                 width: 100%;
                 h1{

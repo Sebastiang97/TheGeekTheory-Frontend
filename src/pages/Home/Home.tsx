@@ -1,19 +1,22 @@
 import { DesignList } from "@@/DesignList/DesignList"
 import "./home.css"
+import { IMAGES } from "@/constants/images/images"
 export const Home = () => {
   return (
     <section className="home">
       <article className="main" >
         <header>
-          <h1>
-            No uses el estilo de otros <br /> ¡Crea el tuyo!
-          </h1>
-          <div className="actions">
-            <button>¡Empieza ya!</button>
+          <div>
+            <h1>
+              No uses el estilo de otros <br /> ¡Crea el tuyo!
+            </h1>
+            <div className="actions">
+              <button>¡Empieza ya!</button>
+            </div>
           </div>
         </header>
         <div className="containerImg">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8t1F3K4E705RDJowH--S6HhkXRRsYV7KITYCVQrMYyQ&s" alt="" />
+          <img src={IMAGES.home1} alt="" />
         </div>
       </article>
 
@@ -27,7 +30,7 @@ export const Home = () => {
           <article className="step">
             <div>
               <div className="containerImg">
-                <img src="https://i.pinimg.com/550x/61/e9/49/61e94953005f1e0b6c91c2acc624fc0d.jpg" alt="" />
+                <img src={IMAGES.number1} alt="" />
               </div>
               <p className="content">Escoge tu diseño</p>
             </div>
@@ -35,7 +38,7 @@ export const Home = () => {
           <article className="step">
             <div>
               <div className="containerImg">
-                <img src="https://i.pinimg.com/550x/61/e9/49/61e94953005f1e0b6c91c2acc624fc0d.jpg" alt="" />
+                <img src={IMAGES.number2} alt="" />
               </div>
               <p className="content">Elige tu prenda</p>
             </div>
@@ -43,7 +46,7 @@ export const Home = () => {
           <article className="step">
             <div>
               <div className="containerImg">
-                <img src="https://i.pinimg.com/550x/61/e9/49/61e94953005f1e0b6c91c2acc624fc0d.jpg" alt="" />
+                <img src={IMAGES.number3} alt="" />
               </div>
               <p className="content">¡Pide tu prenda y crea tu estilo!</p>
             </div>

@@ -7,7 +7,7 @@ import "./sidebar.css"
 export const SideBar = () => {
   const toggle = useSideBarStore(state => state.toggle)
   return (
-    <div className="container">
+    <div className="">
       <SheetComponent
         classNameContent="bg-black"
         content={
