@@ -15,6 +15,7 @@ import { Payments } from '@/pages/Payment/Payments'
 import { PaymentByPayId } from '@/pages/Payment/PaymentbyPayId/PaymentByPayId'
 import { Pays } from '@/pages/Admin/pages/Pays/Pays'
 import { CRM } from '@/pages/Admin/pages/CRM/CRM'
+import { QrCode } from '@/pages/Admin/pages/QrCode/QrCode'
 // import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
 // import { Products } from '@/pages/Admin/pages/Products/Products'
 // import { Categories } from '@/pages/Admin/pages/Categories/Categories'
@@ -55,6 +56,8 @@ export const AppRouter = () => {
         {/* <Route path='/admin/subcategories/actions/:id' element={<ActionsSubCategories />} /> */}
         {/* <Route path='/admin/prints/' element={<Prints />} /> */}
         {/* <Route path='/admin/prints/actions/:id' element={<ActionsPrints />} /> */}
+
+        <Route path='/admin/whatsapp/qrcode' element={<QrCode />} />
 
         <Route path='/admin/payments/' element={<Pays />} />
         {/* <Route path='/' element={

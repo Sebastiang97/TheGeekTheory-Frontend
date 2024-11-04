@@ -10,6 +10,7 @@ export const URL_PRODUCTSPAY = URL_BASE + "productspay/"
 export const URL_CATEGORY = URL_BASE + "categories/"
 export const URL_SUBCATEGORIES = URL_BASE + "subcategories/"
 export const URL_AUTHENTICATE = URL_BASE + "auth"
+export const URL_WHATSAPP = URL_BASE + "whatsapp/"
 
 export const ACTIONS = {
     CREATE: 'create'
