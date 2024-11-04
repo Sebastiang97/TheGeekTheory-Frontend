@@ -3,13 +3,7 @@ import { NotFound } from '@/pages/NotFound/NotFound'
 import { Navbar } from '@@/Navbar/Navbar'
 import { Home } from '@/pages/Home/Home'
 import { Login } from '@/pages/Login/Login'
-import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
-import { Products } from '@/pages/Admin/pages/Products/Products'
 import { SideBar } from '@@/SideBar/SideBar'
-import { Categories } from '@/pages/Admin/pages/Categories/Categories'
-import { ActionsCategories } from '@/pages/Admin/pages/Categories/ActionsCategories'
-import { Prints } from '@/pages/Admin/pages/Prints/Prints'
-import { ActionsPrints } from '@/pages/Admin/pages/Prints/ActionsPrints'
 import { Footer } from '@@/Footer/Footer'
 import { WhoWeAre } from '@/pages/WhoWeAre/WhoWeAre'
 import { Design } from '@/pages/Design/Design'
@@ -17,12 +11,18 @@ import { Catalog } from '@/pages/Catalog/Catalog'
 import { Preview } from '@/pages/Preview/Preview'
 import { Checkout } from '@/pages/Checkout/Checkout'
 import { Admin } from '@/pages/Admin/Admin'
-import { SubCategories } from '@/pages/Admin/pages/SubCategories/SubCategories'
-import { ActionsSubCategories } from '@/pages/Admin/pages/SubCategories/ActionsSubCategories'
 import { Payments } from '@/pages/Payment/Payments'
 import { PaymentByPayId } from '@/pages/Payment/PaymentbyPayId/PaymentByPayId'
 import { Pays } from '@/pages/Admin/pages/Pays/Pays'
 import { CRM } from '@/pages/Admin/pages/CRM/CRM'
+// import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
+// import { Products } from '@/pages/Admin/pages/Products/Products'
+// import { Categories } from '@/pages/Admin/pages/Categories/Categories'
+// import { ActionsCategories } from '@/pages/Admin/pages/Categories/ActionsCategories'
+// import { Prints } from '@/pages/Admin/pages/Prints/Prints'
+// import { ActionsPrints } from '@/pages/Admin/pages/Prints/ActionsPrints'
+// import { SubCategories } from '@/pages/Admin/pages/SubCategories/SubCategories'
+// import { ActionsSubCategories } from '@/pages/Admin/pages/SubCategories/ActionsSubCategories'
 
 // import { Test2 } from '@/pages/Test/Test2'
 
@@ -48,13 +48,13 @@ export const AppRouter = () => {
 
         {/* <Route path='/admin/products/' element={<Products />} /> */}
         <Route path='/admin/crm/' element={<CRM />} />
-        <Route path='/admin/products/actions/:id' element={<ActionsProducts />} />
+        {/* <Route path='/admin/products/actions/:id' element={<ActionsProducts />} />
         <Route path='/admin/categories/' element={<Categories />} />
         <Route path='/admin/categories/actions/:id' element={<ActionsCategories />} />
-        <Route path='/admin/subcategories/' element={<SubCategories />} />
-        <Route path='/admin/subcategories/actions/:id' element={<ActionsSubCategories />} />
-        <Route path='/admin/prints/' element={<Prints />} />
-        <Route path='/admin/prints/actions/:id' element={<ActionsPrints />} />
+        <Route path='/admin/subcategories/' element={<SubCategories />} /> */}
+        {/* <Route path='/admin/subcategories/actions/:id' element={<ActionsSubCategories />} /> */}
+        {/* <Route path='/admin/prints/' element={<Prints />} /> */}
+        {/* <Route path='/admin/prints/actions/:id' element={<ActionsPrints />} /> */}
 
         <Route path='/admin/payments/' element={<Pays />} />
         {/* <Route path='/' element={
