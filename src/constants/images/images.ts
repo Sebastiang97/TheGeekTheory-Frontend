@@ -5,6 +5,7 @@ export const IMAGES = {
     whoWeAreMain : new URL('/whoweare1.png', import.meta.url).href,
     tShirt : new URL('/tShirt.png', import.meta.url).href,
     logoBlack : new URL('/logoBlack.png', import.meta.url).href,
+    logoWhite : new URL('/logoWhite.png', import.meta.url).href,
     home1: new URL('/home1.png', import.meta.url).href,
     footer1: new URL('/footer1.png', import.meta.url).href,
     facebook: new URL('/Facebook.svg', import.meta.url).href,

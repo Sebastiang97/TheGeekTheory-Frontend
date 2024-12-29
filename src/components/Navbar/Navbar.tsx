@@ -15,7 +15,7 @@ export const Navbar: React.FC = () => {
         <Hamburger />
       </div>
       <div className="logo">
-        <img src={IMAGES.logoBlack} alt="" />
+        <img src={IMAGES.logoWhite} alt="" />
       </div>
       <section className="links">
         {

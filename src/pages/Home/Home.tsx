@@ -38,7 +38,7 @@ export const Home = () => {
           <article className="step">
             <div>
               <div className="containerImg">
-                <img src={IMAGES.number2} alt="" />
+                <img  src={IMAGES.number2} alt="" />
               </div>
               <p className="content">Elige tu prenda</p>
             </div>
@@ -46,7 +46,7 @@ export const Home = () => {
           <article className="step">
             <div>
               <div className="containerImg">
-                <img src={IMAGES.number3} alt="" />
+                <img  src={IMAGES.number3} alt="" />
               </div>
               <p className="content">¡Pide tu prenda y crea tu estilo!</p>
             </div>
