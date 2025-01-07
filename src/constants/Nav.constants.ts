@@ -34,6 +34,10 @@ export const ROUTES = {
 
 export const ADMIN_LIST = Object.freeze([
     {
+        text: "Mis datos",
+        to: "/account"
+    },
+    {
         text: "Mi cuenta",
         to: "/account"
     },
@@ -41,24 +45,5 @@ export const ADMIN_LIST = Object.freeze([
         text: "Mis Compras",
         to: "/shopping"
     },
-    {
-        text: "Admin",
-        to: "/admin"
-    },
-    {
-        text: "Categories",
-        to: "/admin/categories/"
-    },
-    {
-        text: "SubCategories",
-        to: "/admin/subcategories/"
-    },
-    {
-        text: "Products",
-        to: "/admin/products/"
-    },
-    {
-        text: "Prints",
-        to: "/admin/prints/"
-    },
+    
 ])

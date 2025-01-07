@@ -60,6 +60,11 @@ button,
     background-color: transparent;
     border: 0px;   
 
+
+    &.profile:hover{
+        background-color: transparent;
+        cursor: pointer;
+    }
     &:hover{
         background-color: transparent;
         cursor: default;

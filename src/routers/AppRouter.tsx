@@ -16,6 +16,7 @@ import { PaymentByPayId } from '@/pages/Payment/PaymentbyPayId/PaymentByPayId'
 import { Pays } from '@/pages/Admin/pages/Pays/Pays'
 import { CRM } from '@/pages/Admin/pages/CRM/CRM'
 import { QrCode } from '@/pages/Admin/pages/QrCode/QrCode'
+import { Account } from '@/pages/Account/Account'
 // import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
 // import { Products } from '@/pages/Admin/pages/Products/Products'
 // import { Categories } from '@/pages/Admin/pages/Categories/Categories'
@@ -44,7 +45,7 @@ export const AppRouter = () => {
         <Route path='/pay/:payId' element={<PaymentByPayId />} />
         <Route path='/payments' element={<Payments />} />
 
-        <Route path='/account' element={<Admin />} />
+        <Route path='/account' element={<Account />} />
         <Route path='/admin' element={<Admin />} />
 
         {/* <Route path='/admin/products/' element={<Products />} /> */}

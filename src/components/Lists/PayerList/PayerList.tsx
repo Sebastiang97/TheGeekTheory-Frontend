@@ -4,30 +4,27 @@ import { PayerItem } from '@@/Payer/PayerItem'
 import { useEffect, useState } from 'react'
 
 
-interface Props {
-    isSelectPlayer: boolean
-    payerSelected: (payer: Payer) => void
-}
 
-
-export const PayerList = ({ isSelectPlayer, payerSelected }: Props) => {
+export const PayerList = () => {
     const list = usePayerStore(state => state.list)
     const payer = usePayerStore(state => state.payer)
-    const [payerSelect, setPayerSelected] = useState<Payer>({} as Payer)
+    const addSelectedPayer =  usePayerStore(state => state.addSelectedPayer)
+    const selectedPlayer =  usePayerStore(state => state.selectedPlayer)
+    const [add, setAdd] = useState(false)
 
-    const handleSelectedPlayer = (payer: Payer) => {
-        setPayerSelected(payer)
-        payerSelected(payer)
+    const handleSelectPayer = (p:Payer) =>{
+        addSelectedPayer(p) 
+        setAdd(false)
     }
 
     useEffect(() => {
         list()
-        payer.length && setPayerSelected(payer[0])
+        payer.length && addSelectedPayer(payer[0])
     }, [])
 
     return (
         <>
-            {isSelectPlayer
+            {!selectedPlayer.email || add
                 ? (
                     <>
                         {
@@ -37,7 +34,7 @@ export const PayerList = ({ isSelectPlayer, payerSelected }: Props) => {
                                         <div key={p.id}>
                                             <PayerItem payer={p} />
                                             <button
-                                                onClick={() => handleSelectedPlayer(p)}>
+                                                onClick={() => handleSelectPayer(p)}>
                                                 escoger
                                             </button>
                                         </div>
@@ -52,9 +49,19 @@ export const PayerList = ({ isSelectPlayer, payerSelected }: Props) => {
                     </>
                 )
                 : (
-                    <PayerItem
-                        payer={payerSelect}
-                    />
+                    <>
+                        <PayerItem
+                            payer={selectedPlayer}
+                        />
+                        <button
+                            onClick={() => setAdd(true)}>
+                            escoger otra info
+                        </button>
+                        <button
+                            onClick={() => addSelectedPayer({} as Payer)}>
+                            agregar
+                        </button>
+                    </>
                 )
             }
         </>
