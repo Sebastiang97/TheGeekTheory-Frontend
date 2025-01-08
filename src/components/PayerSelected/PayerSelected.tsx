@@ -15,6 +15,7 @@ export const PayerSelected = () => {
     const addSelectedPayer =  usePayerStore(state => state.addSelectedPayer)
 
     const getValues = (values: any, type?: string) => {
+        console.log(values, type) 
         if(type === "submit" ){
             createPayer(MAPPING_USER(values))
                 .then(payer => {

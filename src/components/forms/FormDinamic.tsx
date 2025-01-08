@@ -124,6 +124,7 @@ export const FormDinamic = ({ inputFields, actions, getValues, getImgs, getOnCha
                       key={i}
                       type={type}
                       disabled={!isValid || isSubmitting}
+                      onClick={() => getValues(values, type)}
                     >
                       {t(text)}
                     </button>
@@ -135,7 +136,7 @@ export const FormDinamic = ({ inputFields, actions, getValues, getImgs, getOnCha
                       key={i}
                       type={type}
                       disabled={!isValid || isSubmitting}
-                      onClick={() => getValues(values, "button")}
+                      onClick={() => getValues(values, type)}
                     >
                       {t(text)}
                     </button>
