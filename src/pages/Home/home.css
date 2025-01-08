@@ -4,7 +4,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        top: -35px;
+        /* top: -35px; */
         position: relative;
         
         header{
@@ -19,7 +19,7 @@
     }
 
     .custom{
-        margin-top: -35px;
+        /* margin-top: -35px; */
         background-color: var(--main-card-color);
         border-radius: 5px;
         -webkit-box-shadow: var(--home-shadow);
