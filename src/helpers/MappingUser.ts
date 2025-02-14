@@ -9,6 +9,7 @@ export const MAPPING_USER = (values: any): Payer => {
         phone: values.phone,
         detailAddress: values.detail,
         address: values.address,
-        city: values.city
+        city: values.city,
+        idUser: values.idUser ? values.idUser : ""
     }
 }

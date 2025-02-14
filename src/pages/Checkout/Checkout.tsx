@@ -15,41 +15,42 @@ import "./checkout.css"
 import { usePayerStore } from "@/libs/store/zustand/usePayerStore"
 import { PayerList } from "@@/Lists/PayerList/PayerList"
 import { URL_PAYS } from "@/constants/service.constant"
+import { PayerSelected } from "@@/PayerSelected/PayerSelected"
 
 export const Checkout = () => {
     const items = useCartStore(state => state.items)
     const createPayer = usePayerStore(state => state.createPayer)
-    const payer = usePayerStore(state => state.payer)
-    const [add, setAdd] = useState(true)
-    const [isSelectPlayer, setIsSelectPlayer] = useState(false)
+    // const payer = usePayerStore(state => state.payer)
+    // const [add, setAdd] = useState(true)
+    // const [isSelectPlayer, setIsSelectPlayer] = useState(false)
 
     const [info, setInfo] = useState<Payer>({} as Payer)
 
-    const getValues = (values: any, type?: string) => {
-        if (items.length) {
-            console.log({ values })
-            createPayer(mappingUser(values))
-                .then(payer => {
-                    setAdd(false)
-                    setInfo(payer)
-                }).catch(error => {
-                    console.log(error)
-                })
-        }
-    }
+    // const getValues = (values: any, type?: string) => {
+    //     if (items.length) {
+    //         console.log({ values })
+    //         createPayer(mappingUser(values))
+    //             .then(payer => {
+    //                 // setAdd(false)
+    //                 setInfo(payer)
+    //             }).catch(error => {
+    //                 console.log(error)
+    //             })
+    //     }
+    // }
 
-    const mappingUser = (values: any): Payer => {
-        return {
-            name: values.name,
-            surname: "",
-            zipCode: values.zipCode || "",
-            email: values.email,
-            phone: values.phone,
-            detailAddress: values.detail,
-            address: values.address,
-            city: values.city
-        }
-    }
+    // const mappingUser = (values: any): Payer => {
+    //     return {
+    //         name: values.name,
+    //         surname: "",
+    //         zipCode: values.zipCode || "",
+    //         email: values.email,
+    //         phone: values.phone,
+    //         detailAddress: values.detail,
+    //         address: values.address,
+    //         city: values.city
+    //     }
+    // }
 
     const getImgs = () => {
 
@@ -81,23 +82,23 @@ export const Checkout = () => {
 
     }
 
-    const addPayer = () => {
-        console.log(add)
-        setAdd(true)
-    }
+    // const addPayer = () => {
+    //     console.log(add)
+    //     setAdd(true)
+    // }
 
-    const selectedPayer = (payer: Payer) => {
-        setInfo(payer)
-        setIsSelectPlayer(false)
-    }
+    // const selectedPayer = (payer: Payer) => {
+    //     setInfo(payer)
+    //     setIsSelectPlayer(false)
+    // }
 
-    useEffect(() => {
-        if (payer.length) {
-            setInfo(payer[0])
-            setAdd(false)
-        }
-        console.log(info)
-    }, [])
+    // useEffect(() => {
+    //     if (payer.length) {
+    //         setInfo(payer[0])
+    //         setAdd(false)
+    //     }
+    //     console.log(info)
+    // }, [])
 
     return (
         <>
@@ -111,7 +112,8 @@ export const Checkout = () => {
                         <h4>Información de envio </h4>
                     </header>
 
-                    {
+                    <PayerSelected />
+                    {/* {
                         (add ) ? (
                             <FormDinamic
                                 inputFields={inputCheckoutFields}
@@ -144,7 +146,7 @@ export const Checkout = () => {
                                 </button>
                             </section>
                         )
-                    }
+                    } */}
 
                     <header className="end">
                         <h4 >Información de tu orden</h4>

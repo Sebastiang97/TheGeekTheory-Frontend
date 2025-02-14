@@ -180,7 +180,7 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
                 }
             }).finally(()=>{
                 console.log("first")
-                addImage("https://res.cloudinary.com/dk41avvjd/image/upload/v1716168105/qy80kydfxvki51hwqqtb.jpg" )
+                addImage(" https://res.cloudinary.com/dk41avvjd/image/upload/v1716168105/qy80kydfxvki51hwqqtb.jpg" )
             })
         }
     }, [])

@@ -8,7 +8,7 @@ import { URL_PAYER } from '@/constants/service.constant'
 interface Props {
     payer: Payer[],
     selectedPlayer: Payer,
-    list: ()=> void,
+    list: (idUser: string)=> void,
     getPayerById: (id: string) => Promise<Payer | undefined>
     createPayer: (payerForm: Payer) => Promise<Payer>
     addSelectedPayer: (payer: Payer) => void
@@ -18,10 +18,9 @@ export const usePayerStore = create<Props>()(persist(
     (set, get) => ({
         payer: [],
         selectedPlayer: {} as Payer,
-        list: ()=>{
-            const payer = get().payer
-            if(!payer.length){
-                baseService(URL_PAYER)
+        list: (idUser: string)=>{
+            if(idUser){
+                baseService(`${URL_PAYER}/getPayerByIdUser/`)
                     .list<Payer[]>()
                     .then(payer=>{
                         set({payer})

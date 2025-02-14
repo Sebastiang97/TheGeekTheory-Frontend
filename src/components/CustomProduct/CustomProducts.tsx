@@ -1,18 +1,22 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import FabricComponent from '@@/FabricComponent/FabricComponent';
-import { addFabricImage } from '@/libs/Fabric/Fabric';
+import { addFabricImage, deleteImage } from '@/libs/Fabric/Fabric';
 import * as fabric from 'fabric';
-import { base64ToFile } from '@/helpers/Base64ToFile';
 import { useCustomProduct } from '@/libs/store/zustand/useCustomProduct';
+import { POSITION_PRINT_KEY, POSITION_SHIRT_KEY, PrintCVS } from '@/constants/PositionShirtPrint';
+
+
 
 interface Props {
     img: string
+    print: string
+    type: string
+    position : string
     handlePrint: (file:File) => void
 }
 
-export const CustomProduct = ({ img, handlePrint }: Props) => {
+export const CustomProducts = ({ img, print, type, position, handlePrint }: Props) => {
     const [canvas, setCanvas] = useState<fabric.Canvas | undefined>(undefined)
-    const inputRef = useRef<HTMLInputElement>(null)
     const canvasEl = useRef<any>(null)
 
     const currentUrl = useCustomProduct(state=> state.currentUrl)
@@ -49,13 +53,7 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
             } else {
                 console.log('No se encontraron imágenes en el canvas');
             }
-            // const imgBase64 = canvas.toDataURL({
-            //     format: 'png',
-            //     quality: 1.0,
-            //     multiplier: 1
-            // })
-            // const file = base64ToFile(imgBase64, 'image.png')
-            // handlePrint(file)
+            
         }
     }
 
@@ -66,6 +64,19 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
                 .then(img => {
                     const canvasWidth = canvas.width;
                     const canvasHeight = canvas.height;
+                    if(position == POSITION_PRINT_KEY.LETTER 
+                        // && positionPrint.type == POSITION_SHIRT_KEY.
+                    ){
+                        // carta
+                        img.scaleToWidth(canvasWidth / 3.5);
+                        img.scaleToHeight(canvasHeight / 3.5);
+
+                        img.set({
+                            left: (canvasWidth - img.width * img.scaleX) / 2,
+                            top: (canvasHeight - img.height * img.scaleY) / 3,
+                            id: 'imgDelete'
+                        });
+                    }
                     // img.scaleToWidth(canvasWidth / 4);
                     // img.scaleToHeight(canvasHeight / 4);
 
@@ -84,18 +95,20 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
                     //     top: (canvasHeight - img.height * img.scaleY) / 3,
                     //     id: 'imgDelete'
                     // });
+
+                    if(position == POSITION_PRINT_KEY.TABLOID){
+                        // Tabloide
+                        let w = canvasWidth / 3.5
+                        let h = canvasHeight / 1.5
+                        img.set({
+                            left: (canvasWidth - w * img.scaleX) / 2,
+                            top: (canvasHeight - h * img.scaleY) / 1.5,
+                            width: w,
+                            height: h,
+                            id: 'imgDelete'
+                        });
+                    }
                     
-                    // Tabloide
-                    // let w = canvasWidth / 3.5
-                    // let h = canvasHeight / 1.5
-                    // console.log(w,h)
-                    // img.set({
-                    //     left: (canvasWidth - w * img.scaleX) / 2,
-                    //     top: (canvasHeight - h * img.scaleY) / 1.5,
-                    //     width: w,
-                    //     height: h,
-                    //     id: 'imgDelete'
-                    // });
 
                     // Tabloide v2
                     // const originalWidth = img.width;
@@ -118,17 +131,17 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
                     //     id: 'imgDelete'
                     // });
 
-                    
-                    // logo
-                    img.scaleToWidth(canvasWidth / 8);
-                    img.scaleToHeight(canvasHeight / 8);
+                    if(position == POSITION_PRINT_KEY.LOGO){
+                        // logo
+                        img.scaleToWidth(canvasWidth / 8);
+                        img.scaleToHeight(canvasHeight / 8);
 
-                    img.set({
-                        left: (canvasWidth - img.width * img.scaleX) / 1.7,
-                        top: (canvasHeight - img.height * img.scaleY) / 3,
-                        id: 'imgDelete'
-                    });
-
+                        img.set({
+                            left: (canvasWidth - img.width * img.scaleX) / 1.7,
+                            top: (canvasHeight - img.height * img.scaleY) / 3,
+                            id: 'imgDelete'
+                        });
+                    }
                     // img.scaleToWidth(521);
                     // img.scaleToHeight(365);
 
@@ -179,52 +192,42 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
                     cvs.dispose()
                 }
             }).finally(()=>{
-                console.log("first")
-                addImage("https://res.cloudinary.com/dk41avvjd/image/upload/v1716168105/qy80kydfxvki51hwqqtb.jpg" )
+                
             })
         }
     }, [])
 
     useEffect(()=>{
         if (canvas) {
-            const objeto = canvas.getObjects().find((obj:any) => obj?.id === "imgDelete")
-            if (objeto) {
-                canvas.remove(objeto)
-                canvas.renderAll() 
-            } else {
-                console.log('No se encontró la imagen con ese ID')
-            }
             addImage(currentUrl)
         }
     },[currentUrl])
 
+    useEffect(()=>{
+        console.log({position})
+        if (canvas && print) {
+            deleteImage(canvas, "imgDelete")
+            position && addImage(print)
+        }
+    },[position])
+
     return (
         <section className=''>
             <article className="">
-                <input
-                    ref={inputRef}
-                    onChange={handlePic}
-                    type="file"
-                    className="hidden"
-                />
+               
                 <FabricComponent
                     ref={canvasEl}
                     onCanvasReady={handleCanvasReady}
                     width="500"
                     height="380"
                 />
-                <button
-                    onClick={() => inputRef.current?.click()}
-                    className="py-2 px-6 bg-yellow-500 text-white rounded-xl m-4"
-                >
-                    subir Imagen
-                </button>
-                <button
+                
+                {/* <button
                     onClick={generateImage}
                     className="py-2 px-6 bg-indigo-500 text-white rounded-xl m-4"
                 >
                     Terminar Diseño
-                </button>
+                </button> */}
             </article>
         </section>
     )

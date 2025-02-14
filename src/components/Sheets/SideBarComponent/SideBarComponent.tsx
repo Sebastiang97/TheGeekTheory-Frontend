@@ -4,8 +4,9 @@ import { useSideBarStore } from "@/libs/store/zustand/useSideBar"
 import { NAVBAR_LIST } from "@/constants/Nav.constants"
 import "./sidebar.css"
 
-export const SideBar = () => {
+export const SideBarComponent = () => {
   const toggle = useSideBarStore(state => state.toggle)
+  const isOpen = useSideBarStore(state => state.isOpen)
   return (
     <div className="">
       <SheetComponent
@@ -28,6 +29,9 @@ export const SideBar = () => {
             </ul>
           </div>
         }
+        isOpen={isOpen}
+        toggle={toggle}
+        position="left"
       />
     </div>
   )

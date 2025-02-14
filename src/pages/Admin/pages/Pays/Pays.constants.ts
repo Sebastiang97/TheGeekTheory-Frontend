@@ -68,3 +68,11 @@ export const OPTIONS_PAY_ACTIONS: OptionsTable<OptionsPayTable>[] = [
     iconClass: ""
   }
 ]
+
+export const guideForm = [
+  {
+    id: "numberGuide",
+    numberGuide: ""
+  }
+]
+

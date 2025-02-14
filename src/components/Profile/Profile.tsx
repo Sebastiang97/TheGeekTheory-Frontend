@@ -12,11 +12,9 @@ export const Profile = ({showText}:Props) => {
   const navigate = useNavigate()
   const user = useAuthenticateStore(state => state.user)
   const getUser = useAuthenticateStore(state => state.getUser)
-  // const user = {picture: undefined}
 
   useEffect(() => {
     getUser()
-    console.log(user)
   }, [])
   return (
     <>

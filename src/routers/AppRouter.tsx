@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
 import { NotFound } from '@/pages/NotFound/NotFound'
-import { Navbar } from '@@/Navbar/Navbar'
+import { NavbarComponent } from '@@/NavbarComponent/NavbarComponent'
 import { Home } from '@/pages/Home/Home'
 import { Login } from '@/pages/Login/Login'
-import { SideBar } from '@@/SideBar/SideBar'
+import { SideBarComponent } from '@@/Sheets/SideBarComponent/SideBarComponent'
 import { Footer } from '@@/Footer/Footer'
 import { WhoWeAre } from '@/pages/WhoWeAre/WhoWeAre'
 import { Design } from '@/pages/Design/Design'
@@ -17,6 +17,7 @@ import { Pays } from '@/pages/Admin/pages/Pays/Pays'
 import { CRM } from '@/pages/Admin/pages/CRM/CRM'
 import { QrCode } from '@/pages/Admin/pages/QrCode/QrCode'
 import { Account } from '@/pages/Account/Account'
+import { Custom } from '@/pages/Custom/Custom'
 // import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
 // import { Products } from '@/pages/Admin/pages/Products/Products'
 // import { Categories } from '@/pages/Admin/pages/Categories/Categories'
@@ -31,14 +32,15 @@ import { Account } from '@/pages/Account/Account'
 export const AppRouter = () => {
   return (
     <div className=''>
-      <Navbar />
-      <SideBar />
+      <NavbarComponent />
+      <SideBarComponent />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/whoweare' element={<WhoWeAre />} />
         <Route path='/design' element={<Design />} />
         <Route path='/catalog' element={<Catalog />} />
+        <Route path='/custom' element={<Custom />} />
         <Route path='/preview' element={<Preview />} />
         <Route path='/checkout' element={<Checkout />} />
 

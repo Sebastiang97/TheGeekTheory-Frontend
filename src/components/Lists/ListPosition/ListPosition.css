@@ -1,0 +1,39 @@
+.titleSection{
+    color: var(--second-font-color);
+}
+.listPosition{
+    display: flex;
+    gap: 0.5rem;
+    margin: 10px 0;
+
+    .cardPosition{
+        background-color: #D3D2D8;
+        padding: 5px;
+        border-radius: 6px;
+        .contText{
+            display: grid;
+            place-content: center;
+
+        }
+
+        .contImg{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            img{
+                width: 120px;
+            }
+        }
+
+        .details{
+            display: flex;
+            justify-content: center;
+        }
+
+        .select{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

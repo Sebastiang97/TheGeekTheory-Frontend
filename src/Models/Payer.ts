@@ -8,5 +8,6 @@ export type Payer = {
     zipCode: string,
     city: string
     detailAddress: number,
+    idUser?: string,
     payments?: any[],
 }
