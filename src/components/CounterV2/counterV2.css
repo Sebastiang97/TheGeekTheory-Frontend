@@ -1,0 +1,19 @@
+.counter{
+    width: 150px;
+    display: flex;
+    border: var(--main-border-color);
+    button{
+        border: 0;
+        background-color: #fff;
+        color: #000;
+        border-radius: 0;
+        
+    }
+
+    .display{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

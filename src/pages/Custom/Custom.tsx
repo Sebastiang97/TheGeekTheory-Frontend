@@ -18,23 +18,31 @@ import { useCategoryStore } from "@/libs/store/zustand/useCategoryStore"
 import { Category } from "@/Models/Category"
 import { ListPosition } from "@@/Lists/ListPosition/ListPosition"
 import { POSITION_PRINT, POSITION_PRINT_KEY, POSITION_SHIRT, POSITION_SHIRT_KEY, PositionShirtPrint, PositionSP } from "@/constants/PositionShirtPrint"
-import { AddDesignComponent } from "@@/Sheets/AddDesignComponent/AddDesignComponent"
+import { AddDesignSheetComponent } from "@@/Sheets/AddDesignSheetComponent/AddDesignSheetComponent"
 import { CustomProducts } from "@@/CustomProduct/CustomProducts"
 import { CustomPositionProduct } from "./CustomPositionProduct"
+import { useCartStore } from "@/libs/store/zustand/useCartStore"
+import { useCartToggleStore } from "@/libs/store/zustand/useCartToggleStore"
+import { productToProductPay } from "@/helpers/productToProductPay"
+import { CounterV2 } from "@@/CounterV2/CounterV2"
+import { useCounterStore } from "@/libs/store/zustand/useCounter"
+import { INIT_CUSTOM } from "@/Models/Stamped"
+import { Print } from "@/Models/Print"
 
 export const Custom = () => {
-    const [file, setFile] = useState<File>()
+    const currentCounter = useCounterStore(state => state.currentCounter)
 
-    const [showDesign, setshowDesign] = useState<boolean>(false)
+    const addProduct  = useCartStore(state => state.addProduct)
+    const toggle = useCartToggleStore(state => state.toggle)
+
+    const [file, setFile] = useState<File[]>([])
     
-    const [url, setUrl] = useState("")
-
-    const [type, setTypes] = useState([
-        POSITION_SHIRT_KEY.FRONT, 
-        POSITION_SHIRT_KEY.BACK
+    const [position, setPosition] = useState([
+        "",""
     ])
-
-    
+    const [isFirst, setIsfirst] = useState(true)
+    const [urlFront, setUrlFront] = useState("")
+    const [urlBack, setUrlBack] = useState("")
 
     const listPrint = usePrintStore(state => state.list)
 
@@ -94,20 +102,70 @@ export const Custom = () => {
             })
     }
 
-    const handlePrint = (file: File) =>{
-        setshowDesign(false)
-        setFile(file)
+    const handlePrint = (f: File, type:string, position:string) =>{
+        console.log(f)
+        const nuevoNombre = type + '.jpg';
+
+        
+        const nuevoArchivo = new File(
+            [f], 
+            nuevoNombre,      
+            { type: f.type } 
+        );
+        console.log({nuevoArchivo})
+
+        setFile((prev:File[])=> [...prev, nuevoArchivo])
     }
 
-    
+    const [stamped, setStamped] = useState<Print[]>(INIT_CUSTOM())
+
+    const handleInfo = (info:any)=>{
+        setFile([])
+        const frontPosition:string = info.front.position
+        const backPosition:string = info.back.position
+
+        let stamped:Print[]  = []
+
+        stamped = [
+            {
+                position: POSITION_SHIRT_KEY.FRONT,
+                size: frontPosition,
+                url: info.front.url
+            },
+            {
+                position: POSITION_SHIRT_KEY.BACK,
+                size: backPosition,
+                url: info.back.url
+            }
+        ]
+        setStamped(stamped)
+        setUrlFront("")
+        setUrlBack("")
+        setPosition([
+            "",
+            ""
+        ]) 
+        
+        setIsfirst(!isFirst)
+        setPosition([
+            frontPosition,
+            backPosition
+        ]) 
+        setUrlFront(info.front.url)
+        setUrlBack(info.back.url)
+    }
 
     const [showAddDesign, setShowAddDesign] = useState(false)
 
-    // const handleInfo = (info: CustomPositionProduct) =>{
-    //     console.log(info)
-    //     setCustomPositionProduct(info)
-    // }
-
+    const addCart =()=>{
+        console.log({file})
+        let productPay = productToProductPay(product)
+        productPay.print = stamped
+        productPay.file = file
+        addProduct(productPay, currentCounter)
+        toggle()
+    }
+    
     useEffect(()=>{
         listCategories().then(categories => {
                 getSubCategoryAndProduct(categories[0])
@@ -118,12 +176,7 @@ export const Custom = () => {
             
         listPrint()
     },[])
-    const [position, setPosition] = useState([
-        "",""
-    ])
-
-    const [isFirst, setIsfirst] = useState(true)
-    const booleanoAnterior = useRef(isFirst);
+    
     return (
         <>
             <CategoryList 
@@ -136,30 +189,34 @@ export const Custom = () => {
                 <section className="products">
                     <article className="cardProducts">
                         <div className="preview">
-                            {
-                                (isFirst || position[0]) && (
-                                    <></>
-                                )
-                            }
-                            {position[0]}
-                            <CustomProducts 
+                            
+                            {/* <CustomProducts 
                                 img={product.urlImage[0].url}
-                                print={url}
+                                print={urlFront}
                                 position={position[0] ? position[0]: ""}
                                 type={POSITION_SHIRT_KEY.FRONT}
                                 handlePrint={handlePrint}
                             />
-                            {
-                                (isFirst || position[1]) && (
-                                    <></>
-                                )
-                            }
                             
-                            {position[1]}
                             <CustomProducts 
                                 img={product.urlImage[0].url}
-                                print={url}
+                                print={urlBack}
                                 position={position[1] ? position[1]: ""}
+                                type={POSITION_SHIRT_KEY.BACK}
+                                handlePrint={handlePrint}
+                            /> */}
+                            <CustomProducts 
+                                img={product.urlImage[0].url}
+                                print={urlFront}
+                                position={stamped[0].size ? stamped[0].size: ""}
+                                type={POSITION_SHIRT_KEY.FRONT}
+                                handlePrint={handlePrint}
+                            />
+                            
+                            <CustomProducts 
+                                img={product.urlImage[0].url}
+                                print={urlBack}
+                                position={stamped[1].size ? stamped[1].size: ""}
                                 type={POSITION_SHIRT_KEY.BACK}
                                 handlePrint={handlePrint}
                             />
@@ -206,33 +263,22 @@ export const Custom = () => {
                                 >
                                     subir Imagen
                                 </button>
-                                <AddDesignComponent 
+                                <AddDesignSheetComponent 
                                     isOpen={showAddDesign}
                                     toggle={() => setShowAddDesign(!showAddDesign)}
                                     position="right"
-                                    handleInfo={(info)=>{
-                                        console.log({info})
-                                        const frontPosition:string = info.position[0] ? info.position[0].position : ""
-                                        const backPosition:string = info.position[1] ? info.position[1].position : ""
-                                        console.log({frontPosition, backPosition})
-                                        // info.position.map((i:any)=>{
-                                        //     position.push(i.position)
-                                        // })
-                                        setIsfirst(!isFirst)
-                                        setPosition([
-                                            frontPosition,backPosition
-                                        ])
-                                        setUrl(info.url)
-                                    }}
+                                    handleInfo={handleInfo}
                                 />
                             </>
 
                             <section className="actions">
-                                <Counter
-                                    initialState={1}
-                                    product={product}
-                                    file={file}
-                                />
+                                <div className="add">
+                                    <button
+                                    onClick={() => addCart()}>
+                                    Agregar a tu carrito
+                                    </button>
+                                </div>
+                                <CounterV2 />
                             </section>
                             <section className="charges">
                                 <p className="content">Cargos</p>

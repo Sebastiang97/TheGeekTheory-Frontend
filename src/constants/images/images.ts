@@ -14,6 +14,7 @@ export const IMAGES = {
     whatsApp: new URL('/WhatsApp.svg', import.meta.url).href,
     tShirtFront: new URL('/t-shirtFront.png', import.meta.url).href,
     tShirtBack: new URL('/t-shirtBack.png', import.meta.url).href,
+    tShirtDouble: new URL('/t-shirt-double.png', import.meta.url).href,
     letterSize: new URL('/letterSize.png', import.meta.url).href,
-    tabloid: new URL('/tabloid.png', import.meta.url).href,
+    tabloid: new URL('/tabloid.png', import.meta.url).href
 }

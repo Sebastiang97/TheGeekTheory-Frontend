@@ -18,6 +18,7 @@ import { CRM } from '@/pages/Admin/pages/CRM/CRM'
 import { QrCode } from '@/pages/Admin/pages/QrCode/QrCode'
 import { Account } from '@/pages/Account/Account'
 import { Custom } from '@/pages/Custom/Custom'
+import { PayByPayId } from '@/pages/Admin/pages/PayByPayId/PayByPayId'
 // import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
 // import { Products } from '@/pages/Admin/pages/Products/Products'
 // import { Categories } from '@/pages/Admin/pages/Categories/Categories'
@@ -63,6 +64,7 @@ export const AppRouter = () => {
         <Route path='/admin/whatsapp/qrcode' element={<QrCode />} />
 
         <Route path='/admin/payments/' element={<Pays />} />
+        <Route path='/admin/pay/:payId' element={<PayByPayId />} />
         {/* <Route path='/' element={
           <PublicRoutes>
           </PublicRoutes>

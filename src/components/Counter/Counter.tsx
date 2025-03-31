@@ -8,7 +8,7 @@ import { useCartToggleStore } from "@/libs/store/zustand/useCartToggleStore"
 interface Props{ 
   initialState: number 
   product: Product,
-  file?: File
+  file?: File[]
 }
 export const Counter = ({ initialState, product, file }: Props) => {
   const [count, setCount] = useState(initialState || 0)

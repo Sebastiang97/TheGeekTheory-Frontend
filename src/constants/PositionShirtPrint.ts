@@ -9,6 +9,7 @@ export const POSITION_PRINT_KEY = {
 export const POSITION_SHIRT_KEY = {
     FRONT: "front",
     BACK: "back",
+    BOTH: "both",
 }
 
 export const POSITION_PRINT = [

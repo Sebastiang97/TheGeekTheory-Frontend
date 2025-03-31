@@ -18,7 +18,7 @@ export const useCartStore = create<Props<ProductPay>>(
                 items.map(i => {
                     if(i.item.id === product.id){
                         isEqual = true
-                        i.quantity += quantity
+                        i.quantity = quantity
                     }
                 })
 

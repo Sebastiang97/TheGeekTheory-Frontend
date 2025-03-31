@@ -4,6 +4,7 @@ import { addFabricImage, deleteImage } from '@/libs/Fabric/Fabric';
 import * as fabric from 'fabric';
 import { useCustomProduct } from '@/libs/store/zustand/useCustomProduct';
 import { POSITION_PRINT_KEY, POSITION_SHIRT_KEY, PrintCVS } from '@/constants/PositionShirtPrint';
+import { base64ToFile } from '@/helpers/Base64ToFile';
 
 
 
@@ -12,7 +13,7 @@ interface Props {
     print: string
     type: string
     position : string
-    handlePrint: (file:File) => void
+    handlePrint: (file:File, type:string, position:string) => void
 }
 
 export const CustomProducts = ({ img, print, type, position, handlePrint }: Props) => {
@@ -32,28 +33,13 @@ export const CustomProducts = ({ img, print, type, position, handlePrint }: Prop
 
     const generateImage = () => {
         if (canvas) {
-            let objetos = canvas.getObjects();
-
-            var imagenes = canvas.getObjects().filter(objeto => objeto.type === 'image');
-
-            if (imagenes.length > 0) {
-                // Recorrer las imágenes y obtener sus dimensiones
-                imagenes.forEach(function(imagen, index) {
-                    var width = imagen.width;
-                    var height = imagen.height;
-
-                    var width = imagen.width;
-                    var height = imagen.height;
-                    var left = imagen.left;  // Posición X
-                    var top = imagen.top;    // Posición Y
-
-                    console.log('Imagen ' + (index + 1) + ' - Ancho: ' + width + ', Alto: ' + height + 
-                                ', Posición X: ' + left + ', Posición Y: ' + top);
-                });
-            } else {
-                console.log('No se encontraron imágenes en el canvas');
-            }
-            
+             const imgBase64 = canvas.toDataURL({
+                format: 'png',
+                quality: 1.0,
+                multiplier: 1
+            })
+            const file = base64ToFile(imgBase64, 'image.png')
+            handlePrint(file, type, position)
         }
     }
 
@@ -204,10 +190,13 @@ export const CustomProducts = ({ img, print, type, position, handlePrint }: Prop
     },[currentUrl])
 
     useEffect(()=>{
-        console.log({position})
-        if (canvas && print) {
+        console.log({print, position})
+        if (canvas) {
             deleteImage(canvas, "imgDelete")
             position && addImage(print)
+            setTimeout(()=>{
+                generateImage()
+            },2000)
         }
     },[position])
 
