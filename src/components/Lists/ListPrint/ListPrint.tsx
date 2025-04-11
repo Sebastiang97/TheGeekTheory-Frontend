@@ -23,12 +23,12 @@ export const ListPrint = ({loading, prints, handleSelected, isShow}:Props) => {
                         Escoge un estampado o sube uno 
                     </p>)}
                     <section className="listPrints">
-                        {
+                        {/* {
                             prints.length ? (
                                 prints.map(print=>(
                                     <PrintItem
                                         key={print.id}
-                                        urlImage={print.urlImage}
+                                        urlImage={print.url}
                                         name={print.name}
                                         author={print.author}
                                         handleSelected={handleSelected}
@@ -38,7 +38,7 @@ export const ListPrint = ({loading, prints, handleSelected, isShow}:Props) => {
                             ) : (
                                 <div>no prints</div>
                             )
-                        }
+                        } */}
                     </section>
                 </>
             )
