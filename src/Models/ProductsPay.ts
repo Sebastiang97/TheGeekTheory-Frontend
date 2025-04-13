@@ -10,5 +10,7 @@ export type ProductPay = {
     quantity: number,
     payId?: string,
     urlImage?: any[],
-    print?: Print | File
+    print?: Print[],
+    file: File[]
+    printProductPay?: Print[]
 }

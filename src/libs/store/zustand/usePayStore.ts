@@ -15,6 +15,7 @@ interface Props {
     getPayById: (id: string) => Promise<Pay>
     getPayByPayerId: (payerId:string, cursor:string, limit:number, direction: DirectionPage)=>Promise<Pagination<Pay[]>>
     createPay: (product: FormData)=> Promise<Product>
+    updateNumberGuide: (id: string, numberGuide: string) => Promise<Pay>
 }
 
 export const usePayStore = create<Props>(
@@ -66,5 +67,11 @@ export const usePayStore = create<Props>(
             
             return product
         },
+        updateNumberGuide: async (id: string, numberGuide: string)=> {
+            console.log(id, numberGuide)
+            return baseService(`${URL_PAYS}numberGuide/`).update<Pay>(id, {numberGuide})
+
+            // return Promise.resolve({} as Pay)
+        }
     })
 )

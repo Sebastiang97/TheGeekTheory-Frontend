@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom"
 import { ROUTES } from "@/constants/Nav.constants"
 import { Product } from "@/Models/Product"
 
-export const CartList = () => {
+interface Props {
+    isNotShow?: boolean    
+}
+export const CartList = ({isNotShow}:Props) => {
 
     const items = useCartStore(state => state.items)
     const [subtotal, setSubtotal] = useState(0)
@@ -82,10 +85,16 @@ export const CartList = () => {
                                 </p>
                             </section>
 
-                            <section className="actions">
-                                <button>Seguir comprando</button>
-                                <button onClick={()=> navigate(ROUTES.CHECKOUT.to)}>Terminar compra</button>
-                            </section>
+                            {
+                                !isNotShow && (
+                                    <section className="actions">
+                                        <button>Seguir comprando</button>
+                                        <button onClick={()=> navigate(ROUTES.CHECKOUT.to)}>Terminar compra</button>
+                                    </section>
+                                )
+                            }
+
+                            
 
                         </section>
                     </section>

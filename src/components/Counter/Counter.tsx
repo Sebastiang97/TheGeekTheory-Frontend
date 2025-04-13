@@ -4,11 +4,12 @@ import { useCartStore } from "@/libs/store/zustand/useCartStore"
 import { Product } from "@/Models/Product"
 import { productToProductPay } from "@/helpers/productToProductPay"
 import { useCartToggleStore } from "@/libs/store/zustand/useCartToggleStore"
+import { Print } from "@/Models/Print"
 
 interface Props{ 
   initialState: number 
   product: Product,
-  file?: File
+  file?: Print[]
 }
 export const Counter = ({ initialState, product, file }: Props) => {
   const [count, setCount] = useState(initialState || 0)

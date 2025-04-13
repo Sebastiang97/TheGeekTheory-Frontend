@@ -28,13 +28,34 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
 
     const generateImage = () => {
         if (canvas) {
-            const imgBase64 = canvas.toDataURL({
-                format: 'png',
-                quality: 1.0,
-                multiplier: 1
-            })
-            const file = base64ToFile(imgBase64, 'image.png')
-            handlePrint(file)
+            let objetos = canvas.getObjects();
+
+            var imagenes = canvas.getObjects().filter(objeto => objeto.type === 'image');
+
+            if (imagenes.length > 0) {
+                // Recorrer las imágenes y obtener sus dimensiones
+                imagenes.forEach(function(imagen, index) {
+                    var width = imagen.width;
+                    var height = imagen.height;
+
+                    var width = imagen.width;
+                    var height = imagen.height;
+                    var left = imagen.left;  // Posición X
+                    var top = imagen.top;    // Posición Y
+
+                    console.log('Imagen ' + (index + 1) + ' - Ancho: ' + width + ', Alto: ' + height + 
+                                ', Posición X: ' + left + ', Posición Y: ' + top);
+                });
+            } else {
+                console.log('No se encontraron imágenes en el canvas');
+            }
+            // const imgBase64 = canvas.toDataURL({
+            //     format: 'png',
+            //     quality: 1.0,
+            //     multiplier: 1
+            // })
+            // const file = base64ToFile(imgBase64, 'image.png')
+            // handlePrint(file)
         }
     }
 
@@ -45,14 +66,78 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
                 .then(img => {
                     const canvasWidth = canvas.width;
                     const canvasHeight = canvas.height;
-                    img.scaleToWidth(canvasWidth / 4);
-                    img.scaleToHeight(canvasHeight / 4);
+                    // img.scaleToWidth(canvasWidth / 4);
+                    // img.scaleToHeight(canvasHeight / 4);
+
+                    // img.set({
+                    //     left: (canvasWidth - img.width * img.scaleX) / 2,
+                    //     top: (canvasHeight - img.height * img.scaleY) / 2,
+                    //     id: 'imgDelete'
+                    // });
+
+                    // carta
+                    // img.scaleToWidth(canvasWidth / 3.5);
+                    // img.scaleToHeight(canvasHeight / 3.5);
+
+                    // img.set({
+                    //     left: (canvasWidth - img.width * img.scaleX) / 2,
+                    //     top: (canvasHeight - img.height * img.scaleY) / 3,
+                    //     id: 'imgDelete'
+                    // });
+                    
+                    // Tabloide
+                    // let w = canvasWidth / 3.5
+                    // let h = canvasHeight / 1.5
+                    // console.log(w,h)
+                    // img.set({
+                    //     left: (canvasWidth - w * img.scaleX) / 2,
+                    //     top: (canvasHeight - h * img.scaleY) / 1.5,
+                    //     width: w,
+                    //     height: h,
+                    //     id: 'imgDelete'
+                    // });
+
+                    // Tabloide v2
+                    // const originalWidth = img.width;
+                    // const originalHeight = img.height;
+
+                    // // Calcular el factor de escala para ajustar la imagen dentro del lienzo sin deformarla
+                    // const scaleX = canvasWidth / originalWidth;
+                    // const scaleY = canvasHeight / originalHeight;
+
+                    // // Elegir el menor factor de escala para que la imagen no se distorsione y que quepa dentro del lienzo
+                    // const scale = Math.min(scaleX, scaleY);
+
+                    // // Escalar la imagen proporcionalmente
+                    // img.scale(scale);
+
+                    // // Centrar la imagen en el lienzo
+                    // img.set({
+                    //     left: (canvasWidth - img.width * scale) / 2,
+                    //     top: (canvasHeight - img.height * scale) / 2,
+                    //     id: 'imgDelete'
+                    // });
+
+                    
+                    // logo
+                    img.scaleToWidth(canvasWidth / 8);
+                    img.scaleToHeight(canvasHeight / 8);
 
                     img.set({
-                        left: (canvasWidth - img.width * img.scaleX) / 2,
-                        top: (canvasHeight - img.height * img.scaleY) / 2,
+                        left: (canvasWidth - img.width * img.scaleX) / 1.7,
+                        top: (canvasHeight - img.height * img.scaleY) / 3,
                         id: 'imgDelete'
                     });
+
+                    // img.scaleToWidth(521);
+                    // img.scaleToHeight(365);
+
+                    // img.set({
+                    //     left: 171,
+                    //     top: 96,
+                    //     id: 'imgDelete'
+                    // });
+                    
                     
                     canvas.add(img)
                     canvas.bringObjectToFront(img)
@@ -93,6 +178,9 @@ export const CustomProduct = ({ img, handlePrint }: Props) => {
                 return () => {
                     cvs.dispose()
                 }
+            }).finally(()=>{
+                console.log("first")
+                addImage("https://res.cloudinary.com/dk41avvjd/image/upload/v1716168105/qy80kydfxvki51hwqqtb.jpg" )
             })
         }
     }, [])

@@ -186,11 +186,11 @@ export const Catalog = () => {
                                 && (
                                     <>
                                         <section className="actions">
-                                            <Counter
+                                            {/* <Counter
                                                 initialState={1}
                                                 product={product}
                                                 file={file}
-                                            />
+                                            /> */}
                                         </section>
                                         <section className="charges">
                                             <p className="content">Cargos</p>

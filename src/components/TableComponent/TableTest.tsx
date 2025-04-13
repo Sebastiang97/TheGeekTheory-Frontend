@@ -129,7 +129,7 @@ export const TableTest = <T, O,>({ headers, data, optionsActions }: Props<T, O>)
                                                                                     d.actions.options.map((option: OptionsTable<O>, i: number) => (
                                                                                         <div
                                                                                             key={i}
-                                                                                            onClick={() => optionsActions({ detail: d.element, type: option.type })}
+                                                                                            onClick={() => optionsActions({ detail: d, type: option.type })}
                                                                                         >
                                                                                             {option.text}
                                                                                         </div>

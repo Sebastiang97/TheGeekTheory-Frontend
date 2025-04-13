@@ -10,8 +10,9 @@ export const productToProductPay = (product: Product):ProductPay =>{
         price:         product.price,
         size:          product.size,
         color:         product.color,
-        quantity:      product.quantity,
-        urlImage:      product.urlImage,
-    }
+        quantity:      product.quantity
+        // urlImage:      product.urlImage,
+        
+    } as ProductPay
 
 }

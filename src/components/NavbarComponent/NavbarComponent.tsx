@@ -7,7 +7,7 @@ import { IMAGES } from "@/constants/images/images"
 import "./navbar.css"
 import { Profile } from "@@/Profile/Profile"
 
-export const Navbar: React.FC = () => {
+export const NavbarComponent: React.FC = () => {
 
   return (
     <nav>

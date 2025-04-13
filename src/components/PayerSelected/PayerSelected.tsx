@@ -4,64 +4,114 @@ import { usePayerStore } from "@/libs/store/zustand/usePayerStore"
 import { MAPPING_USER } from "@/helpers/MappingUser"
 import { PayerList } from "@@/Lists/PayerList/PayerList"
 import { GET_SUCCESS_MESSAGE } from "@/constants/ToastGeneralAtrributes"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useAuthenticateStore } from "@/libs/store/zustand/useAuthenticateStore"
+import { PayerItem } from "@@/Payer/PayerItem"
+import { Payer } from "@/Models/Payer"
 
 export const PayerSelected = () => {
+    const list = usePayerStore(state => state.list)
     const payers = usePayerStore(state => state.payer)
+    const payer = usePayerStore(state => state.payer)
     const selectedPlayer = usePayerStore(state => state.selectedPlayer)
     const createPayer = usePayerStore(state => state.createPayer)
-    const [add, setAdd] = useState(false)
-    const payer = usePayerStore(state => state.payer)
     const addSelectedPayer =  usePayerStore(state => state.addSelectedPayer)
 
+    const [add, setAdd] = useState(false)
+    const [selectAddress, setSelectAddress] = useState(false)
+
+    const user = useAuthenticateStore(state => state.user)
+    const getUser = useAuthenticateStore(state => state.getUser)
+
     const getValues = (values: any, type?: string) => {
-        console.log(values, type) 
+        console.log( type) 
         if(type === "submit" ){
+            console.log(user.id)
+            if(user.id){
+                values.idUser = user.id
+            } 
+            console.log({values})
             createPayer(MAPPING_USER(values))
                 .then(payer => {
+                    console.log(payer)
                     GET_SUCCESS_MESSAGE("payer creado correctamente")
+                    addSelectedPayer(payer)
+                    setAdd(false)
+                    setSelectAddress(false)
                 }).catch(error => {
                     console.log(error)
                 })
         }else{
-            payer.length && addSelectedPayer(payer[0])
-            !payer.length && setAdd(false) 
+            console.log("no Submit ")
+            payers.length && addSelectedPayer(payer[0])
+            setAdd(false)
+            setSelectAddress(false)
+
         }
     }
+
+    const handleSelectAddres = () => {
+        setSelectAddress(true)
+        addSelectedPayer({} as Payer)
+    }
+
+    const handleSelectedPayer = () =>{
+        setSelectAddress(false)
+    } 
+
+    useEffect(() => {
+        getUser()
+        console.log(user)
+        list(user.id)
+        payers.length && addSelectedPayer(payers[0])
+      }, [])
 
     return (
         <>
             {
-                (!payers.length ) ? (
+                ( add && !selectAddress ) && (
+                    <FormDinamic
+                        inputFields={inputPayerFields}
+                        actions={actions}
+                        getImgs={()=>{}}
+                        getValues={getValues}
+                        getOnChanges={() => { }}
+                    />
+                ) 
+            }
+            
+            {
+                (payers.length && !add && !selectAddress && selectedPlayer.email) && (
                     <>
-                        {!selectedPlayer.email && add ? (
-                            <FormDinamic
-                                inputFields={inputPayerFields}
-                                actions={actions}
-                                getImgs={()=>{}}
-                                getValues={getValues}
-                                getOnChanges={() => { }}
-                            />
-                        ): (
-                            <div>
-                                no tienes info 
-                                <button
-                                    onClick={()=> setAdd(true)}>agrega uno</button> 
-                            </div>
-                        )}
-                    </>
-                ) : (
-                    <section className="info">
-                        <PayerList />
-
-                        {/* <button
-                            onClick={() => setIsSelectPlayer(p => !p)}>
+                        <PayerItem
+                            payer={selectedPlayer}
+                        />
+                        <button
+                            onClick={handleSelectAddres}>
                             escoger otra info
                         </button>
                         <button
-                            onClick={() => addPayer()}>
+                            onClick={() => setAdd(true)}>
                             agregar
-                        </button> */}
+                        </button>
+                    </>
+                )
+            }
+
+            {
+                !payers.length && !add && (
+                    <div>
+                        no tienes direcciones
+                        <button
+                            onClick={()=> setAdd(true)}>agrega una direccion</button> 
+                    </div>
+                )
+            }
+
+            {
+                (selectAddress && !add && !selectedPlayer.email ) && (
+                    <section className="info">
+                        <PayerList handleSelectedPayer={handleSelectedPayer}/>
                     </section>
                 )
             }
