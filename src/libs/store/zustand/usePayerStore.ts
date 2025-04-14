@@ -37,7 +37,7 @@ export const usePayerStore = create<Props>()(persist(
             if(payerFound){
                 return Promise.resolve(payerFound)
             }else{
-                return baseService(URL_PAYER).getById<Payer>(id)
+                return baseService(`${URL_PAYER}/`).getById<Payer>(id)
             }
         },
         createPayer: (payerForm: Payer) => {
