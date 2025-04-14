@@ -26,7 +26,7 @@ export const PrintProductPayList = ({productPay}:Props) => {
                                     }
 
                                     {
-                                        p.printProductPay?.length && (
+                                        p.printProductPay?.length ? (
                                             <>
                                                 {
                                                     p.printProductPay.map(print=> (
@@ -38,7 +38,7 @@ export const PrintProductPayList = ({productPay}:Props) => {
                                                     ))
                                                 }
                                             </>
-                                        )
+                                        ) : (<></>)
                                     }
                                 </div>
                             ))

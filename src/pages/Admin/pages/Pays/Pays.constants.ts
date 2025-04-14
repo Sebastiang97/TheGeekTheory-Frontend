@@ -59,14 +59,19 @@ export const TABLE_PAY_HEADERS: HeadersTable[] = [
   },
 ]
 
-export type OptionsPayTable = "add"
+export type OptionsPayTable = "add" | "view"
 
 export const OPTIONS_PAY_ACTIONS: OptionsTable<OptionsPayTable>[] = [
   {
     type: "add",
     text: "Agregar numero de guia",
     iconClass: ""
-  }
+  },
+  {
+    type: "view",
+    text: "Ver",
+    iconClass: ""
+  },
 ]
 
 export const guideForm = [

@@ -35,7 +35,7 @@ export const PopoverComponent:React.FC<Props> = ({trigger, classNameButton, cont
             <PopoverTrigger className={classNameButton} onClick={ () => toggle()}>
               {trigger}              
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent className="PopoverContent">
               <PopoverClose >
                 <span className="cursor-pointer" onClick={ () => toggle()}>X</span>
               </PopoverClose>

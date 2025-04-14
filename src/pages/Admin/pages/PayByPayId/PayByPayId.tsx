@@ -25,14 +25,14 @@ export const PayByPayId = () => {
     console.log({payId})
     if (payId) {
       getPayById(payId)
-      .then(pay => {
-        getPayerById(pay.payerId)
-        .then(payer=>{
-          if(payer?.id){
-            setPayer(payer)
-          }
+        .then(pay => {
+          getPayerById(pay.payerId)
+            .then(payer=>{
+              if(payer?.id){
+                setPayer(payer)
+              }
+            })
         })
-      })
       getProductsByPayId(payId)
     }
   }, [])

@@ -205,6 +205,7 @@ export const Custom = () => {
                                 type={POSITION_SHIRT_KEY.BACK}
                                 handlePrint={handlePrint}
                             /> */}
+                            Front
                             <CustomProducts 
                                 img={product.urlImage[0].url}
                                 print={urlFront}
@@ -212,7 +213,7 @@ export const Custom = () => {
                                 type={POSITION_SHIRT_KEY.FRONT}
                                 handlePrint={handlePrint}
                             />
-                            
+                            Back
                             <CustomProducts 
                                 img={product.urlImage[0].url}
                                 print={urlBack}

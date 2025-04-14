@@ -14,6 +14,7 @@ import { ModalForm } from "@@/modals/ModalForm/ModalForm"
 
 import { useFormik} from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from "react-router-dom"
 
 export const Pays = () => {
   const formik = useFormik({
@@ -29,6 +30,8 @@ export const Pays = () => {
   const [filterData, setFilterData] = useState<FieldTable<Pay, OptionsPayTable>[]>([])
   // const listAll = usePayStore(state => state.listAll)
   
+  const navigate = useNavigate();
+
   const [detail, setDetail] = useState<FieldTable<Pay, OptionsPayTable> >()
   const getPaysAndPayer = usePayStore(state => state.getPaysAndPayer)
   const updateNumberGuide = usePayStore(state => state.updateNumberGuide)
@@ -51,11 +54,13 @@ export const Pays = () => {
 
   const optionActions = ({ detail, type }: OptionsActions<Pay, OptionsPayTable>) => {
     console.log({ detail, type })
-    setDetail(detail)
-    setOpen(prev=> !prev)
     if (type == 'add') {
+      setDetail(detail)
+      setOpen(prev=> !prev)
     }
-
+    if (type == 'view') {
+      navigate(`/admin/pay/${detail.element.id}`, { state: detail.element });
+    }
   }
 
   const handlePaginate = (direction:DirectionPage) => {
@@ -102,22 +107,24 @@ export const Pays = () => {
               title="Digita el numero de guia"
               description="El numero de guia sera enviado al whatsapp del cliente"
               content={
-                <form onSubmit={formik.handleSubmit}>
-                  <div>
-                    <label htmlFor="numberGuide">Numero de guia</label>
-                    <input
-                      id="numberGuide"
-                      name="numberGuide"
-                      type="text"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.numberGuide}
-                    />
-                    {formik.errors.numberGuide && formik.touched.numberGuide && (
-                      <div className="error">{formik.errors.numberGuide}</div>
-                    )}
-                  </div>
-                </form>
+                <div>
+                  <form onSubmit={formik.handleSubmit}>
+                    <div>
+                      <label htmlFor="numberGuide">Numero de guia</label>
+                      <input
+                        id="numberGuide"
+                        name="numberGuide"
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.numberGuide}
+                      />
+                      {formik.errors.numberGuide && formik.touched.numberGuide && (
+                        <div className="error">{formik.errors.numberGuide}</div>
+                      )}
+                    </div>
+                  </form>
+                </div>
               }
               continueLabel="continue"
               cancelLabel="cancel"

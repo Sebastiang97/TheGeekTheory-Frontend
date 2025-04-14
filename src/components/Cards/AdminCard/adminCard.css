@@ -2,6 +2,8 @@
     background-color: var(--main-hover-color);
     border-radius: var(--main-radius);
 
+    height: 100%;
+
     header{
         padding: 26px;
         padding-bottom: 0.5rem;
@@ -13,7 +15,7 @@
             letter-spacing: -0.025em;
             font-size:  14px;
             line-height:  20px;
-            font-weight: 500;
+            font-weight: 700;
         }
     }
     
