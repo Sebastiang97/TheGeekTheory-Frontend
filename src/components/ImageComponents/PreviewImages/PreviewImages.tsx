@@ -1,4 +1,4 @@
-import { CarouselAdmin } from "@@/CarouselAdmin/CarouselAdmin"
+import { CarouselAdmin } from "@@/CarouselsComponents/CarouselAdmin/CarouselAdmin"
 import { useState } from "react"
 
 interface Props {

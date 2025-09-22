@@ -1,18 +1,29 @@
-import { Actions, InputFields } from '@/Models/InputFields'
-import { Formik, Form } from 'formik'
+import { Actions, InputFields, TypeExtra } from '@/Models/InputFields'
+import { Formik, Form, FieldArray } from 'formik'
 import { GET_PROPS_FORMS } from './Forms.constants'
 import { MySelect, MyTextInput } from '.'
 import { useTranslation } from 'react-i18next'
+import { FormsTags } from './FormsTags'
+import { Tag } from '@@/Tag/Tag'
+import { ImageAddItem } from './ImageCarouselItem/ImageAddItem'
+import { GET_IMAGES_INPUT } from '@/helpers/GetImages'
+import { ListColor } from '@@/Lists/ListColor/ListColor'
+import { ListSize } from '@@/Lists/ListSize/ListSize'
 
 interface Props {
   inputFields: InputFields[]
   actions: Actions
   getValues: (values: any, type?: string) => void,
-  getImgs: (values: any) => void,
+  getExtra: (values: TypeExtraParams) => void,
   getOnChanges: (values: any) => void
 }
 
-export const FormDinamic = ({ inputFields, actions, getValues, getImgs, getOnChanges }: Props) => {
+export type TypeExtraParams = {
+  values: any
+  type: TypeExtra
+}
+
+export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnChanges }: Props) => {
   const { t } = useTranslation(["translation"])
 
   return (
@@ -28,7 +39,7 @@ export const FormDinamic = ({ inputFields, actions, getValues, getImgs, getOnCha
       {/* {(formik) => ( */}
       {({ isValid, isSubmitting, setFieldValue, values }) => (
         <Form noValidate>
-          {inputFields.map(({ type, name, placeholder, label, options }) => {
+          {inputFields.map(({ type, name, placeholder, label, options, ImgS, colors, sizes }) => {
 
             if (type === 'input' ||
               type === 'password' ||
@@ -78,16 +89,89 @@ export const FormDinamic = ({ inputFields, actions, getValues, getImgs, getOnCha
                     name={name}
                     type="file"
                     onChange={(event) => {
-                      const files = event.target.files;
+                      const files = event.target.files
                       console.log(event.target)
                       if (files) {
 
-                        let myFiles = Array.from(files);
-                        setFieldValue(name, myFiles);
-                        getImgs({ files: myFiles })
+                        let myFiles = Array.from(files)
+                        setFieldValue(name, myFiles)
+                        getExtra({ values: myFiles, type: "main"})
                       }
                     }}
                     multiple
+                  />
+                </div>
+              )
+            } else if (type === 'arrayInputImg') {
+              return (
+                <div
+                  className='field'
+                  key={name}
+                >
+                  <ImageAddItem
+                    name={name}
+                    // getImages={(imgs:string[])=> {
+                    //   if(imgs.length){
+                    //     setFieldValue(name, imgs)
+                    //     getExtra({ values: imgs, type: ImgS?.typeExtra ?? "main" })
+                    //   } 
+                    // }} 
+                    getImages={(files:FileList)=> {
+                      if (files) {
+
+                        let myFiles = Array.from(files)
+                        setFieldValue(name, myFiles)
+                        getExtra({ values: myFiles, type: ImgS?.typeExtra ?? "main"})
+                      }
+                      // if(imgs.length){
+                      //   setFieldValue(name, imgs)
+                      //   getExtra({ values: imgs, type: ImgS?.typeExtra ?? "main" })
+                      // } 
+                    }} 
+                    isMultipleImage={ImgS?.multiple === undefined ? false : ImgS?.multiple}
+                  />
+                </div>
+              )
+            } else if (type === 'arrayColor') {
+              return (
+                <div
+                  className='field'
+                  key={name}
+                >
+                 <ListColor
+                    changeProductByColor={(e)=>{
+                      console.log({e})
+                      setFieldValue(name, e)
+                      getExtra(
+                        { 
+                          values: {elements: colors?.elements, current: e}, 
+                          type: ImgS?.typeExtra ?? "colors" 
+                        }
+                      )
+                    }}
+                    colors={colors?.elements.length ? colors?.elements: []}
+                    currentColor={values[name]}
+                  />
+                </div>
+              )
+            }else if (type === 'arraySize') {
+              return (
+                <div
+                  className='field'
+                  key={name}
+                >
+                  <ListSize
+                    changeProductBySize={(e)=>{
+                      setFieldValue(name, e)
+                      getExtra(
+                        { 
+                          values: {elements: sizes?.elements, current: e}, 
+                          type: ImgS?.typeExtra ?? "sizes" 
+                        }
+                      )
+                    }}
+                    sizes={sizes?.elements.length ? sizes?.elements: []}
+                    currentSize={values[name]}
                   />
                 </div>
               )
@@ -107,10 +191,55 @@ export const FormDinamic = ({ inputFields, actions, getValues, getImgs, getOnCha
 
                 </div>
               )
+            }else if (type === 'addTags'){
+              return (
+                <>
+                  <FieldArray name={name}>
+                    {({ push, remove }) => (
+                      <>
+                        <FormsTags 
+                          key={name}
+                          type={(type as any)}
+                          name={name}
+                          label={label}
+                          placeholder={placeholder}
+                          handleValue={e=>{ 
+                            console.log({[name]: values[name]})
+                            if(values[name]?.length){
+                              let value = values[name].find((a:string)=> a === e)
+                              console.log({value})
+                              if(!value){
+                                push(e)
+                              } 
+                            }else{
+                              push(e)
+                            }
+                          }}
+                        />
+                        {
+                          values[name]?.length && (
+                            <div className='fieldTags'>
+                              {
+                                values[name]?.map((value:string, index:number) => (
+                                  <Tag 
+                                    key={index} 
+                                    title={value} 
+                                    onDelete={()=> remove(index)}
+                                  />
+                                ))
+                              }
+                            </div>
+                          )
+                        }
+                      </>
+                    )}
+                  </FieldArray>
+                </>
+              )
             }
 
 
-            throw new Error(`El type: ${type}, no es soportado`);
+            throw new Error(`El type: ${type}, no es soportado`)
           })}
 
 

@@ -1,1 +1,1 @@
-export type TypeActions = "add" | "edit" | "delete"
+export type TypeActions = "view" | "add" | "edit" | "delete"

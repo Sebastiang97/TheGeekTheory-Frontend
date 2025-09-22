@@ -9,12 +9,14 @@ import { Suspense } from "react";
 import { Toast } from '@@/Toast/Toast.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Suspense fallback="Cargando traducciones...">
-        <App />
-      </Suspense>
-    </BrowserRouter>
-    <Toast />
-  </React.StrictMode>,
+  <>
+    {/* <React.StrictMode> */}
+      <BrowserRouter>
+        <Suspense fallback="Cargando traducciones...">
+          <App />
+        </Suspense>
+      </BrowserRouter>
+      <Toast />
+    {/* </React.StrictMode>, */}
+  </>
 )

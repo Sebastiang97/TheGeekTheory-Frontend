@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 import { Actions, InputFields } from "@/Models/InputFields"
 import { ADMIN_MODE } from "@/constants/AdminMode.constants"
 import { ADD_INIT_INPUT_VALUES, ADD_INPUT_VALUES } from "@/helpers/AddInputValue"
-import { PreviewImagesTest } from "@@/PreviewImagesTest/PreviewImagesTest"
+import { PreviewImagesTest } from "@@/ImageComponents/PreviewImagesTest/PreviewImagesTest"
 import { SelectImage } from "@/Models/SelectImages"
 
 

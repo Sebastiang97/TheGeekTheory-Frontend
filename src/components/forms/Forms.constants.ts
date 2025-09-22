@@ -64,6 +64,15 @@ export const GET_PROPS_FORMS = (formJson: InputFields[]) => {
         if(input.type === "select" ){
             requiredFields[input.name] = validateStrings(input)
         }
+
+        if(input.type === "checkbox" ){
+            // requiredFields[input.name] = validateStrings(input)
+        }
+
+        if(input.type === "addTags" ){
+            requiredFields[input.name] = Yup.array(validateStrings(input))
+            console.log({requiredFields})
+        }
     }
 
     const validationSchema = Yup.object({ ...requiredFields })

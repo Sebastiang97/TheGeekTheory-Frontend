@@ -3,6 +3,7 @@ import { DeleteIcon } from "@@/icons/DeleteIcon"
 import { EditIcon } from "@@/icons/EditIcon"
 import { PlusIcon } from "@@/icons/PlusIcon"
 import "./AdminOptions.css"
+import { View } from "@@/icons/View"
 
 
 
@@ -17,10 +18,13 @@ export const AdminOptions = ({typeEvent}:Props) => {
   }
 
   return (
-    <section className="adminOptions">
-      <PlusIcon onClick={()=> {actionOptions("add")}}/>
-      <EditIcon onClick={()=> {actionOptions("edit")}}/>
-      <DeleteIcon onClick={()=> {actionOptions("delete")}}/>
+    <section className="flex justify-center ">
+      <section className="adminOptions">
+        <View onClick={()=> {actionOptions("view")}}/>
+        <PlusIcon onClick={()=> {actionOptions("add")}}/>
+        <EditIcon onClick={()=> {actionOptions("edit")}}/>
+        <DeleteIcon onClick={()=> {actionOptions("delete")}}/>
+      </section>
     </section>
   )
 }

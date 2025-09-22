@@ -1,0 +1,63 @@
+.generalProducts{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 3fr));
+}
+/* 
+.cardGeneral{
+    width: 320px;
+    article{
+        .containerImage{
+            border: 3px solid #FE5C00;
+            border-radius: 15px;
+            img{
+                width: 100%;
+                border-radius: 15px;
+            }
+        }
+
+        .containerCard{
+
+            .title{
+                font-weight: 600;
+            }
+
+            .subtitle{}
+
+            .price{
+                color: #FE5C00;
+                font-weight: 600;
+
+            }
+            
+            .containerSizeColor{
+                margin-bottom: 10px;
+
+                display: flex;
+                justify-content: space-between;
+                justify-items: center;
+                .containerSize{}
+                .containerColor{
+                    display: flex;
+                    gap: 10px;
+                    .color{
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        outline-offset: 3px;
+                        box-sizing: border-box;
+                    }
+                }
+            }
+
+
+            .containerButtons{
+                display: flex;
+                justify-content: center;
+
+                button{
+                    width: 100%;
+                }
+            }
+        }
+    }
+} */

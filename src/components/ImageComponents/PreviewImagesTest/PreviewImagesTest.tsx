@@ -1,5 +1,5 @@
 import { SelectImage } from "@/Models/SelectImages"
-import { CarouselAdminTest } from "@@/CarouselAdminTest/CarouselAdminTest"
+import { CarouselAdminTest } from "@@/CarouselsComponents/CarouselAdminTest/CarouselAdminTest"
 import { useState } from "react"
 
 interface Props {

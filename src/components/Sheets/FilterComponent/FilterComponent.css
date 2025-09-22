@@ -1,0 +1,19 @@
+.filters{
+    color: var(--second-font-color);
+
+    h3{
+        margin: 10px 0;
+
+    }
+
+    hr{
+        margin: 20px 0;
+        border: 1px dashed var(--main-card-color);
+    }
+
+    .filter{
+        display: flex;
+        gap: 5px;
+    }
+
+}

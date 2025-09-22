@@ -1,0 +1,16 @@
+.infoGeneralProduct{
+    margin: 0 20px;
+    section{
+        h3{
+            color: #909090;
+        }
+        margin: 10px 0;
+        .currency{
+        }
+        .price{
+            font-size: 24px;
+        }
+
+    }
+    
+}

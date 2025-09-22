@@ -6,6 +6,9 @@ export interface InputFields {
     value:        string | any[]
     validations:  Validation[]
     options?:     Option[]
+    ImgS?:        ImgS
+    colors?:      ListColors
+    sizes?:       ListSize
 }
 
 export interface Option {
@@ -19,9 +22,29 @@ export interface Validation {
 }
 
 export interface Actions {
-    class: string;
+    class: string
     buttons: {
         type: "submit" | "reset" | "button"
-        text: string;
-    }[];
+        text: string
+    }[]
 }
+
+export interface ImgS {
+    multiple:    boolean
+    typeExtra:   TypeExtra
+}
+
+export interface ListColors {
+    elements:      string[]
+    typeExtra:   TypeExtra
+}
+
+export interface ListSize {
+    elements:      Sizes[]
+    typeExtra:   TypeExtra
+}
+
+export type Sizes = "XS" | "S" | "M" | "L" | "XL"
+
+
+export type TypeExtra = "main" | "second" | "colors" | "sizes"

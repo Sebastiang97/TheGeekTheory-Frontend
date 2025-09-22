@@ -1,0 +1,83 @@
+.generalProduct{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 0 100px;
+    margin: 20px 0;
+    
+    .carouselGeneralProduct{
+    
+    }
+    .infoGeneralProduct{
+        margin: 0 20px;
+        section{
+            h3{
+                color: #909090;
+            }
+            margin: 10px 0;
+            .currency{
+            }
+            .price{
+                font-size: 24px;
+            }
+    
+        }
+        
+    }
+}
+
+.generalsTags{
+    p{
+        color: #909090;
+    }
+    .tags{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0;
+        
+    }
+
+}
+
+.individualProducts{
+    p{
+        color: #909090;
+    }
+    
+    .containerCards{
+        display: flex;
+        gap: 20px;
+        .createProduct{
+            padding: 20px 0;
+            width: 270px;
+            border-radius: 12px;
+            background-color: #F1F1F1;
+            margin: 10px 0;
+            section{
+                text-align: center;
+                margin: 10px;
+            }
+            .containerPlus{
+                display: grid;
+                place-content: center;
+                margin: 10px 0;
+                .plus{
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 40%;
+                    background-color: #F4D3C1;
+                    color: #FE5C00;
+                    display: grid;
+                    place-content: center;
+                    svg{
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

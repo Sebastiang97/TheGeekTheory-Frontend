@@ -1,4 +1,7 @@
+
+import { useState } from "react"
 import "./ListColor.css"
+import { IS_WHITE } from "@/helpers/IsWhite"
 interface Props {
     colors: string[]
     currentColor: string
@@ -6,19 +9,23 @@ interface Props {
 }
 
 export const ListColor = ({colors, currentColor, changeProductByColor}:Props) => {
+    const [currentC, setCurrentC] = useState(currentColor)
+
+   
     return (
         <div className="listColors">
             {
                 colors.map((color, i) => (
                     <div
                         key={i}
-                        onClick={() => changeProductByColor(color)}
+                        onClick={() => {
+                            changeProductByColor(color)
+                            setCurrentC(color)
+                        }}
                         className={currentColor === color ? 'active' : 'inactive'}
                         style={{
                             backgroundColor: color,
-                            border: color === "#fff" && currentColor !== "#fff"
-                                ? '1px solid #000'
-                                : ""
+                            border: IS_WHITE(color) ? "1px solid #000" : "null",
                         }}>
 
                     </div>

@@ -1,0 +1,1 @@
+export type GeneralProductMode = "view" | "add" | "edit" | "delete"

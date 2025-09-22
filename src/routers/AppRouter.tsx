@@ -19,6 +19,7 @@ import { QrCode } from '@/pages/Admin/pages/QrCode/QrCode'
 import { Account } from '@/pages/Account/Account'
 import { Custom } from '@/pages/Custom/Custom'
 import { PayByPayId } from '@/pages/Admin/pages/PayByPayId/PayByPayId'
+import { Test3 } from '@/pages/Test/Test3'
 // import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
 // import { Products } from '@/pages/Admin/pages/Products/Products'
 // import { Categories } from '@/pages/Admin/pages/Categories/Categories'
@@ -50,6 +51,8 @@ export const AppRouter = () => {
 
         <Route path='/account' element={<Account />} />
         <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={<Admin />} />
+        <Route path='/Test' element={<Test3 />} />
 
         {/* <Route path='/admin/products/' element={<Products />} /> */}
         <Route path='/admin/crm/' element={<CRM />} />

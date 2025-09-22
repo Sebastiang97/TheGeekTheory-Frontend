@@ -1,0 +1,14 @@
+.tag{
+    width: fit-content;
+    border: 1px solid #FE5C00;
+    padding: 10px;
+    border-radius: 6px;
+    color: #FE5C00;
+    span{
+        display: flex;
+        justify-content: center;
+        svg{
+            cursor: pointer;
+        }
+    }
+}

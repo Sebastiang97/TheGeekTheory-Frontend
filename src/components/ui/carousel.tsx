@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/libs/utils"
 import { Button } from "@/components/ui/button"
+import { ArrowRightIcon } from "@@/icons/ArrowRightIcon"
+import { ArrowLeftIcon } from "@@/icons/ArrowLeftIcon"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -215,7 +217,8 @@ const CarouselPrevious = React.forwardRef<
       aria-label=""
       {...props}
     >
-      <ArrowLeft className="h-4 w-4" />
+      {/* <ArrowLeft className="h-4 w-4" /> */}
+      <ArrowLeftIcon className="h-4 w-4"/>
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -245,7 +248,8 @@ const CarouselNext = React.forwardRef<
       aria-label=""
       {...props}
     >
-      <ArrowRight className="h-4 w-4" />
+      {/* <ArrowRight className="h-4 w-4" /> */}
+      <ArrowRightIcon className="h-4 w-4"/>
       <span className="sr-only">Next slide</span>
     </Button>
   )

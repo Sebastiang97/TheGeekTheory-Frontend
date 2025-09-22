@@ -7,4 +7,5 @@
     border-radius: var(--main-radius);
     border: 1px solid var(--main-color);
     color: var(--main-color);
+    width: fit-content;
 }

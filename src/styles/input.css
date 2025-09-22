@@ -95,6 +95,13 @@ form {
         }
     }
 
+    .fieldTags{
+        border: 2px solid #fe5c00;
+        padding: 10px;
+        display: flex;
+        gap: 5px;
+    }
+
     .actions {
         display: flex;
 

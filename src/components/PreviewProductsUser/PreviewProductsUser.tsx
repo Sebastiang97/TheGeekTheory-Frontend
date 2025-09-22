@@ -1,4 +1,4 @@
-import { CarouselProductsUser } from "@@/CarouselProductsUser/CarouselProductsUser"
+import { CarouselProductsUser } from "@@/CarouselsComponents/CarouselProductsUser/CarouselProductsUser"
 import { useState } from "react"
 
 interface Props {

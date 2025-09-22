@@ -1,0 +1,8 @@
+.containerImage{
+    border: 3px solid #FE5C00;
+    border-radius: 14px;
+    img{
+        width: 100%;
+        border-radius: 11px;
+    }
+}
