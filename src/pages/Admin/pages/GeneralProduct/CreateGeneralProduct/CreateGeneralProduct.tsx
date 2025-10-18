@@ -17,8 +17,8 @@ export const CreateGeneralProduct = () => {
   const loading = useGeneralProductStore(state=> state.loading)
 
   const getValues = (values:any)=>{
-    values.categoryId = "49b29431-a9fc-4659-bfc1-70d5cd018022"
-    values.subCategoryId = "72d90b73-beac-4940-9129-ba887751fa08"
+    values.categoryId = "c5062dbc-0fb1-41dc-8297-b9b003dc1d7a"
+    values.subCategoryId = "71a360b5-36d2-4047-b553-a33b6290df98"
     values.isVisible = true
     delete values.tags
     console.log({values})

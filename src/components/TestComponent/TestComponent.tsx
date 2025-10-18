@@ -18,7 +18,7 @@ export const TestComponent = () => {
   // const loading = useGeneralProductStore(state=> state.loading)
 
   useEffect(()=>{
-    getGPSubCategoryId("72d90b73-beac-4940-9129-ba887751fa08")
+    getGPSubCategoryId("71a360b5-36d2-4047-b553-a33b6290df98")
       .then(res=>{
       })
   }, [])

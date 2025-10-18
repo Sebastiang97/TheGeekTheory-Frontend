@@ -22,7 +22,7 @@ export const CatalogGeneralProducts = () => {
 
   const navigateOptions = (type: TypeActions, id:string): void => {
     if (type === ADMIN_MODE.add) {
-      navigate("/generalProduct/create/categroyId/49b29431-a9fc-4659-bfc1-70d5cd018022/subcategoryId/72d90b73-beac-4940-9129-ba887751fa08")
+      navigate("/generalProduct/create/categroyId/c5062dbc-0fb1-41dc-8297-b9b003dc1d7a/subcategoryId/71a360b5-36d2-4047-b553-a33b6290df98")
     }
     
     if (type === ADMIN_MODE.view) {
@@ -31,7 +31,7 @@ export const CatalogGeneralProducts = () => {
   }
 
   useEffect(()=>{
-    getGPSubCategoryId("72d90b73-beac-4940-9129-ba887751fa08")
+    getGPSubCategoryId("71a360b5-36d2-4047-b553-a33b6290df98")
       .then(res=>{
       })
   }, [])
