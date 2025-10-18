@@ -1,0 +1,5 @@
+.generalProducts{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+}

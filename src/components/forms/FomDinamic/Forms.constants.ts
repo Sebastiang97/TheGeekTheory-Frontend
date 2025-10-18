@@ -9,6 +9,13 @@ export const RULES_TYPE = {
     NUMBERS: 'numbers'
 }
 
+export const TYPE_EXTRA = {
+  main      : "main",
+  second    : "second",
+  colors    : "colors",
+  sizes     : "sizes"
+}
+
 export const GET_PROPS_FORMS = (formJson: InputFields[]) => {
     const initialValues: { [key: string]: any } = {}
     const requiredFields: { [key: string]: any } = {}
@@ -71,7 +78,7 @@ export const GET_PROPS_FORMS = (formJson: InputFields[]) => {
 
         if(input.type === "addTags" ){
             requiredFields[input.name] = Yup.array(validateStrings(input))
-            console.log({requiredFields})
+            // console.log({requiredFields})
         }
     }
 

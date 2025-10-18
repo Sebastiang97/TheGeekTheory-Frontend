@@ -76,9 +76,42 @@ form {
             }
         }
 
-        input[type="color"]{
+        /* input[type="color"]{
             border: none;
             padding: 0;
+        } */
+        
+        /* input[type="color"]{
+            border: none;
+            padding: 0;
+            display: none;
+        } */
+
+        /* Elimina los estilos por defecto y establece una base */
+        input[type="color"] {
+            -webkit-appearance: none; /* Elimina el estilo por defecto en Safari/Chrome */
+            -moz-appearance: none; /* Elimina el estilo por defecto en Firefox */
+            appearance: none;
+            background-color: transparent; /* Quita el fondo gris */
+            width: 20px; /* Define un ancho */
+            height: 20px; /* Define una altura */
+            border: none; /* Elimina cualquier borde */
+            cursor: pointer;
+            margin-top: 0px;
+            padding: 0; /* Elimina el padding interno que causa espacio extra:cite[5] */
+        }
+        /* Estilos específicos para Chrome y Safari */
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0; /* Elimina el padding interno del contenedor:cite[5] */
+        }
+        input[type="color"]::-webkit-color-swatch {
+            border-radius: 50%; /* Hace el cuadro de color circular */
+            border: none; /* Elimina el borde sutil del cuadro de color:cite[6] */
+        }
+        /* Estilos específicos para Firefox */
+        input[type="color"]::-moz-color-swatch {
+            border-radius: 50%; /* Hace el cuadro de color circular */
+            border: none; /* Elimina el borde:cite[9] */
         }
 
         input[type="file"] {

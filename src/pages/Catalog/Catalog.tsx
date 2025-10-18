@@ -10,12 +10,12 @@ import { CustomProduct } from "@@/CustomProduct/CustomProduct"
 import { GET_SIZES } from "@/helpers/GetSizes"
 import { GET_COLORS } from "@/helpers/GetColors"
 import { ListSize } from "@@/Lists/ListSize/ListSize"
-import { ListColor } from "@@/Lists/ListColor/ListColor"
 import { usePrintStore } from "@/libs/store/zustand/usePrintStore"
 import { ListPrint } from "@@/Lists/ListPrint/ListPrint"
 import { useCustomProduct } from "@/libs/store/zustand/useCustomProduct"
 import { useCategoryStore } from "@/libs/store/zustand/useCategoryStore"
 import { Category } from "@/Models/Category"
+import { GroupColor } from "@@/Lists/GroupColor/GroupColor"
 
 export const Catalog = () => {
     const [file, setFile] = useState<File>()
@@ -148,7 +148,7 @@ export const Catalog = () => {
                                             <header>
                                                 <h4>Color</h4>
                                             </header>
-                                            <ListColor 
+                                            <GroupColor
                                                 colors={colors}
                                                 currentColor={color}
                                                 changeProductByColor={changeProductByColor}

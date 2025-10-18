@@ -38,9 +38,11 @@
                         width: 20px;
                         height: 20px;
                         border-radius: 50%;
-                        outline-offset: 3px;
-                        /* outline: 1px solid #FE5C00; */
                         box-sizing: border-box;
+                        &#active{
+                            outline-offset: 3px;
+                            outline: 2px solid #FE5C00;
+                        }
                     }
                 }
             }

@@ -1,4 +1,4 @@
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import { actions, inputAdminFields } from "./actions.constant"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
@@ -42,7 +42,7 @@ export const ActionsCategories = () => {
         <FormDinamic
           inputFields={inputAdminFields}
           actions={actions}
-          getImgs={() => {}}
+          getExtra={() => {}}
           getValues={getValues}
           getOnChanges={()=>{}}
           />

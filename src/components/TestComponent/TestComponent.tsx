@@ -1,26 +1,32 @@
+import { useNavigate } from "react-router-dom"
 import { BackIcon } from "@@/icons/BackIcon"
 import { FilterIcon } from "@@/icons/FilterIcon"
 import { useEffect, useState } from "react"
 import { GeneralProductCard } from "@@/Cards/GeneralProductCard/GeneralProductCard"
 import { FilterComponent } from "@@/Sheets/FilterComponent/FilterComponent"
-
-import "./TestComponent.css"
 import { useGeneralProductStore } from "@/libs/store/zustand/useGeneralProductStore"
 
-export const TestComponent = () => {
-  const [isOpenFilter, setIsOpenFilter] = useState(false)
-  const subcategoryid = useGeneralProductStore(state=> state.subcategoryid)
-  const generalProducts = useGeneralProductStore(state=> state.generalProducts)
+import "./TestComponent.css"
+import { AdminOptions } from "@/pages/Admin/components/AdminOptions/AdminOptions"
 
+export const TestComponent = () => {
+  const navigate = useNavigate()
+  
+  const [isOpenFilter, setIsOpenFilter] = useState(false)
+  const getGPSubCategoryId = useGeneralProductStore(state=> state.getGPSubCategoryId)
+  const generalProducts = useGeneralProductStore(state=> state.generalProducts)
+  // const loading = useGeneralProductStore(state=> state.loading)
 
   useEffect(()=>{
-    subcategoryid("5ae5bc9d-3d2d-4de4-ba02-25b8e1c99697")
+    getGPSubCategoryId("72d90b73-beac-4940-9129-ba887751fa08")
+      .then(res=>{
+      })
   }, [])
   
   return (
     <>
       <section className="container flex justify-between gap-5">
-        <BackIcon />
+        <BackIcon  onClick={() => navigate(-1)}/>
         <div className=" ">
             
           <button
@@ -48,13 +54,21 @@ export const TestComponent = () => {
         <section className="generalProducts">
           {
             generalProducts.length ? (
-              generalProducts.map(generalProducts =>(
-                <GeneralProductCard 
-                  title={generalProducts.title}
-                  subtitle={generalProducts.description}
-                  price={generalProducts.price}
-                  url="https://studybreaks.com/wp-content/uploads/2022/04/Screen-Shot-2022-04-11-at-1.02.36-AM-e1649664212572.png"
-                />
+              generalProducts.map(({id, title, description, price, colorImageSizes}) =>(
+                <>
+                  <GeneralProductCard
+                    key={id}
+                    id={id}
+                    title={title}
+                    subtitle={description}
+                    price={price}
+                    colorImageSizes={colorImageSizes}
+                  />
+                  <AdminOptions 
+                    typeEvent={()=>navigate("/generalProduct/"+id)} 
+                  />
+                  
+                </>
               ))
             ) : (
               <>

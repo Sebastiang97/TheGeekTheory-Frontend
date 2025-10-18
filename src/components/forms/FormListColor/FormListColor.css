@@ -1,0 +1,33 @@
+.listColorsAdd{
+    display: flex;
+    gap: 10px;
+    div{
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        outline-offset: 3px;
+        box-sizing: border-box;
+        flex-shrink: 0;
+
+        &.active{
+            outline: 2px solid var(--main-color);
+        }
+
+        &.addColor{
+            display: grid;
+            place-content: center;
+            border: 1px solid var(--main-color);
+
+            svg{
+                width: 16px;
+                height: 14px;
+            }
+
+        }
+
+        &.color{
+            display: none;
+        }
+    }
+}

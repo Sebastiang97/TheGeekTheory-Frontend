@@ -1,14 +1,15 @@
-import { Actions, InputFields, TypeExtra } from '@/Models/InputFields'
+import { Actions, InputFields } from '@/Models/InputFields'
 import { Formik, Form, FieldArray } from 'formik'
 import { GET_PROPS_FORMS } from './Forms.constants'
-import { MySelect, MyTextInput } from '.'
+import { MySelect, MyTextInput } from '..'
 import { useTranslation } from 'react-i18next'
-import { FormsTags } from './FormsTags'
+import { FormsTags } from '../FormsTags'
 import { Tag } from '@@/Tag/Tag'
-import { ImageAddItem } from './ImageCarouselItem/ImageAddItem'
+import { ImageAddItem } from '../ImageCarouselItem/ImageAddItem'
 import { GET_IMAGES_INPUT } from '@/helpers/GetImages'
-import { ListColor } from '@@/Lists/ListColor/ListColor'
-import { ListSize } from '@@/Lists/ListSize/ListSize'
+import { FormListColor } from '@@/forms/FormListColor/FormListColor'
+import { FormListSize } from '../FormListSize/FormListSize'
+import { TypeExtraParams } from './FormsDinamix.models'
 
 interface Props {
   inputFields: InputFields[]
@@ -18,10 +19,6 @@ interface Props {
   getOnChanges: (values: any) => void
 }
 
-export type TypeExtraParams = {
-  values: any
-  type: TypeExtra
-}
 
 export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnChanges }: Props) => {
   const { t } = useTranslation(["translation"])
@@ -90,7 +87,6 @@ export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnCh
                     type="file"
                     onChange={(event) => {
                       const files = event.target.files
-                      console.log(event.target)
                       if (files) {
 
                         let myFiles = Array.from(files)
@@ -108,25 +104,22 @@ export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnCh
                   className='field'
                   key={name}
                 >
+                  <label >
+                    {label}
+                  </label>
                   <ImageAddItem
                     name={name}
-                    // getImages={(imgs:string[])=> {
-                    //   if(imgs.length){
-                    //     setFieldValue(name, imgs)
-                    //     getExtra({ values: imgs, type: ImgS?.typeExtra ?? "main" })
-                    //   } 
-                    // }} 
-                    getImages={(files:FileList)=> {
-                      if (files) {
+                    getImages={(fileList:FileList)=> {
+                      if (fileList) {
 
-                        let myFiles = Array.from(files)
-                        setFieldValue(name, myFiles)
-                        getExtra({ values: myFiles, type: ImgS?.typeExtra ?? "main"})
+                        let files = Array.from(fileList)
+                        let imgs = files.map(file=> URL.createObjectURL(file))
+                        setFieldValue(name, files)
+                        getExtra({ 
+                          values: {files,imgs}, 
+                          type: ImgS?.typeExtra ?? "main"
+                        })
                       }
-                      // if(imgs.length){
-                      //   setFieldValue(name, imgs)
-                      //   getExtra({ values: imgs, type: ImgS?.typeExtra ?? "main" })
-                      // } 
                     }} 
                     isMultipleImage={ImgS?.multiple === undefined ? false : ImgS?.multiple}
                   />
@@ -138,9 +131,11 @@ export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnCh
                   className='field'
                   key={name}
                 >
-                 <ListColor
+                  <label >
+                    {label}
+                  </label>
+                 <FormListColor 
                     changeProductByColor={(e)=>{
-                      console.log({e})
                       setFieldValue(name, e)
                       getExtra(
                         { 
@@ -160,7 +155,10 @@ export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnCh
                   className='field'
                   key={name}
                 >
-                  <ListSize
+                  <label >
+                    {label}
+                  </label>
+                  <FormListSize
                     changeProductBySize={(e)=>{
                       setFieldValue(name, e)
                       getExtra(
@@ -204,10 +202,8 @@ export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnCh
                           label={label}
                           placeholder={placeholder}
                           handleValue={e=>{ 
-                            console.log({[name]: values[name]})
                             if(values[name]?.length){
                               let value = values[name].find((a:string)=> a === e)
-                              console.log({value})
                               if(!value){
                                 push(e)
                               } 

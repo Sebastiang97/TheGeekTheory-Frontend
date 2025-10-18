@@ -1,4 +1,4 @@
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import { actions, actionsRegister, inputLoginFields } from "./Login.constant"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { URL_AUTHENTICATE } from "@/constants/service.constant"
@@ -18,7 +18,7 @@ export const Login = () => {
             <FormDinamic 
               inputFields={inputLoginFields} 
               actions={actions} 
-              getImgs={()=>{}}
+              getExtra={()=>{}}
               getOnChanges={()=>{}}
               getValues={()=>{}}
               />
@@ -38,7 +38,7 @@ export const Login = () => {
             <FormDinamic 
               inputFields={inputLoginFields} 
               actions={actionsRegister} 
-              getImgs={()=>{}}
+              getExtra={()=>{}}
               getOnChanges={()=>{}}
               getValues={()=>{}}
               />

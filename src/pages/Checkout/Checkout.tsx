@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { CartList } from "@@/Lists/CartList/CartList"
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import {
     Accordion,
     AccordionContent,

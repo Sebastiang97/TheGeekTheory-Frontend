@@ -1,4 +1,4 @@
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import { actions, inputAdminFields } from "./actions.constant"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -47,7 +47,7 @@ export const ActionsCategories2 = ({getCategoryData, initialValues, mode}:Props)
           <FormDinamic
             inputFields={inputs}
             actions={actions}
-            getImgs={() => {}}
+            getExtra={() => {}}
             getValues={getValues}
             getOnChanges={()=>{}}
           />

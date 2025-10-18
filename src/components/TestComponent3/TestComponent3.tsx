@@ -1,7 +1,7 @@
 import { CarouselProductGeneral } from "@@/CarouselsComponents/CarouselProductGeneral/CarouselProductGeneral"
 import { TitleSubtitle } from "@@/TitleSubtitle/TitleSubtitle"
 import { GENERALPRODUCTMODE } from "@/constants/GeneralProduct.constants"
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import { actions, inputProductFields } from "./actionADD"
 import { useGeneralProductStore } from "@/libs/store/zustand/useGeneralProductStore"
 
@@ -21,8 +21,8 @@ const IMAGES = [
 export const TestComponent3 = () => {
   const createGeneralProduct = useGeneralProductStore(state=> state.createGeneralProduct)
   const getValues = (values:any)=>{
-    values.categoryId = "0420a4f7-6b9a-41de-a69e-c9048ec3adc9"
-    values.subCategoryId = "5ae5bc9d-3d2d-4de4-ba02-25b8e1c99697"
+    values.categoryId = "49b29431-a9fc-4659-bfc1-70d5cd018022"
+    values.subCategoryId = "72d90b73-beac-4940-9129-ba887751fa08"
     values.isVisible = true
     delete values.tags
     console.log({values})
@@ -46,6 +46,8 @@ export const TestComponent3 = () => {
         <section className="generalProduct">
           <section className="carouselGeneralProduct">
             <CarouselProductGeneral 
+              img=""
+              currentImage={0}
               getCurrentImage={()=>{}}  
               imgs={IMAGES}
               mode={GENERALPRODUCTMODE.ADD}

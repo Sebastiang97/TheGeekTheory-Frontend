@@ -1,7 +1,17 @@
+import { ListColorPicker } from "@@/Lists/ListColorPicker/ListColorPicker"
 import "./InfoGeneralProduct.css"
 
 export const InfoGeneralProduct = (props:any) => {
-    const {currency, price, description, isVisible} = props
+    const {
+        currency, 
+        price, 
+        description, 
+        isVisible, 
+        colors, 
+        currentColor, 
+        handleColors
+    } = props
+    
   return (
     <>
         <section className="infoGeneralProduct">
@@ -21,6 +31,11 @@ export const InfoGeneralProduct = (props:any) => {
             </section>
             <section>
                 <h3>Color</h3>
+                <ListColorPicker
+                    changeColor={(color:string)=> handleColors(color)}
+                    colors={colors}
+                    currentColor={currentColor}
+                />
             </section>
         </section>
         

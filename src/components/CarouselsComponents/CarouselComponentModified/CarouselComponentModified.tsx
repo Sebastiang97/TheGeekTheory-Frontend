@@ -2,14 +2,14 @@ import { useState } from "react"
 import { ImageAddItem } from "@@/forms/ImageCarouselItem/ImageAddItem"
 import { MarkImage } from "@@/ImageComponents/MarkImage/MarkImage"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@@/ui/carousel"
-import "./CarouselComponentAdd.css"
+import "./CarouselComponentModified.css"
 
 interface Props {
   imgs: string[]
   getCarouselImages: (img:string[])=> void
 }
 
-export const CarouselComponentAdd = ({imgs, getCarouselImages}:Props) => {
+export const CarouselComponentModified = ({imgs, getCarouselImages}:Props) => {
   const [images, setImages] = useState<string[]>(imgs)
   const getImages = (imgs:string[]) => {
     setImages(imgs)
@@ -24,7 +24,7 @@ export const CarouselComponentAdd = ({imgs, getCarouselImages}:Props) => {
         <CarouselItem className="imageItem md:basis-1/2 lg:basis-1/2">
           <ImageAddItem
             name="img" 
-            getImages={(imgs:string[])=> {getImages(imgs)}}
+            getImages={(imgs:any)=> {getImages(imgs)}}
             isMultipleImage={true}
           />
         </CarouselItem>

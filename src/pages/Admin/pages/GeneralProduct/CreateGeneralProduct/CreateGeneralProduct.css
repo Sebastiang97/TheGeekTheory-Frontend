@@ -1,0 +1,41 @@
+.generalProduct{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 0 100px;
+    margin: 20px 0;
+    
+    .carouselGeneralProduct{
+    
+    }
+    .infoGeneralProduct{
+        margin: 0 20px;
+        section{
+            h3{
+                color: #909090;
+            }
+            margin: 10px 0;
+            .currency{
+            }
+            .price{
+                font-size: 24px;
+            }
+    
+        }
+        
+    }
+}
+
+.generalsTags{
+    p{
+        color: #909090;
+    }
+    .tags{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0;
+        
+    }
+
+}

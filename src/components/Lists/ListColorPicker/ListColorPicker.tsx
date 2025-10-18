@@ -1,31 +1,31 @@
 
 import { useState } from "react"
-import "./ListColor.css"
 import { IS_WHITE } from "@/helpers/IsWhite"
+import "./ListColorPicker.css"
+
 interface Props {
     colors: string[]
     currentColor: string
-    changeProductByColor: (s:string)=>void 
+    changeColor: (s:string)=>void
 }
 
-export const ListColor = ({colors, currentColor, changeProductByColor}:Props) => {
+export const ListColorPicker = ({colors, currentColor, changeColor}:Props) => {
     const [currentC, setCurrentC] = useState(currentColor)
+    const [listColors, _] = useState<string[]>(colors)
 
-   
     return (
         <div className="listColors">
             {
-                colors.map((color, i) => (
+                colors.length && colors.map((color, i) => (
                     <div
                         key={i}
                         onClick={() => {
-                            changeProductByColor(color)
+                            changeColor(color)
                             setCurrentC(color)
                         }}
-                        className={currentColor === color ? 'active' : 'inactive'}
+                        className={`${currentC === color ? 'active' : 'inactive'} ${IS_WHITE(color) ? "isWhite" : ""}`}
                         style={{
                             backgroundColor: color,
-                            border: IS_WHITE(color) ? "1px solid #000" : "null",
                         }}>
 
                     </div>

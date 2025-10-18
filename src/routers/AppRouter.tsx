@@ -19,7 +19,12 @@ import { QrCode } from '@/pages/Admin/pages/QrCode/QrCode'
 import { Account } from '@/pages/Account/Account'
 import { Custom } from '@/pages/Custom/Custom'
 import { PayByPayId } from '@/pages/Admin/pages/PayByPayId/PayByPayId'
-import { Test3 } from '@/pages/Test/Test3'
+// import { Test3 } from '@/pages/Test/Test3'
+import { GeneralProduct } from '@/pages/Admin/pages/GeneralProduct/GeneralProduct'
+import { ProductIndividual } from '@/pages/Admin/pages/ProductIndividual/ProductIndividual'
+import { CreatePI } from '@/pages/Admin/pages/ProductIndividual/CreatePI/CreatePI'
+import { CatalogGeneralProducts } from '@/pages/CatalogGeneralProducts/CatalogGeneralProducts'
+import { CreateGeneralProduct } from '@/pages/Admin/pages/GeneralProduct/CreateGeneralProduct/CreateGeneralProduct'
 // import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
 // import { Products } from '@/pages/Admin/pages/Products/Products'
 // import { Categories } from '@/pages/Admin/pages/Categories/Categories'
@@ -52,7 +57,12 @@ export const AppRouter = () => {
         <Route path='/account' element={<Account />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/admin' element={<Admin />} />
-        <Route path='/Test' element={<Test3 />} />
+        {/* <Route path='/test' element={<Test3 />} /> */}
+        <Route path='/CatalogGeneralProducts' element={<CatalogGeneralProducts />} />
+        <Route path='/generalProduct/:generalProductId' element={<GeneralProduct />} />
+        <Route path='/generalProduct/create/categroyId/:categoryId/subcategoryId/:subCategoryId' element={<CreateGeneralProduct />} />
+        <Route path='/productIndividual/:generalProductId' element={<ProductIndividual />} />
+        <Route path='/productIndividual/create/:generalProductId' element={<CreatePI />} />
 
         {/* <Route path='/admin/products/' element={<Products />} /> */}
         <Route path='/admin/crm/' element={<CRM />} />

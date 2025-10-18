@@ -1,5 +1,5 @@
 import { TitleSubtitle } from "@@/TitleSubtitle/TitleSubtitle"
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import { actions, inputProductFields } from "./actionADD"
 import { useProductIndividualStore } from "@/libs/store/zustand/useProductIndividualStore"
 import { CarouselProduct } from "@@/CarouselsComponents/CarouselProduct/CarouselProduct"
@@ -9,9 +9,9 @@ import { SET_FORM_DATA_KEY_VALUE_OBJ } from "@/helpers/SetFormDataKeyValueObj"
 export const TestComponent4 = () => {
   const createProductIndividual = useProductIndividualStore(state=> state.createProductIndividual)
   const getValues = (values:any)=>{
-    values.categoryId = "0420a4f7-6b9a-41de-a69e-c9048ec3adc9"
-    values.subCategoryId = "5ae5bc9d-3d2d-4de4-ba02-25b8e1c99697"
-    values.generalProductId = "c9b17654-0caf-4dde-b061-4935a1c09112"
+    values.categoryId = "49b29431-a9fc-4659-bfc1-70d5cd018022"
+    values.subCategoryId = "72d90b73-beac-4940-9129-ba887751fa08"
+    values.generalProductId = "9c796e33-173a-4556-ac4a-373d3f450c6c"
     values.isVisible = true
     values.typeStamping = "test"
     delete values.tags

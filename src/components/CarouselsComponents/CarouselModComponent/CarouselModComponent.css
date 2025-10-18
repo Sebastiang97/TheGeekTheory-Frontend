@@ -1,0 +1,26 @@
+.ImageView{
+
+    .first{
+        width: 410px;
+        height: 300px;
+        /* .firstImage{
+            display: grid;
+            place-content: center;
+            background-color: #D9D9D9;
+            width: 410px;
+            height: 300px;
+            border-radius: 15px;
+            svg{
+                color: #FE5C00;
+            }
+        } */
+            
+    }
+    
+    .second{
+        display: flex;
+        gap: 10px;
+        margin: 10px 0;
+        
+    }
+}

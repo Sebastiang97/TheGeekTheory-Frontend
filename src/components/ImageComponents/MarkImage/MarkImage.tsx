@@ -13,7 +13,10 @@ export const MarkImage = (props:any) => {
       className="containerImage"
       {...rest}
     >
-        <img src={url} alt={alt} />
+      {url 
+        ? (<img src={url} alt={alt} />) 
+        : (<>Aun no hay imagenes</>) 
+      }
     </div>
   )
 }

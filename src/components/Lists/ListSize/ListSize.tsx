@@ -12,6 +12,7 @@ export const ListSize = ({sizes, currentSize, changeProductBySize}:Props) => {
                 sizes.map((size,i) => (
                     <button
                         key={i}
+                        type="button"
                         className={size === currentSize ? "" : "secondary"}
                         onClick={() => changeProductBySize(size)}
                     >

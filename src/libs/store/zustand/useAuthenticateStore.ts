@@ -15,12 +15,12 @@ export const useAuthenticateStore = create<PropsUseAuthenticate>(
         user: {} as User,
         loading: false,
         getUser: () =>{
-            baseService(URL_AUTHENTICATE+ "/credencials")
-                .get<User>()
-                .then(user=>{
-                    set({user: user})
-                })
-                .catch(error=> console.log({error}))
+            // baseService(URL_AUTHENTICATE+ "/credencials")
+            //     .get<User>()
+            //     .then(user=>{
+            //         set({user: user})
+            //     })
+            //     .catch(error=> console.log({error}))
         }
     })
 )

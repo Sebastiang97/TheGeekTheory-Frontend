@@ -1,4 +1,4 @@
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import { actions, inputAdminFields } from "./actions.constant"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -114,7 +114,7 @@ export const ActionsProducts = () => {
         <FormDinamic
           inputFields={inputAdminFields}
           actions={actions}
-          getImgs={getImgs}
+          getExtra={getImgs}
           getValues={getValues}
           getOnChanges={getOnChanges}
           />

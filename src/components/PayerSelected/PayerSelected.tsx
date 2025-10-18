@@ -1,4 +1,4 @@
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import { actions, inputPayerFields } from "./action.constants"
 import { usePayerStore } from "@/libs/store/zustand/usePayerStore"
 import { MAPPING_USER } from "@/helpers/MappingUser"
@@ -73,7 +73,7 @@ export const PayerSelected = () => {
                     <FormDinamic
                         inputFields={inputPayerFields}
                         actions={actions}
-                        getImgs={()=>{}}
+                        getExtra={()=>{}}
                         getValues={getValues}
                         getOnChanges={() => { }}
                     />

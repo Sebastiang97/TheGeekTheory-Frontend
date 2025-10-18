@@ -1,0 +1,15 @@
+.FormListSize{
+    display: flex;
+    gap: 10px;
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        font-weight: 600;
+        border: var(--main-border-color);
+        color: #000;
+    }
+}

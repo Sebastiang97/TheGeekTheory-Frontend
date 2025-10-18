@@ -10,7 +10,6 @@ import { CustomProduct } from "@@/CustomProduct/CustomProduct"
 import { GET_SIZES } from "@/helpers/GetSizes"
 import { GET_COLORS } from "@/helpers/GetColors"
 import { ListSize } from "@@/Lists/ListSize/ListSize"
-import { ListColor } from "@@/Lists/ListColor/ListColor"
 import { usePrintStore } from "@/libs/store/zustand/usePrintStore"
 import { ListPrint } from "@@/Lists/ListPrint/ListPrint"
 import { useCustomProduct } from "@/libs/store/zustand/useCustomProduct"
@@ -28,6 +27,7 @@ import { CounterV2 } from "@@/CounterV2/CounterV2"
 import { useCounterStore } from "@/libs/store/zustand/useCounter"
 import { INIT_CUSTOM } from "@/Models/Stamped"
 import { Print } from "@/Models/Print"
+import { GroupColor } from "@@/Lists/GroupColor/GroupColor"
 
 export const Custom = () => {
     const currentCounter = useCounterStore(state => state.currentCounter)
@@ -238,7 +238,7 @@ export const Custom = () => {
                                     <header>
                                         <h4>Color</h4>
                                     </header>
-                                    <ListColor 
+                                    <GroupColor 
                                         colors={colors}
                                         currentColor={color}
                                         changeProductByColor={changeProductByColor}

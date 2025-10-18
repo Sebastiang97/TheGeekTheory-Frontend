@@ -11,8 +11,8 @@ import { useProductStore } from "@/libs/store/zustand/useProductStore"
 import { Category } from "@/Models/Category"
 import { FILTER_SIZE } from "@/helpers/GetSizes"
 import { PreviewProductUsers } from "@@/PreviewProductsUser/PreviewProductsUser"
-import { ListColor } from "@@/Lists/ListColor/ListColor"
 import { ListSize } from "@@/Lists/ListSize/ListSize"
+import { GroupColor } from "@@/Lists/GroupColor/GroupColor"
 
 interface Props {
   mode: AdminMode
@@ -142,7 +142,7 @@ export const AdminModeProduct = ({
                   <header>
                     <h4>Color</h4>
                   </header>
-                  <ListColor
+                  <GroupColor
                     colors={colors}
                     currentColor={color}
                     changeProductByColor={changeProductByColor}

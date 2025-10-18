@@ -1,4 +1,4 @@
-import { FormDinamic } from "@@/forms/FormDinamic"
+import { FormDinamic } from "@@/forms/FomDinamic/FormDinamic"
 import { actions } from "./actions.constant"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -123,7 +123,7 @@ export const ActionsAdmin = ({ inputAdminFields, actions, mode, initialValues, g
         <FormDinamic
           inputFields={inputs}
           actions={actions}
-          getImgs={getImgs}
+          getExtra={getImgs}
           getValues={getValues}
           getOnChanges={() => { }}
         />

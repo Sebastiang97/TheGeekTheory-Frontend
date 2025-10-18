@@ -1,73 +1,76 @@
+import { useState } from "react"
+import { ADMIN_MODE } from "@/constants/AdminMode.constants"
+import { useNavigate } from "react-router-dom"
 import { MarkImage } from "@@/ImageComponents/MarkImage/MarkImage"
-import "./GeneralProductCard.css"
-import { GroupColor } from "@@/GroupColor/GroupColor"
+import { GroupColor } from "@@/Lists/GroupColor/GroupColor"
 import { AdminOptions } from "@/pages/Admin/components/AdminOptions/AdminOptions"
+import { ColorImageSizes } from "@/Models/GeneralProduct"
+import { FILTER_CURRENT_IMAGE_BY_COLOR, GET_CURRENT_IMAGE } from "@/helpers/GetCurrentImage"
+import { FILTER_SIZE_BY_COLOR, GET_SIZES_FROM_COLORIMAGESIZES } from "@/helpers/GetSizes"
+import { TypeActions } from "@/Models/TypeActions"
+
+import { GET_COLORS_FROM_COLORIMAGESSIZES } from "@/helpers/GetColors"
+import "./GeneralProductCard.css"
 
 interface Props{
-    url         : string
-    title       : string
-    subtitle    : string
-    price       : number
+    id              : string
+    title           : string
+    subtitle        : string
+    price           : number
+    colorImageSizes : ColorImageSizes[]
 }
 
-export const GeneralProductCard = ({url, title, subtitle, price}:Props) => {
+export const GeneralProductCard = ({id, title, subtitle, price, colorImageSizes}:Props) => {
+    
+    const [currentImage, setCurrentImage] = useState<string>(colorImageSizes?.length ? colorImageSizes[0].image:"")
+    const [size, setSize] = useState<string[]>(colorImageSizes?.length ? colorImageSizes[0].sizes : [])
+    const [currentColor, setCurrentColor] = useState<string>(colorImageSizes?.length ? colorImageSizes[0].color : "")
+
+    const changeColor =  (color:string)=>{
+        setCurrentColor(color)
+        setSize(FILTER_SIZE_BY_COLOR(colorImageSizes, color))
+        setCurrentImage(FILTER_CURRENT_IMAGE_BY_COLOR(colorImageSizes, color))
+    }
+    
+    const navigate = useNavigate()
+    const handleOptions = (type: TypeActions, id: string): void => {
+        console.log(type)
+        if (type === ADMIN_MODE.add) {
+            navigate("/generalProduct/"+id)
+        }
+    }
+
     return (
         <section className="cardGeneral">
             <article>
-                {/* <div className="containerImage">
-                    <img src={url} alt="" />
-                </div> */}
-                <MarkImage url={url} alt="alt image"/>
+                <MarkImage url={currentImage} alt="alt image"/>
                 <div className="containerCard">
                     <div className="title">{title}</div>
                     <div className="subtitle">{subtitle}</div>
                     <div className="price">${price}</div>
                     <div className="containerSizeColor">
                         <div className="containerSize">
-                            S,M,L,XL
+                            {
+                                size.length && size.map(s=>(
+                                    <div key={s}>{s}</div>
+                                ))
+                            }
                         </div>
-                        <GroupColor />
-                        {/* <div className="containerColor">
-                            <div
-                                className="color"
-                                style={{
-                                    backgroundColor: '#FE5C00',
-                                    outline: true ? "2px solid #FE5C00" : "null"
-                                }}
-                            ></div>
-                            <div
-                                className="color"
-                                style={{
-                                    backgroundColor: '#FFFFFF',
-                                    border: true ? "1px solid #000" : "null",
-                                    outline: false ? "2px solid #FE5C00" : "null"
+                        <GroupColor 
+                            changeColor={changeColor}
+                            currentColor={currentColor}
+                            colors={GET_COLORS_FROM_COLORIMAGESSIZES(colorImageSizes)}
+                        />
 
-                                }}
-                            ></div>
-                            <div
-                                className="color"
-                                style={{
-                                    backgroundColor: '#247C07',
-                                    outline: false ? "2px solid #FE5C00" : "null"
-                                }}
-                            ></div>
-                            <div
-                                className="color"
-                                style={{
-                                    backgroundColor: '#247C07',
-                                    outline: false ? "2px solid #FE5C00" : "null"
-                                }}
-                            ></div>
-                        </div> */}
                     </div>
                     <div className="containerButtons">
-                        <button>Escoge la tuya</button>
+                        <button onClick={()=>handleOptions("add", id)}>Escoge la tuya</button>
                     </div>
                 </div>
 
 
             </article>
-            <AdminOptions typeEvent={(type)=>console.log(type)} />
+            
         </section>
     )
 }

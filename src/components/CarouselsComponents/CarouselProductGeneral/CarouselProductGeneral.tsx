@@ -1,22 +1,29 @@
 import { GENERALPRODUCTMODE } from "@/constants/GeneralProduct.constants"
 import { CarouselComponent } from "@@/CarouselsComponents/CarouselComponent/CarouselComponent"
 import { MarkImage } from "@@/ImageComponents/MarkImage/MarkImage"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./CarouselProductGeneral.css"
 import { NotImageComponent } from "@@/ImageComponents/NotImageComponent/NotImageComponent"
 
 interface Props {
   imgs: string[]
-  getCurrentImage: (imgs:string)=> void
-  mode: string
+  img: string
+  getCurrentImage  : (imgs:string)=> void
+  mode             : string
+  currentImage     : number
 }
  
-export function CarouselProductGeneral({imgs, getCurrentImage, mode}:Props) {
-  const [img, setImg] = useState(imgs[0])
+export function CarouselProductGeneral({imgs, img, getCurrentImage, currentImage, mode}:Props) {
+  const [imgMain, setImgMain] = useState(img)
   
-  const currentImage = (currentImage:string) =>{
-    setImg(currentImage)
+  const getCurrentImg = (currentImage:string) =>{
+    setImgMain(currentImage)
   }
+
+  useEffect(() => {
+    setImgMain(img)
+  }, [img])
+  
   return (
     <>
       {
@@ -32,10 +39,14 @@ export function CarouselProductGeneral({imgs, getCurrentImage, mode}:Props) {
         <>
           <section className="ImageView">
             <article>
-              <MarkImage  url={img} alt="asd"/>
+              <MarkImage  url={imgMain} alt="asd"/>
             </article>
             <article className="flex justify-center">
-              <CarouselComponent imgs={imgs} getCurrentImage={currentImage}/>
+              <CarouselComponent 
+                imgs={imgs} 
+                getCurrentImage={getCurrentImg}
+                currentImage={currentImage}
+              />
             </article>
           </section>
         </>
