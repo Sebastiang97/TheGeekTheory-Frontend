@@ -1,6 +1,6 @@
-// export const URL_BASE = "https://thegeektheory-backend.onrender.com/api/"
+export const URL_BASE = "https://thegeektheory-backend.onrender.com/api/"
 // export const URL_BASE = "https://gf6kfqcl-3000.use2.devtunnels.ms/api/"
-export const URL_BASE = "http://localhost:3000/api/"
+// export const URL_BASE = "http://localhost:3000/api/"
 
 export const URL_GENERALPRODUCTS = URL_BASE + "generalProducts/"
 export const URL_PRODUCTS = URL_BASE + "products/"
