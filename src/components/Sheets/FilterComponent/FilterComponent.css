@@ -1,6 +1,6 @@
 .filters{
     color: var(--second-font-color);
-
+    padding: 5px 15px;
     h3{
         margin: 10px 0;
 
@@ -15,5 +15,16 @@
         display: flex;
         gap: 5px;
     }
+
+    .tagsQuery{
+        margin: 10px 0;
+        display: flex;
+        gap: 2px;
+        .query{
+            width: 100%;
+            color: #000;
+        }
+    }
+
 
 }

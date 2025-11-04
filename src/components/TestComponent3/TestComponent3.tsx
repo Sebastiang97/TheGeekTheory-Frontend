@@ -21,8 +21,8 @@ const IMAGES = [
 export const TestComponent3 = () => {
   const createGeneralProduct = useGeneralProductStore(state=> state.createGeneralProduct)
   const getValues = (values:any)=>{
-    values.categoryId = "c5062dbc-0fb1-41dc-8297-b9b003dc1d7a"
-    values.subCategoryId = "71a360b5-36d2-4047-b553-a33b6290df98"
+    values.categoryId = "1d0be84d-b0e0-4e5c-8b48-10686f748473"
+    values.subCategoryId = "d998e9d8-ce57-4f69-9bdd-f4766626d1fb"
     values.isVisible = true
     delete values.tags
     console.log({values})

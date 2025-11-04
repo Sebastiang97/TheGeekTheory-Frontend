@@ -1,6 +1,6 @@
 import { POSITION_PRINT, POSITION_SHIRT_KEY, PositionShirtPrint, PositionSP, PrintCVS } from "@/constants/PositionShirtPrint"
 import { ListPosition } from "@@/Lists/ListPosition/ListPosition"
-import { SheetComponent } from "@@/SheetComponent/SheetComponent"
+import { SheetComponent } from "@@/ui/adaptable/SheetComponent/SheetComponent"
 import { ChangeEvent } from "react"
 import "./AddDesignSheetComponent.css"
 interface Props {

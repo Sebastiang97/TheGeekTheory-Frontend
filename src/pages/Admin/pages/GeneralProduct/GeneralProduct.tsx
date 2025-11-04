@@ -51,11 +51,11 @@ export const GeneralProduct = () => {
     useEffect(() => {
         if (generalProductId) {
             getGPById(generalProductId)
-            .then(generalProduct=>{
-                generalProduct.length && 
-                    generalProduct[0].colorImageSizes.length && 
-                        setImg(generalProduct[0].colorImageSizes[0].image)
-            }).catch(err=>console.log({err}))
+                .then(generalProduct=>{
+                    generalProduct.length && 
+                        generalProduct[0].colorImageSizes.length && 
+                            setImg(generalProduct[0].colorImageSizes[0].image)
+                }).catch(err=>console.log({err}))
             getProductsIndiByGPId(generalProductId)
         }
     }, [])
@@ -109,9 +109,12 @@ export const GeneralProduct = () => {
                         <h3>Tags</h3>
                         <p>Las etiquetas juegan un papel mínimo para ayudar a las personas a encontrar prendas relacionadas con su contenido favorito.</p>
                         <section className="tags">
-                            <Tag title="Batman" />
-                            <Tag title="Evangelion" />
-                            <Tag title="Cowboy" />
+                            {
+                                generalProduct[0]?.adaptedTags.length &&
+                                generalProduct[0].adaptedTags.map(tag=> (
+                                    <Tag title={tag.name} />
+                                ))
+                            }
                         </section>
                     </section>
 

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { SheetComponent } from "@@/SheetComponent/SheetComponent"
+import { SheetComponent } from "@@/ui/adaptable/SheetComponent/SheetComponent"
 import { useSideBarStore } from "@/libs/store/zustand/useSideBar"
 import { NAVBAR_LIST } from "@/constants/Nav.constants"
 import "./sidebar.css"

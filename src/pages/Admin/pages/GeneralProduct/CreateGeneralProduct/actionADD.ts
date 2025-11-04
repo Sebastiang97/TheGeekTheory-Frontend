@@ -49,18 +49,18 @@ export const inputProductFields:InputFields[] =[
         validations: [
         ]
     },
-    // {
-    //     type: "addTags",
-    //     name: "tags",
-    //     placeholder: "tags",
-    //     label: "tags",
-    //     value: [],
-    //     validations: [
-    //         {
-    //             type: "required"
-    //         }
-    //     ]
-    // },
+    {
+        type: "addTags",
+        name: "tags",
+        placeholder: "tags",
+        label: "tags",
+        value: [],
+        validations: [
+            {
+                type: "required"
+            }
+        ]
+    },
 ]
 
 

@@ -13,7 +13,7 @@ export const NAVBAR_LIST = Object.freeze([
     },
     {
         text: "Prendas",
-        to: "/CatalogGeneralProducts"
+        to: "/CatalogGeneralProducts/"
     },
     {
         text: "Checkout",

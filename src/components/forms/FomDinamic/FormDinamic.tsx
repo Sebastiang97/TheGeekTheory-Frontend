@@ -202,6 +202,10 @@ export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnCh
                           label={label}
                           placeholder={placeholder}
                           handleValue={e=>{ 
+                            getExtra({ 
+                              values: {tag: e}, 
+                              type: ImgS?.typeExtra ?? "main"
+                            })
                             if(values[name]?.length){
                               let value = values[name].find((a:string)=> a === e)
                               if(!value){
@@ -221,6 +225,7 @@ export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnCh
                                     key={index} 
                                     title={value} 
                                     onDelete={()=> remove(index)}
+                                    xIcon={true}
                                   />
                                 ))
                               }
@@ -245,14 +250,21 @@ export const FormDinamic = ({ inputFields, actions, getValues, getExtra, getOnCh
               actions.buttons.map(({ text, type }, i) => {
                 if(type === "submit"){
                   return (
-                    <button
-                      key={i}
-                      type={type}
-                      disabled={!isValid || isSubmitting}
-                      onClick={() => getValues(values, type)}
-                    >
-                      {t(text)}
-                    </button>
+                    <>
+                      <button
+                        key={i}
+                        type={type}
+                        disabled={!isValid }
+                        onClick={() => getValues(values, type)}
+                      >
+                        {t(text)}
+                      </button>
+                      
+                      {/* {!isValid && (<small> - forms invalido</small>)}
+                      <br/>
+                      {isSubmitting && (<small> - forms Submitting</small>)} */}
+                      
+                    </>
                   )
                 }
                 if(type === "button"){

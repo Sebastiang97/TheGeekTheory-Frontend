@@ -27,7 +27,7 @@ export const AdminOptions = ({typeEvent,type}:Props) => {
           <button onClick={()=> {actionOptions("add")}}>añadir</button>
         </div>
       ) : (
-        <section className="flex justify-center ">
+        <section className="contAdminOptions">
           <section className="adminOptions">
             <View onClick={()=> {actionOptions("view")}}/>
             <PlusIcon onClick={()=> {actionOptions("add")}}/>

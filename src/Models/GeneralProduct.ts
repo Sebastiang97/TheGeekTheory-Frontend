@@ -1,5 +1,7 @@
 // import { URLImage } from './URLImage';
 
+import { Tag } from "./Tag";
+
 export interface GeneralProduct {
     id:            string;
     title:          string;
@@ -13,6 +15,8 @@ export interface GeneralProduct {
     colorImageSizes: ColorImageSizes[]
     colorImageSize: ColorImageSize[]
     images: string[]
+    tags: TagElement[]
+    adaptedTags: Tag[]
 }
 
 export type ColorImageSize = {
@@ -36,4 +40,8 @@ export type ColorImageSizes = {
     color: string
     image: string
     sizes: string[]
+}
+
+export type TagElement = {
+    tag: Tag;
 }

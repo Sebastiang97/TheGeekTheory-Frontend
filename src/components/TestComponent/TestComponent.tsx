@@ -18,7 +18,7 @@ export const TestComponent = () => {
   // const loading = useGeneralProductStore(state=> state.loading)
 
   useEffect(()=>{
-    getGPSubCategoryId("71a360b5-36d2-4047-b553-a33b6290df98")
+    getGPSubCategoryId("d998e9d8-ce57-4f69-9bdd-f4766626d1fb")
       .then(res=>{
       })
   }, [])
@@ -139,10 +139,10 @@ export const TestComponent = () => {
         </section>
         
       </section>
-      <FilterComponent 
+      {/* <FilterComponent 
         isOpenFilter={isOpenFilter} 
         setIsOpenFilter={setIsOpenFilter}
-      />
+      /> */}
       
     </>
   )

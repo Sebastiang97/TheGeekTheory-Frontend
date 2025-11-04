@@ -25,6 +25,8 @@ import { ProductIndividual } from '@/pages/Admin/pages/ProductIndividual/Product
 import { CreatePI } from '@/pages/Admin/pages/ProductIndividual/CreatePI/CreatePI'
 import { CatalogGeneralProducts } from '@/pages/CatalogGeneralProducts/CatalogGeneralProducts'
 import { CreateGeneralProduct } from '@/pages/Admin/pages/GeneralProduct/CreateGeneralProduct/CreateGeneralProduct'
+import { Categories } from '@/pages/Admin/pages/Categories/Categories'
+import { SubCategories } from '@/pages/Admin/pages/SubCategories/SubCategories'
 // import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
 // import { Products } from '@/pages/Admin/pages/Products/Products'
 // import { Categories } from '@/pages/Admin/pages/Categories/Categories'
@@ -58,6 +60,7 @@ export const AppRouter = () => {
         <Route path='/admin' element={<Admin />} />
         <Route path='/admin' element={<Admin />} />
         {/* <Route path='/test' element={<Test3 />} /> */}
+        <Route path='/CatalogGeneralProducts/:categoryId' element={<CatalogGeneralProducts />} />
         <Route path='/CatalogGeneralProducts' element={<CatalogGeneralProducts />} />
         <Route path='/generalProduct/:generalProductId' element={<GeneralProduct />} />
         <Route path='/generalProduct/create/categroyId/:categoryId/subcategoryId/:subCategoryId' element={<CreateGeneralProduct />} />
@@ -66,9 +69,10 @@ export const AppRouter = () => {
 
         {/* <Route path='/admin/products/' element={<Products />} /> */}
         <Route path='/admin/crm/' element={<CRM />} />
-        {/* <Route path='/admin/products/actions/:id' element={<ActionsProducts />} />
+         {/* <Route path='/admin/products/actions/:id' element={<ActionsProducts />} /> */}
         <Route path='/admin/categories/' element={<Categories />} />
-        <Route path='/admin/categories/actions/:id' element={<ActionsCategories />} />
+        <Route path='/admin/subcategories/' element={<SubCategories />} />
+        {/*<Route path='/admin/categories/actions/:id' element={<ActionsCategories />} />
         <Route path='/admin/subcategories/' element={<SubCategories />} /> */}
         {/* <Route path='/admin/subcategories/actions/:id' element={<ActionsSubCategories />} /> */}
         {/* <Route path='/admin/prints/' element={<Prints />} /> */}

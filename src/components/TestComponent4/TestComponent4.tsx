@@ -9,8 +9,8 @@ import { SET_FORM_DATA_KEY_VALUE_OBJ } from "@/helpers/SetFormDataKeyValueObj"
 export const TestComponent4 = () => {
   const createProductIndividual = useProductIndividualStore(state=> state.createProductIndividual)
   const getValues = (values:any)=>{
-    values.categoryId = "c5062dbc-0fb1-41dc-8297-b9b003dc1d7a"
-    values.subCategoryId = "71a360b5-36d2-4047-b553-a33b6290df98"
+    values.categoryId = "1d0be84d-b0e0-4e5c-8b48-10686f748473"
+    values.subCategoryId = "d998e9d8-ce57-4f69-9bdd-f4766626d1fb"
     values.generalProductId = "9c796e33-173a-4556-ac4a-373d3f450c6c"
     values.isVisible = true
     values.typeStamping = "test"

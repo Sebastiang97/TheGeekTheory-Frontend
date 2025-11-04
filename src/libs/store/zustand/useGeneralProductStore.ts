@@ -3,11 +3,24 @@ import { GeneralProduct } from '@/Models/GeneralProduct'
 import { baseService } from '@/Services/base.service'
 import { URL_GENERALPRODUCTS } from '@/constants/service.constant'
 import { COLOR_IMAGE_SIZE_ADAPTER } from '@/adapters/ColorImageSizeAdapter'
+import { TAGS_ADAPTER } from '@/adapters/TagsAdapter'
+import { DirectionPage } from '@/Models/DirectionPage'
+import { Pagination } from '@/Models/Pagination'
+
+export interface FilterQueryGP {
+    cursor          : string, 
+    limit           : number, 
+    direction       : DirectionPage,
+    subCategoryId   : string
+    tags            : string[]
+    orderBy         : string
+}
 
 interface Props {
     generalProduct: GeneralProduct[],
     generalProducts: GeneralProduct[],
     loading: boolean
+    getFilter: (filterQueryGP:FilterQueryGP) => Promise<Pagination<GeneralProduct[]>>
     getGPById: (id:string) => Promise<GeneralProduct[]>
     getGPSubCategoryId: (id:string) => Promise<GeneralProduct[]>
     createGeneralProduct: (product: GeneralProduct)=> Promise<GeneralProduct>
@@ -24,8 +37,33 @@ export const useGeneralProductStore = create<Props>(
                 .getById<GeneralProduct[]>(id)
                 .then(generalProduct => {
                     generalProduct[0].colorImageSizes = COLOR_IMAGE_SIZE_ADAPTER(generalProduct[0].colorImageSize)
+                    generalProduct[0].adaptedTags = TAGS_ADAPTER(generalProduct[0].tags)
                     set({generalProduct,loading: false})
                     return generalProduct
+                })
+                .catch(error=>{
+                    set({loading: false})
+                    throw error
+                })
+        },
+        getFilter({
+            cursor,
+            limit,
+            direction,
+            subCategoryId,
+            tags,
+            orderBy
+        }) {
+            set({loading: true})
+            return baseService(`${URL_GENERALPRODUCTS}getFilter?cursor=${cursor}&limit=${limit}&direction=${direction}&subCategoryId=${subCategoryId}&tags=${tags}&orderBy=${orderBy}`)
+                .list<Pagination<GeneralProduct[]>>()
+                .then(generalProducts => {
+                    generalProducts.content && generalProducts.content.map(generalProduct=>{
+                        generalProduct.colorImageSizes = COLOR_IMAGE_SIZE_ADAPTER(generalProduct.colorImageSize)
+                        generalProduct.adaptedTags = TAGS_ADAPTER(generalProduct.tags)
+                    })
+                    set({loading: false})
+                    return generalProducts
                 })
                 .catch(error=>{
                     set({loading: false})
@@ -39,6 +77,7 @@ export const useGeneralProductStore = create<Props>(
                 .then(generalProducts => {
                     generalProducts && generalProducts.map(generalProduct=>{
                         generalProduct.colorImageSizes = COLOR_IMAGE_SIZE_ADAPTER(generalProduct.colorImageSize)
+                        generalProduct.adaptedTags = TAGS_ADAPTER(generalProduct.tags)
                     })
                     set({generalProducts,loading: false})
                     return generalProducts

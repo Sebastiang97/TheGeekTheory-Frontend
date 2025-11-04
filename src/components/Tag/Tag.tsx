@@ -2,7 +2,7 @@ import { XIcon } from "@@/icons/XIcon"
 import "./Tag.css"
 
 export const Tag = (props:any) => {
-    const {children, title, onDelete, ...rest} = props
+    const {children, title, onDelete , xIcon = false, ...rest} = props
   return (
     <article 
         className="tag"
@@ -12,7 +12,7 @@ export const Tag = (props:any) => {
             <span>
                 {title}
             </span>
-            <XIcon onClick={() => onDelete()}/>
+            { xIcon &&  <XIcon onClick={() => onDelete()}/> }
         </span>
     </article>
   )
