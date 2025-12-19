@@ -15,7 +15,9 @@ export const GET_COLORS_FROM_COLORIMAGESSIZE = (colorImageSize: ColorImageSize[]
     let colors: string[] = []
     colorImageSize.forEach(colorImgSize=>{
         colorImgSize.colorsImages.forEach(cImg=>{
-            colors.push(cImg.color)
+            if(!colors.includes(cImg.color)){
+                colors.push(cImg.color)
+            }
         })
     })
     return colors

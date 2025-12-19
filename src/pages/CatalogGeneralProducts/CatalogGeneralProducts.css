@@ -1,5 +1,10 @@
 .generalProducts{
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+
+    .cardContainer{
+        width: 100%;
+    }
 }

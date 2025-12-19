@@ -27,6 +27,7 @@ import { CatalogGeneralProducts } from '@/pages/CatalogGeneralProducts/CatalogGe
 import { CreateGeneralProduct } from '@/pages/Admin/pages/GeneralProduct/CreateGeneralProduct/CreateGeneralProduct'
 import { Categories } from '@/pages/Admin/pages/Categories/Categories'
 import { SubCategories } from '@/pages/Admin/pages/SubCategories/SubCategories'
+import { EditPI } from '@/pages/Admin/pages/ProductIndividual/EditPI/EditPI'
 // import { ActionsProducts } from '@/pages/Admin/pages/Products/ActionsProducts'
 // import { Products } from '@/pages/Admin/pages/Products/Products'
 // import { Categories } from '@/pages/Admin/pages/Categories/Categories'
@@ -66,6 +67,7 @@ export const AppRouter = () => {
         <Route path='/generalProduct/create/categroyId/:categoryId/subcategoryId/:subCategoryId' element={<CreateGeneralProduct />} />
         <Route path='/productIndividual/:generalProductId' element={<ProductIndividual />} />
         <Route path='/productIndividual/create/:generalProductId' element={<CreatePI />} />
+        <Route path='/productIndividual/edit/:productIndividualId/generalProductId/:generalProductId' element={<EditPI />} />
 
         {/* <Route path='/admin/products/' element={<Products />} /> */}
         <Route path='/admin/crm/' element={<CRM />} />

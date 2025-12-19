@@ -64,5 +64,17 @@ export const FILTER_SIZE_BY_COLOR = (colorImageSize :ColorImageSizes[], color:st
             }
         }
     }
-    return [""]
+    return []
+}
+
+export const FILTER_SIZES_BY_COLOR = (colorImageSizes :ColorImageSizes[], color:string):string[] =>{
+    let sizesByColor: string[] = []
+    if(colorImageSizes?.length ){
+        colorImageSizes.map(colorImageSize=>{
+            if(colorImageSize.color === color){
+                sizesByColor = [...sizesByColor, ...colorImageSize.sizes]
+            }
+        })
+    }
+    return sizesByColor
 }

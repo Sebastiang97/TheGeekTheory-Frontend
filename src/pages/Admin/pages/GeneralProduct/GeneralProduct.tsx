@@ -41,11 +41,7 @@ export const GeneralProduct = () => {
     }
 
     const navigateOptions = (type: TypeActions, path:string) => {
-        console.log({type, path})
-        if (type === ADMIN_MODE.add) {
-            navigate(path)
-        }
-
+        navigate(path)
     }
 
     useEffect(() => {
@@ -112,7 +108,10 @@ export const GeneralProduct = () => {
                             {
                                 generalProduct[0]?.adaptedTags.length &&
                                 generalProduct[0].adaptedTags.map(tag=> (
-                                    <Tag title={tag.name} />
+                                    <Tag 
+                                        key={tag.id} 
+                                        title={tag.name} 
+                                    />
                                 ))
                             }
                         </section>
@@ -155,10 +154,20 @@ export const GeneralProduct = () => {
                                             size={size}
                                         />
                                         <AdminOptions 
-                                            typeEvent={(type)=>navigateOptions(
-                                                type, 
-                                                "/productIndividual/create/"+generalProduct[0].id
-                                            )} 
+                                            typeEvent={(type)=>{
+                                                if(type === ADMIN_MODE.add){
+                                                    navigateOptions(
+                                                        type, 
+                                                        "/productIndividual/create/"+generalProduct[0].id
+                                                    )
+                                                }
+                                                if(type === ADMIN_MODE.edit){
+                                                    navigateOptions(
+                                                        type, 
+                                                        "/productIndividual/edit/"+id+"/generalProductId/"+generalProduct[0].id
+                                                    )
+                                                }
+                                            }} 
                                         />
                                     </section>
                                 </section>

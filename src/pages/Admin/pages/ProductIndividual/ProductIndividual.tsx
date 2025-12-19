@@ -15,7 +15,7 @@ import { InfoProductIndividual } from "@@/Infos/InfoProductIndividual/InfoProduc
 import { ListColorPicker } from "@@/Lists/ListColorPicker/ListColorPicker";
 import { GET_COLORS_FROM_COLORIMAGESSIZE } from "@/helpers/GetColors";
 import { ListSize } from "@@/Lists/ListSize/ListSize";
-import { FILTER_SIZE_BY_COLOR, GET_SIZES_FROM_COLORIMAGESIZE } from "@/helpers/GetSizes";
+import { FILTER_SIZES_BY_COLOR, GET_SIZES_FROM_COLORIMAGESIZE } from "@/helpers/GetSizes";
 import { FILTER_CURRENT_IMAGE_BY_COLOR, FILTER_POSITION_CURRENT_IMAGE_BY_COLOR } from "@/helpers/GetCurrentImage";
 import { BackIcon } from "@@/icons/BackIcon";
 
@@ -47,7 +47,7 @@ export const ProductIndividual = () => {
 
     const handleColors = (color:string): void => {
         setCurrentColor(color)
-        setSize(FILTER_SIZE_BY_COLOR(generalProduct[0].colorImageSizes, color))
+        setSize(FILTER_SIZES_BY_COLOR(generalProduct[0].colorImageSizes, color))
         setCurrentImage(FILTER_POSITION_CURRENT_IMAGE_BY_COLOR(generalProduct[0].colorImageSizes, color))
         setImg(FILTER_CURRENT_IMAGE_BY_COLOR(generalProduct[0].colorImageSizes,color))
 

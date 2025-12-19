@@ -1,0 +1,14 @@
+.categories{
+    display: flex;
+    justify-content: center;
+    .containerCategory{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 20px;
+        div{
+            display: grid;
+            place-content: center;
+        }
+    }
+}

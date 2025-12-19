@@ -9,7 +9,9 @@ export interface ProductIndividual {
     subCategoryId     :string
     categoryId        :string
     generalProductId  :string
+    isVisible         :boolean
     urlImage          :URLImageElement[]
+    images            :string[]
 }
 
 export type URLImageElement = {

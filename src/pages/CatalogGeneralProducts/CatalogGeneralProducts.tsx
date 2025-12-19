@@ -13,7 +13,11 @@ import { LIMIT } from "@/constants/Paginate"
 import { Pagination } from "@/Models/Pagination"
 import { GeneralProduct } from "@/Models/GeneralProduct"
 import { Loading } from "@@/Loading/Loading"
-// import { useCategoryStore } from "@/libs/store/zustand/useCategoryStore"
+import { CategoryList } from "@@/Lists/CategoryList/CategoryList"
+import { useCategoryStore } from "@/libs/store/zustand/useCategoryStore"
+import { Category } from "@/Models/Category"
+import { ModalComponent } from "@@/modals/ModalComponent/ModalComponent"
+import { useModalStore } from "@/libs/store/zustand/useModalStore"
 
 export const CatalogGeneralProducts = () => {
   const [generalProduct, setGeneralProduct] = useState<Pagination<GeneralProduct[]>>()
@@ -22,14 +26,20 @@ export const CatalogGeneralProducts = () => {
   const navigate = useNavigate()
   
 
-  // const listCategories = useCategoryStore(state=> state.list)
-  // const categories = useCategoryStore(state=> state.categories)
+  const listCategories = useCategoryStore(state=> state.list)
+  const categories = useCategoryStore(state=> state.categories)
 
   const getGPSubCategoryId = useGeneralProductStore(state=> state.getGPSubCategoryId)
   const generalProducts = useGeneralProductStore(state=> state.generalProducts)
+  const deleteGeneralProductById = useGeneralProductStore(state=> state.deleteGeneralProductById)
+  
   // const loading = useGeneralProductStore(state=> state.loading)
   const getFilter = useGeneralProductStore(state => state.getFilter)
   const loading = useGeneralProductStore(state => state.loading)
+  const toggle = useModalStore(state=> state.toggle)
+  const setInfo = useModalStore(state=> state.setInfo)
+  const info = useModalStore(state=> state.info)
+  
   
   const navigateOptions = (type: TypeActions, id:string): void => {
     if (type === ADMIN_MODE.add) {
@@ -38,6 +48,11 @@ export const CatalogGeneralProducts = () => {
     
     if (type === ADMIN_MODE.view) {
       navigate("/generalProduct/"+id)
+    }
+
+    if (type === ADMIN_MODE.delete) {
+      toggle()
+      setInfo(id)
     }
   }
 
@@ -57,10 +72,21 @@ export const CatalogGeneralProducts = () => {
       })
     }
   }
+
+  const getCurrentCategoryId = (category: Category)=>{
+    console.log({category})
+  }
   
+  const deleteGeneralProduct = (id:string)=>{
+    deleteGeneralProductById(id)
+      .then(res=>{
+        console.log(res)
+      })
+
+  }
 
   useEffect(()=>{
-    
+    listCategories()
       
     getGPSubCategoryId("d998e9d8-ce57-4f69-9bdd-f4766626d1fb")
       .then(res=>{
@@ -87,21 +113,12 @@ export const CatalogGeneralProducts = () => {
       <Loading isLoading={loading} />
       <section className="container flex justify-between gap-5">
         <BackIcon  onClick={() => navigate(-1)}/>
-        {/* <div className=" ">
-          {categories.length ? categories.map(category=>(
-            <>
-              <button
-                className={"secondary"}
-                onClick={() => {}}
-                >
-                {category.name}
-              </button>
-            </>
-          )) : (
-            <button>crea una</button>
-          )}
-        </div> */}
-       
+        <CategoryList 
+          categories={categories} 
+          currentCategory={categories[0]} 
+          getCurrentCategoryId={getCurrentCategoryId} 
+          typeEvent={()=>{}}
+        />
       </section>
       <section className="container flex justify-between gap-5">
         <section className="filterSidebar">
@@ -113,7 +130,7 @@ export const CatalogGeneralProducts = () => {
           {
             generalProduct?.content.length ? (
               generalProduct.content.map(({id, title, description, price, colorImageSizes}) =>(
-                <section key={id}>
+                <section className="cardContainer" key={id}>
                   <GeneralProductCard
                     id={id}
                     title={title}
@@ -138,8 +155,15 @@ export const CatalogGeneralProducts = () => {
          
         </section>
         {/* <Pagination handlePagination={handlePaginate} /> */}
-        
       </section>
+        <ModalComponent 
+          title="¿Estas seguro de eliminar?"
+          description="esta eliminacion es irreversible"
+          trigger={<></>}
+          content={<></>}
+          confirmAction={()=> deleteGeneralProduct(info)}
+          cancelAction={()=> {}}
+        />
     </>
   )
 }

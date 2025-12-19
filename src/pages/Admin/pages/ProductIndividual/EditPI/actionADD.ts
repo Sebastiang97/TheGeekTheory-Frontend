@@ -44,6 +44,7 @@ export const inputPIFields:InputFields[] =[
                 type: "required"
             },
         ],
+        totalItems: 0
     },
     {
         type: "color",
@@ -58,15 +59,6 @@ export const inputPIFields:InputFields[] =[
         ],
     },
     {
-        type: "totalItemsColors",
-        name: "totalItemsColors",
-        placeholder: "",
-        label: "",
-        value: "",
-        validations: [
-        ]
-    },
-    {
         type: "arraySize",
         name: "arraySize",
         placeholder: "",
@@ -77,6 +69,7 @@ export const inputPIFields:InputFields[] =[
                 type: "required"
             },
         ],
+        totalItems: 0
     },
     {
         type: "size",
@@ -88,15 +81,6 @@ export const inputPIFields:InputFields[] =[
             {
                 type: "required"
             },
-        ]
-    },
-    {
-        type: "totalItemsSizes",
-        name: "totalItemsSizes",
-        placeholder: "",
-        label: "",
-        value: "",
-        validations: [
         ]
     },
     {

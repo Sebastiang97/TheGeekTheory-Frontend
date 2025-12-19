@@ -1,7 +1,7 @@
 import { Category } from "@/Models/Category"
 import { TypeActions } from "@/Models/TypeActions"
 import { AdminOptions } from "@/pages/Admin/components/AdminOptions/AdminOptions"
-
+import "./CategoryList.css"
 
 interface Props {
     categories: Category[]
@@ -23,7 +23,7 @@ export const CategoryList = ({categories, currentCategory, getCurrentCategoryId,
 
     return (
         <section className="categories">
-            <div className="container items-end">
+            <div className="containerCategory">
                 {
                     categories.length &&
                     categories.map(category => (

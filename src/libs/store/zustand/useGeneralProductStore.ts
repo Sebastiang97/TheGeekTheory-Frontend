@@ -24,6 +24,7 @@ interface Props {
     getGPById: (id:string) => Promise<GeneralProduct[]>
     getGPSubCategoryId: (id:string) => Promise<GeneralProduct[]>
     createGeneralProduct: (product: GeneralProduct)=> Promise<GeneralProduct>
+    deleteGeneralProductById: (id: string)=> Promise<void>
 }
 
 export const useGeneralProductStore = create<Props>(
@@ -96,6 +97,24 @@ export const useGeneralProductStore = create<Props>(
                     // generalProducts.push(generalProduct)
                     set({loading: false})
                     return generalProduct
+                })
+                .catch(error=>{
+                    set({loading: false})
+                    throw error
+                })
+        },
+        deleteGeneralProductById : async (id:string) => {
+            set({loading: true})
+            return baseService(URL_GENERALPRODUCTS)
+                .remove(id)
+                .then(_=>{
+                    const generalProducts = get().generalProducts
+                    const newGeneralProducts = generalProducts.filter(product=> product.id !== id)
+                    set({
+                        generalProducts: newGeneralProducts, 
+                        loading: false
+                    })
+                    return
                 })
                 .catch(error=>{
                     set({loading: false})
