@@ -12,14 +12,14 @@ interface Props<T> {
 export const useCounterStore = create<Props<ProductPay>>(
     (set, get) => ({
        currentCounter: 1,
-       setCounter:(operation:Operation) => {
+       setCounter:(operation:string) => {
         let counter = get().currentCounter
         
-        if(OPERATION_COUNTER.SUMA){
+        if(OPERATION_COUNTER.SUMA === operation){
             counter = counter + 1
         }
 
-        if(OPERATION_COUNTER.RESTA){
+        if(OPERATION_COUNTER.RESTA === operation){
             counter = counter - 1
         }
 

@@ -12,6 +12,7 @@ interface Props {
     getProductsIndiByGPId: (id: string) => Promise<ProductIndividual[]>
     createProductIndividual: (product: FormData)=> Promise<ProductIndividual>
     updateProductIndividual: (productId: string, formData:FormData)=> Promise<ProductIndividual>
+    deleteProductById: (id: string)=> Promise<void>
 }
 
 export const useProductIndividualStore = create<Props>(
@@ -85,5 +86,23 @@ export const useProductIndividualStore = create<Props>(
                     throw error
                 })
         },
+        deleteProductById : async (id:string) => {
+            set({loading: true})
+            return baseService(URL_PRODUCTS_INDIVIDUAL)
+                .remove(id)
+                .then(_=>{
+                    const products = get().products
+                    const newProducts = products.filter(product=> product.id !== id)
+                    set({
+                        products: newProducts, 
+                        loading: false
+                    })
+                    return
+                })
+                .catch(error=>{
+                    set({loading: false})
+                    throw error
+                })
+        }
     })
 )
