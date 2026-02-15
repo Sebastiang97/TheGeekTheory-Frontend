@@ -36,7 +36,7 @@ export const GeneralProductCard = ({id, title, subtitle, price, colorImageSizes}
     const navigate = useNavigate()
     const handleOptions = (type: TypeActions, id: string): void => {
         console.log(type)
-        if (type === ADMIN_MODE.add) {
+        if (type === ADMIN_MODE.view) {
             navigate("/generalProduct/"+id)
         }
     }
@@ -65,7 +65,7 @@ export const GeneralProductCard = ({id, title, subtitle, price, colorImageSizes}
 
                     </div>
                     <div className="containerButtons">
-                        <button onClick={()=>handleOptions("add", id)}>Escoge la tuya</button>
+                        <button onClick={()=>handleOptions("view", id)}>Escoge la tuya</button>
                     </div>
                 </div>
 

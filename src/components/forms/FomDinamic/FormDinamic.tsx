@@ -482,11 +482,10 @@ export const FormDinamic = forwardRef<DynamicFormRef, DynamicFormProps>(
                   )
                 } else if (type === 'addTags') {
                   return (
-                    <FieldArray name={name}>
+                    <FieldArray key={name} name={name}>
                       {({ push, remove }) => (
                         <>
                           <FormsTags
-                            key={name}
                             type={(type as any)}
                             name={name}
                             label={label}
