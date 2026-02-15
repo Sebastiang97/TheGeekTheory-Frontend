@@ -7,4 +7,38 @@
     .cardContainer{
         width: 100%;
     }
+    .gpCreate{
+        display: grid;
+        place-content: center;
+        .createGeneralProduct{
+            padding: 20px 0;
+            width: 270px;
+            border-radius: 12px;
+            background-color: #F1F1F1;
+            margin: 10px 0;
+            section{
+                text-align: center;
+                margin: 10px;
+            }
+            .containerPlus{
+                cursor: pointer;
+                display: grid;
+                place-content: center;
+                margin: 10px 0;
+                .plus{
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 40%;
+                    background-color: #F4D3C1;
+                    color: #FE5C00;
+                    display: grid;
+                    place-content: center;
+                    svg{
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+            }
+        }
+    }
 }

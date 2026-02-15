@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { BackIcon } from "@@/icons/BackIcon"
 import { GeneralProductCard } from "@@/Cards/GeneralProductCard/GeneralProductCard"
 import { FilterComponent } from "@@/Sheets/FilterComponent/FilterComponent"
@@ -18,8 +18,11 @@ import { useCategoryStore } from "@/libs/store/zustand/useCategoryStore"
 import { Category } from "@/Models/Category"
 import { ModalComponent } from "@@/modals/ModalComponent/ModalComponent"
 import { useModalStore } from "@/libs/store/zustand/useModalStore"
+import { PlusIcon } from "@@/icons/PlusIcon"
+import { PATH_ADMIN } from "@/helpers/pathAdmin"
 
 export const CatalogGeneralProducts = () => {
+  const { pathname } = useLocation()
   const [generalProduct, setGeneralProduct] = useState<Pagination<GeneralProduct[]>>()
   // const [categoryId, setCategoryId] = useState("")
   // const [searchParams, setSearchParams] = useSearchParams()
@@ -41,13 +44,13 @@ export const CatalogGeneralProducts = () => {
   const info = useModalStore(state=> state.info)
   
   
-  const navigateOptions = (type: TypeActions, id:string): void => {
+  const navigateOptions = (type: string, id:string): void => {
     if (type === ADMIN_MODE.add) {
-      navigate("/generalProduct/create/categroyId/1d0be84d-b0e0-4e5c-8b48-10686f748473/subcategoryId/d998e9d8-ce57-4f69-9bdd-f4766626d1fb")
+      navigate(`${PATH_ADMIN(pathname)}/generalProduct/create/categroyId/1d0be84d-b0e0-4e5c-8b48-10686f748473/subcategoryId/d998e9d8-ce57-4f69-9bdd-f4766626d1fb`)
     }
     
     if (type === ADMIN_MODE.view) {
-      navigate("/generalProduct/"+id)
+      navigate(`${PATH_ADMIN(pathname)}/generalProduct/${id}`)
     }
 
     if (type === ADMIN_MODE.delete) {
@@ -148,7 +151,32 @@ export const CatalogGeneralProducts = () => {
               ))
             ) : (
               <>
-                no hayt
+                {pathname.includes('/admin/') ? (
+                  <>
+                    <div>
+                      <section className="gpCreate">
+                        <section className="createGeneralProduct">
+                          <section>
+                            <h4>Crear General product</h4>
+                          </section>
+                          <section className="containerPlus">
+                            <section className="plus"  onClick={()=>{
+                                navigateOptions(
+                                  ADMIN_MODE.add, 
+                                  "id"
+                                )
+                              }}
+                            >
+                              <PlusIcon />
+                            </section>
+                          </section>
+                        </section>
+                      </section>
+                    </div>
+                  </>
+                ): (
+                  <>No hay productos</>
+                )}
               </>
             )
           }

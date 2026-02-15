@@ -6,7 +6,7 @@ import { useProductIndividualStore } from "@/libs/store/zustand/useProductIndivi
 import { CarouselProduct } from "@@/CarouselsComponents/CarouselProduct/CarouselProduct"
 import { SET_FORM_DATA_KEY_VALUE_OBJ } from "@/helpers/SetFormDataKeyValueObj"
 import { useEffect, useRef, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { useGeneralProductStore } from "@/libs/store/zustand/useGeneralProductStore"
 import { Loading } from "@@/Loading/Loading"
 import { UPDATE_INPUT_ADMIN_COLORS_SIZE } from "@/helpers/UpdateInputAdminFiles"
@@ -19,8 +19,11 @@ import { GET_IMAGE_BY_COLOR_FROM_COLORIMAGESSIZES, GET_IMAGES_FROM_COLORIMAGESSI
 import "./CreatePI.css"
 import { GET_ERROR_MESSAGE, GET_SUCCESS_MESSAGE } from "@/constants/ToastGeneralAtrributes"
 import { FILTER_SIZES_BY_COLOR } from "@/helpers/GetSizes"
+import { PATH_ADMIN } from "@/helpers/pathAdmin"
 
 export const CreatePI = () => {
+  const { pathname } = useLocation()
+
   const { generalProductId } = useParams()
   const formRef = useRef<DynamicFormRef>(null)
   const navigate = useNavigate()
@@ -45,13 +48,15 @@ export const CreatePI = () => {
     delete values.tags
     delete values.arraySize
     delete values.arrayColor
+    delete values.totalItemsColors
+    delete values.totalItemsSizes
     
     const formData: FormData = SET_FORM_DATA_KEY_VALUE_OBJ(values)
     if(!loadingCreate){
       createProductIndividual(formData)
         .then(res => {
           GET_SUCCESS_MESSAGE("Producto individual creado correctamente")
-          navigate("/generalProduct/"+generalProductId)
+          navigate(`${PATH_ADMIN(pathname)}/generalProduct/${generalProductId}`)
         })
         .catch(err => GET_ERROR_MESSAGE())
     }

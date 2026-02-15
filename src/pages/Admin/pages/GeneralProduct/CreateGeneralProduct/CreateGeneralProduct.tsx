@@ -8,15 +8,18 @@ import { useGeneralProductStore } from "@/libs/store/zustand/useGeneralProductSt
 
 
 import { BackIcon } from "@@/icons/BackIcon"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { GET_ERROR_MESSAGE, GET_SUCCESS_MESSAGE } from "@/constants/ToastGeneralAtrributes"
 import { TypeExtraParams } from "@@/forms/FomDinamic/FormsDinamix.models"
 import { useTagStore } from "@/libs/store/zustand/useTagStore"
 import { UPDATE_FIELD_INPUT } from "@/helpers/UpdateFieldInput"
 import { InputFields } from "@/Models/InputFields"
 import "./CreateGeneralProduct.css"
+import { PATH_ADMIN } from "@/helpers/pathAdmin"
 
 export const CreateGeneralProduct = () => {
+  const { pathname } = useLocation()
+
   const [formFields, setFormFields] = useState<InputFields[]>(inputProductFields)
   const navigate = useNavigate()
   const createGeneralProduct = useGeneralProductStore(state=> state.createGeneralProduct)
@@ -36,7 +39,7 @@ export const CreateGeneralProduct = () => {
       createGeneralProduct(values)
         .then(res=>{
           GET_SUCCESS_MESSAGE("Producto creado correctamente")
-          navigate("/CatalogGeneralProducts")
+          navigate(`${PATH_ADMIN(pathname)}/CatalogGeneralProducts`)
         })
         .catch(err=>{
           GET_ERROR_MESSAGE()
