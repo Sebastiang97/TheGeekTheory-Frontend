@@ -69,6 +69,14 @@ export const AppRouter = () => {
         <Route path='/productIndividual/create/:generalProductId' element={<CreatePI />} />
         <Route path='/productIndividual/edit/:productIndividualId/generalProductId/:generalProductId' element={<EditPI />} />
 
+        <Route path='/admin/CatalogGeneralProducts/:categoryId' element={<CatalogGeneralProducts />} />
+        <Route path='/admin/CatalogGeneralProducts' element={<CatalogGeneralProducts />} />
+        <Route path='/admin/generalProduct/:generalProductId' element={<GeneralProduct />} />
+        <Route path='/admin/generalProduct/create/categroyId/:categoryId/subcategoryId/:subCategoryId' element={<CreateGeneralProduct />} />
+        <Route path='/admin/productIndividual/:generalProductId' element={<ProductIndividual />} />
+        <Route path='/admin/productIndividual/create/:generalProductId' element={<CreatePI />} />
+        <Route path='/admin/productIndividual/edit/:productIndividualId/generalProductId/:generalProductId' element={<EditPI />} />
+
         {/* <Route path='/admin/products/' element={<Products />} /> */}
         <Route path='/admin/crm/' element={<CRM />} />
          {/* <Route path='/admin/products/actions/:id' element={<ActionsProducts />} /> */}
