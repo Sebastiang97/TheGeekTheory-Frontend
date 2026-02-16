@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom"
 import { IMAGES } from "@/constants/images/images"
 import "./navbar.css"
 import { Profile } from "@@/Profile/Profile"
+import { UnknownComponent } from "@@/UnknownComponent/UnknownComponent"
 
 export const NavbarComponent: React.FC = () => {
 
@@ -39,7 +40,8 @@ export const NavbarComponent: React.FC = () => {
               </button>
             )
         } */}
-        <Profile showText={false}/>
+        {/* <Profile showText={false}/> */}
+        <UnknownComponent />
       </section>
       <div className="icon">
         <CartPopover />
