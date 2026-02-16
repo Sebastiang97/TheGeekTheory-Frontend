@@ -8,6 +8,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { GET_FORMAT_DATE } from "@/helpers/GetFormatDate"
 import { OptionsActions } from "@/Models/OptionsActions"
 import { FieldTable, HeadersTable, OptionsTable } from "@/Models/Table"
 import { PopoverComponent } from "@@/PopoverComponent/PopoverComponent"
@@ -33,15 +34,16 @@ export const TableTest = <T, O,>({ headers, data, optionsActions }: Props<T, O>)
                         {headers?.length && (
                             headers.map(header => (
                                 <TableHead
+                                    key={header.field}
                                     className={header.class}
                                 >
                                     {header.field === "checkbox"
                                         ? (
-                                            <div key={header.field}>
+                                            <div >
                                                 <input type="checkbox" onClick={()=>a()}/>
                                             </div>
                                         ) : (
-                                            <div key={header.field}>
+                                            <div >
                                                 {header.text}
                                             </div>
                                         )
@@ -67,32 +69,32 @@ export const TableTest = <T, O,>({ headers, data, optionsActions }: Props<T, O>)
                                                     ) {
                                                         if (header.fieldType === 'text') {
                                                             return (
-                                                                <TableCell >
-                                                                    <div key={d.id}>
+                                                                <TableCell key={d.id}>
+                                                                    <div >
                                                                         {d.element[header.field]}
                                                                     </div>
                                                                 </TableCell>
                                                             )
                                                         }else if (header.fieldType === 'date') {
                                                             return (
-                                                                <TableCell>
-                                                                    <div key={d.id}>
-                                                                        {d.element[header.field]}
+                                                                <TableCell key={d.id}>
+                                                                    <div >
+                                                                        {GET_FORMAT_DATE(d.element[header.field])}
                                                                     </div>
                                                                 </TableCell>
                                                             )
                                                         }else if (header.fieldType === 'link') {
                                                             return (
-                                                                <TableCell>
-                                                                    <div key={d.id}>
+                                                                <TableCell key={d.id}>
+                                                                    <div >
                                                                         {d.element[header.field]}
                                                                     </div>
                                                                 </TableCell>
                                                             )
                                                         }else if (header.fieldType === 'button-state') {
                                                             return (
-                                                                <TableCell>
-                                                                    <div key={d.id}>
+                                                                <TableCell key={d.id}>
+                                                                    <div >
 
                                                                         {d.element[header.field]}
                                                                     </div>
@@ -100,8 +102,8 @@ export const TableTest = <T, O,>({ headers, data, optionsActions }: Props<T, O>)
                                                             )
                                                         }else if (header.fieldType === 'dolar') {
                                                             return (
-                                                                <TableCell>
-                                                                    <div key={d.id}>
+                                                                <TableCell key={d.id}>
+                                                                    <div >
 
                                                                         {d.element[header.field]}
                                                                     </div>
@@ -109,14 +111,14 @@ export const TableTest = <T, O,>({ headers, data, optionsActions }: Props<T, O>)
                                                             )
                                                         }else if (header.fieldType === 'checkbox') {
                                                             return (
-                                                                <label>
+                                                                <label key={d.id}>
                                                                     <input type="checkbox" onClick={()=>a()}/>
                                                                 </label>
                                                             )
                                                         }else if (header.fieldType === 'actions') {
                                                             return (
-                                                                <TableCell >
-                                                                    <div key={d.id}>
+                                                                <TableCell key={d.id}>
+                                                                    <div>
                                                                         <PopoverComponent
                                                                             classNameButton="no-button color-main"
                                                                             trigger={
@@ -143,9 +145,9 @@ export const TableTest = <T, O,>({ headers, data, optionsActions }: Props<T, O>)
                                                             )
                                                         }else {
                                                             return (
-                                                                <TableCell >
+                                                                <TableCell key={header.field}>
                                                                     <div
-                                                                        key={header.field}>
+                                                                        >
                                                                         ...(not found header FieldType )
                                                                     </div>
                                                                 </TableCell>
@@ -153,9 +155,9 @@ export const TableTest = <T, O,>({ headers, data, optionsActions }: Props<T, O>)
                                                         }
                                                     } else {
                                                         return (
-                                                            <TableCell >
+                                                            <TableCell key={header.field}>
                                                                 <div
-                                                                    key={header.field}>
+                                                                    >
                                                                     ...
                                                                 </div>
                                                             </TableCell>
