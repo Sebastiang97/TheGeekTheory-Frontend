@@ -1,4 +1,4 @@
-import { CardItem } from "@@/CardItem/CardItem"
+import { CardItem } from "@@/Cards/CardItem/CardItem"
 import "./cartList.css"
 import { useCartStore } from "@/libs/store/zustand/useCartStore"
 import { useEffect, useState } from "react"

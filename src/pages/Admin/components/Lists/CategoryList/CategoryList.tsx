@@ -1,4 +1,4 @@
-import { Card } from "@@/Card/Card"
+import { Card } from "@@/Cards/Card/Card"
 
 export interface Props {
     elements: any[]

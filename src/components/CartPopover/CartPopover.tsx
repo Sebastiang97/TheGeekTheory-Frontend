@@ -1,8 +1,8 @@
 import "./cartPopover.css"
 import { CartList } from "@@/Lists/CartList/CartList"
 import { PopoverComponent } from "@@/PopoverComponent/PopoverComponent"
-import { ShoppingCartIcon } from "@@/icons/ShoppingCartIcon"
 import { useCartToggleStore } from "@/libs/store/zustand/useCartToggleStore"
+import { ShoppingCartIcon } from "@@/icons/ShoppingCartIcon"
 
 export const CartPopover = () => {
   const isOpen = useCartToggleStore(state => state.isOpen)
