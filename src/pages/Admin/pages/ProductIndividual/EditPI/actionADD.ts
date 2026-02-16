@@ -44,7 +44,7 @@ export const inputPIFields:InputFields[] =[
                 type: "required"
             },
         ],
-        totalItems: 0
+        // totalItems: 0
     },
     {
         type: "color",
@@ -69,7 +69,7 @@ export const inputPIFields:InputFields[] =[
                 type: "required"
             },
         ],
-        totalItems: 0
+        // totalItems: 0
     },
     {
         type: "size",
