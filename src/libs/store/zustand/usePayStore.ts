@@ -10,7 +10,7 @@ interface Props {
     pays: Pay[],
     loading: boolean
     list: () => void
-    getPaysAndPayer: (cursor:string, limit:number, direction: DirectionPage) => Promise<Pagination<Pay[]>>
+    getPaysAndPayer: (cursor:string, limit:number, direction: DirectionPage, state: string) => Promise<Pagination<Pay[]>>
     listAll: () => Promise<Pay[]>
     getPayById: (id: string) => Promise<Pay>
     getPayByPayerId: (payerId:string, cursor:string, limit:number, direction: DirectionPage)=>Promise<Pagination<Pay[]>>
@@ -31,8 +31,8 @@ export const usePayStore = create<Props>(
                 })
             }
         },
-        getPaysAndPayer: (cursor, limit = 5, direction) => {
-            return baseService(`${URL_PAYS}getPaysAndPayer?cursor=${cursor}&limit=${limit}&direction=${direction}`)
+        getPaysAndPayer: (cursor, limit = 5, direction, state= "") => {
+            return baseService(`${URL_PAYS}getPaysAndPayer?cursor=${cursor}&limit=${limit}&direction=${direction}&state=${state}`)
                 .list<Pagination<Pay[]>>()
                 .then(pays => {
                     return pays

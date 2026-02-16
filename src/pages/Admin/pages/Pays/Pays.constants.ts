@@ -36,13 +36,13 @@ export const TABLE_PAY_HEADERS: HeadersTable[] = [
     iconInfo: false,
     fieldType: 'text',
   },
-  // {
-  //   field: 'surname',
-  //   text: 'Apellido',
-  //   sortable: true,
-  //   iconInfo: false,
-  //   fieldType: 'text',
-  // },
+  {
+    field: 'phone',
+    text: 'Celular',
+    sortable: true,
+    iconInfo: false,
+    fieldType: 'text',
+  },
   {
     field: 'amount',
     text: 'Precio',
@@ -79,5 +79,10 @@ export const guideForm = [
     id: "numberGuide",
     numberGuide: ""
   }
+]
+
+export const OPTIONS_STATE = [
+  { id: 1, nombre: 'Approved', valor: 'approved' },
+  { id: 2, nombre: 'Created', valor: 'CREATED' },
 ]
 

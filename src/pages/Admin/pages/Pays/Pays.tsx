@@ -5,7 +5,7 @@ import { Pay } from "@/Models/Pay"
 import { FieldTable } from "@/Models/Table"
 import { TableTest } from "@@/TableComponent/TableTest"
 import { useEffect, useState } from "react"
-import { OPTIONS_PAY_ACTIONS, OptionsPayTable, TABLE_PAY_HEADERS } from "./Pays.constants"
+import { OPTIONS_PAY_ACTIONS, OPTIONS_STATE, OptionsPayTable, TABLE_PAY_HEADERS } from "./Pays.constants"
 import { LIMIT } from "@/constants/Paginate"
 import { DirectionPage } from "@/Models/DirectionPage"
 import { Pagination } from "@@/Pagination/Pagination"
@@ -27,6 +27,7 @@ export const Pays = () => {
     onSubmit: (values) => {
     },
   });
+  const [selected, setSelected] = useState<string>("")
   const [filterData, setFilterData] = useState<FieldTable<Pay, OptionsPayTable>[]>([])
   // const listAll = usePayStore(state => state.listAll)
   
@@ -64,7 +65,7 @@ export const Pays = () => {
   }
 
   const handlePaginate = (direction:DirectionPage) => {
-    getPaysAndPayer(direction === "next" ? nextCursor : previousCursor , LIMIT, direction)
+    getPaysAndPayer(direction === "next" ? nextCursor : previousCursor , LIMIT, direction, selected)
       .then(pays=>{
         setNextCursor(pays.nextCursor)
         setPreviousCursor(pays.previousCursor)
@@ -80,8 +81,28 @@ export const Pays = () => {
       })
   }
 
+  const changeState = (e:any) =>{
+    setSelected(e.target.value)
+    if(e.target.value){
+      getPaysAndPayer("", LIMIT, "next", e.target.value)
+        .then(pays=>{
+          setNextCursor(pays.nextCursor)
+          setPreviousCursor(pays.previousCursor)
+          let p:any[] = []
+          pays.content.map(pay=>{
+            p.push({
+              ...pay,
+              ...pay.payer
+            })
+          })
+          console.log(p)
+          setFilterData(MAPPER_FIELDS<Pay, OptionsPayTable>(p, OPTIONS_PAY_ACTIONS))
+        })
+    }
+  }
+
   useEffect(() => {
-    getPaysAndPayer("", LIMIT, "next")
+    getPaysAndPayer("", LIMIT, "next", "")
       .then(pays=>{
         setNextCursor(pays.nextCursor)
         setPreviousCursor(pays.previousCursor)
@@ -136,6 +157,18 @@ export const Pays = () => {
                 Boolean(Object.keys(formik.touched).length === Object.keys(formik.values).length))
               }
             />
+
+            <select 
+              onChange={changeState}
+            >
+              <option value="">Selecciona un estado</option>
+              {OPTIONS_STATE.map(opcion => (
+                <option key={opcion.id} value={opcion.valor}>
+                  {opcion.nombre}
+                </option>
+              ))}
+            </select>
+            
             
             <TableTest<Pay, OptionsPayTable>
               data={filterData}
