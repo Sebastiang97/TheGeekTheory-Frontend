@@ -11,6 +11,7 @@ export interface GeneralProduct {
     color:         string;
     quantity:      number;
     subCategoryId : string;
+    code:           string;
     // urlImage:      URLImage[];
     colorImageSizes: ColorImageSizes[]
     colorImageSize: ColorImageSize[]

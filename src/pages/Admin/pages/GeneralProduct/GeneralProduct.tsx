@@ -95,7 +95,7 @@ export const GeneralProduct = () => {
                 <section >
                     <TitleSubtitle
                         title={generalProduct[0].title}
-                        subtitle="INT123456789"
+                        subtitle={generalProduct[0].code ? generalProduct[0].code : "no code"}
                     />
                     <section className="generalProduct">
                         <section className="carouselGeneralProduct">
