@@ -69,4 +69,8 @@ export const UNKNOWN_SESION = Object.freeze([
         text: "Compras Generales (Admin)",
         to: "/admin/payments/"
     },
+    {
+        text: "CRM",
+        to: "/admin/CatalogGeneralProducts"
+    }
 ])
