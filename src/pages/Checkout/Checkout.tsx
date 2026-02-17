@@ -87,7 +87,7 @@ export const Checkout = () => {
             .createFile(formData)
             .then(res => {
                 console.log({ res })
-                // window.open(res as any, "_self")
+                window.open(res as any, "_self")
             })
             .catch(err => {
                 console.log({ err })
